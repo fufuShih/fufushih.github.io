@@ -182,6 +182,10 @@
 <p>佈署到的地址:</p>
 <p><img data-src="/2021/12/03/flutter-dapp/2021-12-03-02-07-20.png" alt="migrate address"></p>
 <p>compile完後得到一個json檔:</p>
+<p>而在裡面有個ABI，是告訴我們如何與合約溝通的接口介面</p>
+<blockquote>
+<p>web3要和智能合約溝通所需要的是ABI，也就是二進制接口(Application Binary Interface)<br>而ABI是以JSON來表達合約裡的方法，告訴web3如何以合約理解的方式格式化函數去做調用</p>
+</blockquote>
 <p><img data-src="/2021/12/03/flutter-dapp/2021-12-03-01-59-23.png" alt="Json"></p>
 <p>把他加入到flutter的assets中</p>
 <p><img data-src="/2021/12/03/flutter-dapp/2021-12-03-02-00-02.png" alt="assets"></p>
