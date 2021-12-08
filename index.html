@@ -199,6 +199,161 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
+    <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/08/flutter-dapp-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="FufuShih">
+      <meta itemprop="description" content="紀錄、思考與分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿甫筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/08/flutter-dapp-2/" class="post-title-link" itemprop="url">使用flutter來建立dapp-2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-12-08 21:32:06 / Modified: 21:51:55" itemprop="dateCreated datePublished" datetime="2021-12-08T21:32:06+08:00">2021-12-08</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2021/12/08/flutter-dapp-2/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/08/flutter-dapp-2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="使用flutter來建立dapp-2"><a href="#使用flutter來建立dapp-2" class="headerlink" title="使用flutter來建立dapp-2"></a>使用flutter來建立dapp-2</h1><h2 id="建立"><a href="#建立" class="headerlink" title="建立"></a>建立</h2><p>接下來，我們來新增一些功能，把我們的Name上傳並且回傳回來</p>
+<p>首先，是我們的合約，我們先新增一個合約MyName.sol:</p>
+<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-20-35-51.png" alt="contract structure"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyName &#123;</span><br><span class="line">  string public _name;</span><br><span class="line"></span><br><span class="line">  constructor() &#123;</span><br><span class="line">    _name=&quot;Please Type Your Name&quot;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function setName(string memory name) public&#123;</span><br><span class="line">    _name = name ;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function getName() public view returns (string memory)&#123;</span><br><span class="line">    return _name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>並重新設定migrations:</p>
+<p>migrations/1_initial_migration.js:</p>
+<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-20-45-32.png"></p>
+<p>我們去編譯並佈署:</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">truffle compile</span><br><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-20-48-45.png"></p>
+<p>成功後，我們開始建立我們的flutter dapp</p>
+<p>我們的flutter專案架構:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lib</span><br><span class="line">  core</span><br><span class="line">    service</span><br><span class="line">    states</span><br><span class="line">  ui</span><br><span class="line">    screens</span><br><span class="line">    widgets</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-20-51-02.png"></p>
+<p>需要的套件以及assets:<br><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-20-56-02.png"></p>
+<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-20-59-31.png"></p>
+<p>我們把compile後的json檔放入flutter的assets中:<br><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-20-53-44.png"></p>
+<hr>
+<p>接下來，我們來實現我們要的功能:</p>
+<p>core/services/contract_linking_service.dart:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:convert&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/services.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web3dart/web3dart.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinkingService</span> </span>&#123;</span><br><span class="line">  Future&lt;<span class="built_in">String</span>&gt; getAbi(<span class="built_in">String</span> path) <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">// Reading the contract abi</span></span><br><span class="line">    <span class="built_in">String</span> abiStringFile = <span class="keyword">await</span> rootBundle.loadString(path);</span><br><span class="line">    <span class="keyword">var</span> jsonAbi = jsonDecode(abiStringFile);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> jsonEncode(jsonAbi[<span class="string">&quot;abi&quot;</span>]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;EthereumAddress&gt; getContractAddress(<span class="built_in">String</span> path, <span class="built_in">String</span> net) <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">// Reading the contract abi</span></span><br><span class="line">    <span class="built_in">String</span> abiStringFile = <span class="keyword">await</span> rootBundle.loadString(path);</span><br><span class="line">    <span class="keyword">var</span> jsonAbi = jsonDecode(abiStringFile);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> EthereumAddress.fromHex(jsonAbi[<span class="string">&quot;networks&quot;</span>][net][<span class="string">&quot;address&quot;</span>]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;Credentials&gt; getCredentials(<span class="built_in">String</span> _privateKey) <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> EthPrivateKey.fromHex(_privateKey);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;DeployedContract&gt; getDeployedContract(</span><br><span class="line">      <span class="built_in">String</span> _abiCode, <span class="built_in">String</span> _name, EthereumAddress _contractAddress) <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">//  Telling Web3dart where our contract is declared.</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> DeployedContract(</span><br><span class="line">        ContractAbi.fromJson(_abiCode, _name), _contractAddress);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>core/services/services.dart:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="string">&#x27;./contract_linking_service.dart&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>core/states/contract_state.dart:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/services/services.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:http/http.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web3dart/web3dart.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web_socket_channel/io.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractState</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> ContractLinkingService contractLinkingService =</span><br><span class="line">      ContractLinkingService();</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _rpcUrl = <span class="string">&quot;http://10.0.2.2:8545&quot;</span>;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _wsUrl = <span class="string">&quot;ws://10.0.2.2:8545/&quot;</span>;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _privateKey =</span><br><span class="line">      <span class="string">&#x27;0xb57ae20c98201b5dd0216dfafc0f71b91113de9c1de09676065084ee83979ab2&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">String</span> name = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> Web3Client _client;</span><br><span class="line">  <span class="keyword">late</span> <span class="built_in">String</span> _abiCode;</span><br><span class="line">  <span class="keyword">late</span> Credentials _credentials;</span><br><span class="line">  <span class="keyword">late</span> EthereumAddress _contractAddress;</span><br><span class="line">  <span class="keyword">late</span> DeployedContract _contract;</span><br><span class="line"></span><br><span class="line">  ContractState() &#123;</span><br><span class="line">    initialSetup();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initialSetup() <span class="keyword">async</span> &#123;</span><br><span class="line">    _client = Web3Client(_rpcUrl, Client(), socketConnector: () &#123;</span><br><span class="line">      <span class="keyword">return</span> IOWebSocketChannel.connect(_wsUrl).cast&lt;<span class="built_in">String</span>&gt;();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    _abiCode =</span><br><span class="line">        <span class="keyword">await</span> contractLinkingService.getAbi(<span class="string">&quot;assets/artifacts/MyName.json&quot;</span>);</span><br><span class="line">    _contractAddress = <span class="keyword">await</span> contractLinkingService.getContractAddress(</span><br><span class="line">        <span class="string">&quot;assets/artifacts/MyName.json&quot;</span>, <span class="string">&quot;1638897663028&quot;</span>);</span><br><span class="line">    _contract = <span class="keyword">await</span> contractLinkingService.getDeployedContract(</span><br><span class="line">        _abiCode, <span class="string">&quot;MyName&quot;</span>, _contractAddress);</span><br><span class="line">    _credentials = <span class="keyword">await</span> contractLinkingService.getCredentials(_privateKey);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getName() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">// Getting the current name declared in the smart contract.</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> currentName = <span class="keyword">await</span> _client.call(</span><br><span class="line">        contract: _contract,</span><br><span class="line">        function: _contract.function(<span class="string">&quot;getName&quot;</span>),</span><br><span class="line">        params: []);</span><br><span class="line">    name = currentName[<span class="number">0</span>];</span><br><span class="line">    notifyListeners();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setName(<span class="built_in">String</span> name) <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">// Setting the name to nameToSet(name defined by user)</span></span><br><span class="line">    notifyListeners();</span><br><span class="line">    <span class="keyword">await</span> _client.sendTransaction(</span><br><span class="line">        _credentials,</span><br><span class="line">        Transaction.callContract(</span><br><span class="line">            contract: _contract,</span><br><span class="line">            function: _contract.function(<span class="string">&quot;setName&quot;</span>),</span><br><span class="line">            parameters: [name]));</span><br><span class="line">    getName();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>core/states/states.dart:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="string">&#x27;./contract_state.dart&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>接下來，是我們UI的部分:</p>
+<p>ui/screens/home_screen.dart:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/states/states.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> HomeScreen(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// Getting the value and object or contract_linking</span></span><br><span class="line">    <span class="keyword">final</span> contractLink = Provider.of&lt;ContractState&gt;(context);</span><br><span class="line">    TextEditingController _textController = TextEditingController();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: <span class="keyword">const</span> Text(<span class="string">&quot;Smart Contract Test!&quot;</span>),</span><br><span class="line">        centerTitle: <span class="keyword">true</span>,</span><br><span class="line">      ),</span><br><span class="line">      body: Container(</span><br><span class="line">        padding: <span class="keyword">const</span> EdgeInsets.symmetric(horizontal: <span class="number">20</span>),</span><br><span class="line">        child: Center(</span><br><span class="line">          child: SingleChildScrollView(</span><br><span class="line">            child: Form(</span><br><span class="line">              child: Column(</span><br><span class="line">                children: [</span><br><span class="line">                  Row(</span><br><span class="line">                    mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">                    children: [</span><br><span class="line">                      Text(</span><br><span class="line">                        contractLink.name,</span><br><span class="line">                        style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">                            fontWeight: FontWeight.bold,</span><br><span class="line">                            fontSize: <span class="number">26</span>,</span><br><span class="line">                            color: Colors.tealAccent),</span><br><span class="line">                      ),</span><br><span class="line">                    ],</span><br><span class="line">                  ),</span><br><span class="line">                  Padding(</span><br><span class="line">                    padding: <span class="keyword">const</span> EdgeInsets.only(top: <span class="number">29</span>),</span><br><span class="line">                    child: TextFormField(</span><br><span class="line">                      controller: _textController,</span><br><span class="line">                      decoration: <span class="keyword">const</span> InputDecoration(</span><br><span class="line">                        border: OutlineInputBorder(),</span><br><span class="line">                        labelText: <span class="string">&quot;Your Name&quot;</span>,</span><br><span class="line">                      ),</span><br><span class="line">                    ),</span><br><span class="line">                  ),</span><br><span class="line">                  Padding(</span><br><span class="line">                    padding: <span class="keyword">const</span> EdgeInsets.only(top: <span class="number">30</span>),</span><br><span class="line">                    child: ElevatedButton(</span><br><span class="line">                      child: <span class="keyword">const</span> Text(</span><br><span class="line">                        <span class="string">&#x27;Set your name&#x27;</span>,</span><br><span class="line">                        style: TextStyle(fontSize: <span class="number">30</span>),</span><br><span class="line">                      ),</span><br><span class="line">                      style: ElevatedButton.styleFrom(</span><br><span class="line">                        primary: Colors.green,</span><br><span class="line">                      ),</span><br><span class="line">                      onPressed: () &#123;</span><br><span class="line">                        contractLink.setName(_textController.text);</span><br><span class="line">                        _textController.clear();</span><br><span class="line">                      &#125;,</span><br><span class="line">                    ),</span><br><span class="line">                  ),</span><br><span class="line">                ],</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: FloatingActionButton(</span><br><span class="line">        onPressed: () <span class="keyword">async</span> =&gt; <span class="keyword">await</span> contractLink.getName(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ui/screens/screens.dart</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="string">&#x27;./home_screen.dart&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>main.dart:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/states/states.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/ui/screens/screens.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(<span class="keyword">const</span> MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> MyApp(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> ChangeNotifierProvider&lt;ContractState&gt;(</span><br><span class="line">      create: (_) =&gt; ContractState(),</span><br><span class="line">      child: MaterialApp(</span><br><span class="line">        title: <span class="string">&quot;Hello World&quot;</span>,</span><br><span class="line">        theme: ThemeData(</span><br><span class="line">          brightness: Brightness.dark,</span><br><span class="line">          primaryColor: Colors.cyan[<span class="number">400</span>],</span><br><span class="line">        ),</span><br><span class="line">        home: <span class="keyword">const</span> HomeScreen(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>接下來，我們來進行測試:</p>
+<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-21-06-40.png"></p>
+<p>我們先按fab，來獲取網路節點上的name</p>
+<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-21-28-12.png"></p>
+<p>接下來，我們輸入一個name並set(這邊我輸入fufu):</p>
+<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-21-28-53.png"></p>
+<p>改輸入別的name</p>
+<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-21-29-33.png"></p>
+<p>result:<br><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-21-29-55.png"></p>
+<hr>
+<h2 id="Note"><a href="#Note" class="headerlink" title="Note:"></a>Note:</h2><p>在我們的core/states/contract_state.dart中:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> ContractLinkingService contractLinkingService =</span><br><span class="line">    ContractLinkingService();</span><br><span class="line"><span class="keyword">final</span> <span class="built_in">String</span> _rpcUrl = <span class="string">&quot;http://10.0.2.2:8545&quot;</span>;</span><br><span class="line"><span class="keyword">final</span> <span class="built_in">String</span> _wsUrl = <span class="string">&quot;ws://10.0.2.2:8545/&quot;</span>;</span><br><span class="line"><span class="keyword">final</span> <span class="built_in">String</span> _privateKey =</span><br><span class="line">    <span class="string">&#x27;0xb57ae20c98201b5dd0216dfafc0f71b91113de9c1de09676065084ee83979ab2&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>rpcUrl 以及 wsUrl式連線到我們的node節點上</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">initialSetup() <span class="keyword">async</span> &#123;</span><br><span class="line">  _client = Web3Client(_rpcUrl, Client(), socketConnector: () &#123;</span><br><span class="line">    <span class="keyword">return</span> IOWebSocketChannel.connect(_wsUrl).cast&lt;<span class="built_in">String</span>&gt;();</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  _abiCode =</span><br><span class="line">      <span class="keyword">await</span> contractLinkingService.getAbi(<span class="string">&quot;assets/artifacts/MyName.json&quot;</span>);</span><br><span class="line">  _contractAddress = <span class="keyword">await</span> contractLinkingService.getContractAddress(</span><br><span class="line">      <span class="string">&quot;assets/artifacts/MyName.json&quot;</span>, <span class="string">&quot;1638897663028&quot;</span>);</span><br><span class="line">  _contract = <span class="keyword">await</span> contractLinkingService.getDeployedContract(</span><br><span class="line">      _abiCode, <span class="string">&quot;MyName&quot;</span>, _contractAddress);</span><br><span class="line">  _credentials = <span class="keyword">await</span> contractLinkingService.getCredentials(_privateKey);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>對於contractLinkingService.getContractAddress(“assets/artifacts/MyName.json”, “1638897663028”);<br>那個1638897663028是block的timestamp<br>我們能在deploy合約時，能看到</p>
+</blockquote>
+<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-21-44-10.png"></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">getName() <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="comment">// Getting the current name declared in the smart contract.</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> currentName = <span class="keyword">await</span> _client.call(</span><br><span class="line">      contract: _contract,</span><br><span class="line">      function: _contract.function(<span class="string">&quot;getName&quot;</span>),</span><br><span class="line">      params: []);</span><br><span class="line">  name = currentName[<span class="number">0</span>];</span><br><span class="line">  notifyListeners();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我們去呼叫合約上的getName</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">setName(<span class="built_in">String</span> name) <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="comment">// Setting the name to nameToSet(name defined by user)</span></span><br><span class="line">  notifyListeners();</span><br><span class="line">  <span class="keyword">await</span> _client.sendTransaction(</span><br><span class="line">      _credentials,</span><br><span class="line">      Transaction.callContract(</span><br><span class="line">          contract: _contract,</span><br><span class="line">          function: _contract.function(<span class="string">&quot;setName&quot;</span>),</span><br><span class="line">          parameters: [name]));</span><br><span class="line">  getName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我們去transaction我們的name到節點上</p>
+</blockquote>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.soliditylang.org/en/latest/index.html">solidity</a></li>
+<li><a target="_blank" rel="noopener" href="https://pub.dev/packages/web3dart">web3dart</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/flutter-and-blockchain-hello-world-dapp/">Flutter and Blockchain – Hello World Dapp</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
     <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/05/Remix-On-Vscode/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -320,7 +475,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-07 05:59:19" itemprop="dateModified" datetime="2021-12-07T05:59:19+08:00">2021-12-07</time>
+                <time title="Modified: 2021-12-08 21:33:04" itemprop="dateModified" datetime="2021-12-08T21:33:04+08:00">2021-12-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -411,6 +566,121 @@
 <p>現在，我們啟動flutter emulator:<br><img data-src="/2021/12/03/flutter-dapp/2021-12-03-02-08-07.png" alt="emulator launch"></p>
 <p>我們按一下Button，會發現到:</p>
 <p><img data-src="/2021/12/03/flutter-dapp/2021-12-03-02-08-50.png" alt="click"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
+    <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="FufuShih">
+      <meta itemprop="description" content="紀錄、思考與分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿甫筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/" class="post-title-link" itemprop="url">Solidity:創建簡易代幣</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-01 01:04:19" itemprop="dateCreated datePublished" datetime="2021-12-01T01:04:19+08:00">2021-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-05 14:51:51" itemprop="dateModified" datetime="2021-12-05T14:51:51+08:00">2021-12-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solidity/" itemprop="url" rel="index"><span itemprop="name">solidity</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/01/Solidity_創建簡易代幣/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Solidity-創建簡易代幣"><a href="#Solidity-創建簡易代幣" class="headerlink" title="Solidity:創建簡易代幣"></a>Solidity:創建簡易代幣</h1><p>在終端輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle create contract MyToken</span><br></pre></td></tr></table></figure>
+
+<p>創建<br><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyToken &#123;</span><br><span class="line">  uint INITIAL_SUPPLY = 10000;</span><br><span class="line">  mapping(address =&gt; uint) balances;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    balances[msg.sender] = INITIAL_SUPPLY;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // transfer token for a specified address</span><br><span class="line">  function transfer(address _to, uint _amount) public &#123;</span><br><span class="line">    require(balances[msg.sender] &gt; _amount);</span><br><span class="line">    balances[msg.sender] -= _amount;</span><br><span class="line">    balances[_to] += _amount;</span><br><span class="line">  &#125;</span><br><span class="line">  // Gets the balance of the specified address</span><br><span class="line">  // Constant and Immutable State Variables. See https://docs.soliditylang.org/en/v0.8.10/contracts.html#modifiers</span><br><span class="line">  function balanceOf(address _owner) public view returns (uint) &#123;</span><br><span class="line">    return balances[_owner];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在migrations資料夾新增</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line">var MyToken = artifacts.require(&quot;MyToken&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">  deployer.deploy(MyToken);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>編譯</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.1.png"></p>
+<p>開始部署，Run</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.6.png"><br><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.2.png"></p>
+<p>Test</p>
+<p>開啟console</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let contract</span><br><span class="line">MyToken.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.3.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf(accounts[1])</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.4.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract.transfer(accounts[1], 123)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.5.png"></p>
+<p>…</p>
 
       
     </div>
@@ -527,121 +797,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract.transfer(accounts[1], 50)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
 <p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BAERC20%E6%A8%99%E6%BA%96%E4%BB%A3%E5%B9%A3/unknown_filename.5.png"><br><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BAERC20%E6%A8%99%E6%BA%96%E4%BB%A3%E5%B9%A3/unknown_filename.6.png"></p>
 <p>..</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="紀錄、思考與分享">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/" class="post-title-link" itemprop="url">Solidity:創建簡易代幣</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-12-01 01:04:19" itemprop="dateCreated datePublished" datetime="2021-12-01T01:04:19+08:00">2021-12-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-05 14:51:51" itemprop="dateModified" datetime="2021-12-05T14:51:51+08:00">2021-12-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/solidity/" itemprop="url" rel="index"><span itemprop="name">solidity</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/01/Solidity_創建簡易代幣/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Solidity-創建簡易代幣"><a href="#Solidity-創建簡易代幣" class="headerlink" title="Solidity:創建簡易代幣"></a>Solidity:創建簡易代幣</h1><p>在終端輸入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle create contract MyToken</span><br></pre></td></tr></table></figure>
-
-<p>創建<br><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyToken &#123;</span><br><span class="line">  uint INITIAL_SUPPLY = 10000;</span><br><span class="line">  mapping(address =&gt; uint) balances;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    balances[msg.sender] = INITIAL_SUPPLY;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // transfer token for a specified address</span><br><span class="line">  function transfer(address _to, uint _amount) public &#123;</span><br><span class="line">    require(balances[msg.sender] &gt; _amount);</span><br><span class="line">    balances[msg.sender] -= _amount;</span><br><span class="line">    balances[_to] += _amount;</span><br><span class="line">  &#125;</span><br><span class="line">  // Gets the balance of the specified address</span><br><span class="line">  // Constant and Immutable State Variables. See https://docs.soliditylang.org/en/v0.8.10/contracts.html#modifiers</span><br><span class="line">  function balanceOf(address _owner) public view returns (uint) &#123;</span><br><span class="line">    return balances[_owner];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在migrations資料夾新增</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line">var MyToken = artifacts.require(&quot;MyToken&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">  deployer.deploy(MyToken);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>編譯</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.1.png"></p>
-<p>開始部署，Run</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.6.png"><br><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.2.png"></p>
-<p>Test</p>
-<p>開啟console</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let contract</span><br><span class="line">MyToken.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.3.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf(accounts[1])</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.4.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract.transfer(accounts[1], 123)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.5.png"></p>
-<p>…</p>
 
       
     </div>
@@ -865,7 +1020,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -878,7 +1033,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
