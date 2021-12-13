@@ -200,6 +200,156 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
+    <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/12/flutter-lifecycle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="FufuShih">
+      <meta itemprop="description" content="紀錄、思考與分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿甫筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/12/flutter-lifecycle/" class="post-title-link" itemprop="url">flutter_lifecycle</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-12 18:44:48" itemprop="dateCreated datePublished" datetime="2021-12-12T18:44:48+08:00">2021-12-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-13 13:16:05" itemprop="dateModified" datetime="2021-12-13T13:16:05+08:00">2021-12-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/flutter/" itemprop="url" rel="index"><span itemprop="name">flutter</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2021/12/12/flutter-lifecycle/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/12/flutter-lifecycle/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="關於flutter的lifecycle"><a href="#關於flutter的lifecycle" class="headerlink" title="關於flutter的lifecycle"></a>關於flutter的lifecycle</h1><p>最近在學習有關於flutter widget中的state內交互以及生命週期。整理了一下資料並把他做成筆記。</p>
+<p><img data-src="/2021/12/12/flutter-lifecycle/life-cycle.drawio.png"><br><img data-src="/2021/12/12/flutter-lifecycle/2021-12-13-10-08-39.png"></p>
+<p>Flutter的三種tree</p>
+<blockquote>
+<p>1.Widget：UI 的不可變描述，並還描述了Element的配置</p>
+<p>2.Element：在特定位置的小部件樹中的小部件實例化，並進行狀態管理</p>
+<p>3.Render：處理大小、繪畫和其他低級的東西</p>
+<p>Widget樹只是一個藍圖；元素樹進行比較；渲染樹​​進行實際渲染</p>
+</blockquote>
+<p>Flutter組件生命周期：</p>
+<blockquote>
+<p>1、組件實例化後添加到render tree，即Navigator.push</p>
+<p>(構造函數-&gt;initState-&gt;didChangeDependencies-&gt; Widget build，此時頁面加載完成)</p>
+<p>2、狀態State改變，也就是開新的widget或其依賴的上級widget發生改變</p>
+<p>(didUpdateWidget-&gt;Widget build，頁面刷新)</p>
+<p>3、從render tree移除，即Navigator.pop</p>
+<p>(deactivate-&gt;dispose，組件移除並銷毀)</p>
+</blockquote>
+<p>Flutter打開和關閉widget時，都是先處理即將顯示的介面。</p>
+<hr>
+<p>當我們開始渲染時，最先呼叫構造函數constructor(當呼叫這個widget時就會自動調用並做初始化)</p>
+<p>initState():</p>
+<blockquote>
+<p>將我們的widget插入到我們的渲染樹中</p>
+</blockquote>
+<p>didChangeDependencies()-&gt;void</p>
+<blockquote>
+<p>在初始化initState</p>
+<p>顯示/關閉其他widget</p>
+</blockquote>
+<p>didUpdateWidget()-&gt;void</p>
+<blockquote>
+<p>上級結點rebuild widget時，即上級widget state發生變化時會觸發子widget執行此函數</p>
+</blockquote>
+<p>deactivate()-&gt;void</p>
+<blockquote>
+<p>在打開新的widget或回到這個widget時會執行。在Element Tree中，State Widget的位置發生了變化，此時需暫時移除State Widget時，才會被呼叫。例如: 頁面切換時</p>
+<p>在某些情況下，框架會將 State 對象重新插入到樹的另一部分（例如，如果包含此 State 對象的子樹由於使用 GlobalKey 而從樹中的一個位置移植到另一個位置）。並調用 activate 以讓 State 對像有機會重新獲取它在停用時釋放的任何資源。然後它還會調用 build 來讓 State 對像有機會適應它在樹中的新位置。</p>
+<p>如果框架確實重新插入了這個子樹，它會在從樹中刪除子樹的動畫幀結束之前這樣做。</p>
+</blockquote>
+<p>dispose()-&gt;void</p>
+<blockquote>
+<p>在執行Navigator.pop後會調用該方法，表示組建已銷毀</p>
+</blockquote>
+<p>activate() → void</p>
+<blockquote>
+<p>在通過deactivate 刪除此對像後重新插入到樹中時調用</p>
+</blockquote>
+<p>reassemble()-&gt;void</p>
+<blockquote>
+<p>在調試期間重新組裝應用程序時調用，例如hor reload。release版本不会执行该函数。</p>
+</blockquote>
+<p>setState(VoidCallback fn) → void</p>
+<blockquote>
+<p>通知框架這個對象的內部狀態發生了變化</p>
+</blockquote>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/widgets/State-class.html">Flutter State Class</a></li>
+<li><a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">Flutter Navigator Class</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.duicode.com/3108.html?fbclid=IwAR3yvdv5o3Nd2_3YRvBAqZVF4mN1Aef36WL1cE1LIfmC_SW26KZI8GWWNNU">Flutter中的生命周期</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ssjf/p/11759366.html">Flutter的生命週期</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=996ZgFRENMs">How Flutter renders Widgets</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
     <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/12/flutter-splash/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -700,121 +850,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="紀錄、思考與分享">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/" class="post-title-link" itemprop="url">Solidity:創建簡易代幣</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-12-01 01:04:19" itemprop="dateCreated datePublished" datetime="2021-12-01T01:04:19+08:00">2021-12-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-05 14:51:51" itemprop="dateModified" datetime="2021-12-05T14:51:51+08:00">2021-12-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/solidity/" itemprop="url" rel="index"><span itemprop="name">solidity</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/01/Solidity_創建簡易代幣/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Solidity-創建簡易代幣"><a href="#Solidity-創建簡易代幣" class="headerlink" title="Solidity:創建簡易代幣"></a>Solidity:創建簡易代幣</h1><p>在終端輸入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle create contract MyToken</span><br></pre></td></tr></table></figure>
-
-<p>創建<br><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyToken &#123;</span><br><span class="line">  uint INITIAL_SUPPLY = 10000;</span><br><span class="line">  mapping(address =&gt; uint) balances;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    balances[msg.sender] = INITIAL_SUPPLY;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // transfer token for a specified address</span><br><span class="line">  function transfer(address _to, uint _amount) public &#123;</span><br><span class="line">    require(balances[msg.sender] &gt; _amount);</span><br><span class="line">    balances[msg.sender] -= _amount;</span><br><span class="line">    balances[_to] += _amount;</span><br><span class="line">  &#125;</span><br><span class="line">  // Gets the balance of the specified address</span><br><span class="line">  // Constant and Immutable State Variables. See https://docs.soliditylang.org/en/v0.8.10/contracts.html#modifiers</span><br><span class="line">  function balanceOf(address _owner) public view returns (uint) &#123;</span><br><span class="line">    return balances[_owner];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在migrations資料夾新增</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line">var MyToken = artifacts.require(&quot;MyToken&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">  deployer.deploy(MyToken);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>編譯</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.1.png"></p>
-<p>開始部署，Run</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.6.png"><br><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.2.png"></p>
-<p>Test</p>
-<p>開啟console</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let contract</span><br><span class="line">MyToken.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.3.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf(accounts[1])</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.4.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract.transfer(accounts[1], 123)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.5.png"></p>
-<p>…</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
     <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/01/Solidity_%E5%89%B5%E5%BB%BAERC20%E6%A8%99%E6%BA%96%E4%BB%A3%E5%B9%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -912,6 +947,121 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract.transfer(accounts[1], 50)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
 <p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BAERC20%E6%A8%99%E6%BA%96%E4%BB%A3%E5%B9%A3/unknown_filename.5.png"><br><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BAERC20%E6%A8%99%E6%BA%96%E4%BB%A3%E5%B9%A3/unknown_filename.6.png"></p>
 <p>..</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
+    <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="FufuShih">
+      <meta itemprop="description" content="紀錄、思考與分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿甫筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/" class="post-title-link" itemprop="url">Solidity:創建簡易代幣</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-01 01:04:19" itemprop="dateCreated datePublished" datetime="2021-12-01T01:04:19+08:00">2021-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-05 14:51:51" itemprop="dateModified" datetime="2021-12-05T14:51:51+08:00">2021-12-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solidity/" itemprop="url" rel="index"><span itemprop="name">solidity</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/01/Solidity_創建簡易代幣/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Solidity-創建簡易代幣"><a href="#Solidity-創建簡易代幣" class="headerlink" title="Solidity:創建簡易代幣"></a>Solidity:創建簡易代幣</h1><p>在終端輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle create contract MyToken</span><br></pre></td></tr></table></figure>
+
+<p>創建<br><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyToken &#123;</span><br><span class="line">  uint INITIAL_SUPPLY = 10000;</span><br><span class="line">  mapping(address =&gt; uint) balances;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    balances[msg.sender] = INITIAL_SUPPLY;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // transfer token for a specified address</span><br><span class="line">  function transfer(address _to, uint _amount) public &#123;</span><br><span class="line">    require(balances[msg.sender] &gt; _amount);</span><br><span class="line">    balances[msg.sender] -= _amount;</span><br><span class="line">    balances[_to] += _amount;</span><br><span class="line">  &#125;</span><br><span class="line">  // Gets the balance of the specified address</span><br><span class="line">  // Constant and Immutable State Variables. See https://docs.soliditylang.org/en/v0.8.10/contracts.html#modifiers</span><br><span class="line">  function balanceOf(address _owner) public view returns (uint) &#123;</span><br><span class="line">    return balances[_owner];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在migrations資料夾新增</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line">var MyToken = artifacts.require(&quot;MyToken&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">  deployer.deploy(MyToken);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>編譯</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.1.png"></p>
+<p>開始部署，Run</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.6.png"><br><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.2.png"></p>
+<p>Test</p>
+<p>開啟console</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let contract</span><br><span class="line">MyToken.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.3.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf(accounts[1])</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.4.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract.transfer(accounts[1], 123)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BA%E7%B0%A1%E6%98%93%E4%BB%A3%E5%B9%A3/unknown_filename.5.png"></p>
+<p>…</p>
 
       
     </div>
@@ -1135,7 +1285,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
