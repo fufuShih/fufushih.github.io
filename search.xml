@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>在VSCode上使用Remix</title>
+    <url>/2021/12/solidity/0ea97b244a3e/</url>
+    <content><![CDATA[<h1 id="在VSCode上使用Remix"><a href="#在VSCode上使用Remix" class="headerlink" title="在VSCode上使用Remix"></a>在VSCode上使用Remix</h1><p>搜尋remix<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.1.png"><br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.png"><br>並安裝</p>
+<hr>
+<p>根據前面那篇我們改使用Remix來測試: <a href="https://fufushih.github.io/2021/11/30/Solidity-Hello-World/">Solidity: Hello World</a><br>(我們首先要開啟本地的測試網路，ganache-cli)<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.2.png"></p>
+<p><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.4.png"></p>
+<p>我們使用ganache啟動了本地測試網路，並且監聽port是在8545<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.3.png"></p>
+<p>所以，改成8545並connect<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.5.png"><br>compile合約<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.6.png"><br>並佈署到測試網上，deploy<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.7.png"></p>
+<p>我們來測試，到run並call我們的sayHello()<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.8.png"></p>
+<p>最後，我們從output上來看<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.9.png"></p>
+<p>…</p>
+]]></content>
+      <categories>
+        <category>solidity</category>
+      </categories>
+      <tags>
+        <tag>vscode</tag>
+        <tag>remix</tag>
+        <tag>solidity</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Solidity: Hello World</title>
     <url>/2021/11/solidity/bfbd39565543/</url>
     <content><![CDATA[<h1 id="Solidity-Hello-World"><a href="#Solidity-Hello-World" class="headerlink" title="Solidity: Hello World"></a>Solidity: Hello World</h1><p>開發工具與環境設置</p>
@@ -96,34 +118,33 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.transfer(accounts[1], 50)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
 <p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.5.png"><br><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.6.png"></p>
 <p>..</p>
-]]></content>
-      <categories>
-        <category>solidity</category>
-      </categories>
-      <tags>
-        <tag>solidity</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在VSCode上使用Remix</title>
-    <url>/2021/12/solidity/0ea97b244a3e/</url>
-    <content><![CDATA[<h1 id="在VSCode上使用Remix"><a href="#在VSCode上使用Remix" class="headerlink" title="在VSCode上使用Remix"></a>在VSCode上使用Remix</h1><p>搜尋remix<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.1.png"><br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.png"><br>並安裝</p>
+<h2 id="使用remix"><a href="#使用remix" class="headerlink" title="使用remix"></a>使用remix</h2><p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-38-33.png"></p>
+<p>connect local net</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-38-25.png"></p>
+<p>Click compile and deploy</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-39-41.png"></p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-40-45.png"></p>
 <hr>
-<p>根據前面那篇我們改使用Remix來測試: <a href="https://fufushih.github.io/2021/11/30/Solidity-Hello-World/">Solidity: Hello World</a><br>(我們首先要開啟本地的測試網路，ganache-cli)<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.2.png"></p>
-<p><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.4.png"></p>
-<p>我們使用ganache啟動了本地測試網路，並且監聽port是在8545<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.3.png"></p>
-<p>所以，改成8545並connect<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.5.png"><br>compile合約<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.6.png"><br>並佈署到測試網上，deploy<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.7.png"></p>
-<p>我們來測試，到run並call我們的sayHello()<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.8.png"></p>
-<p>最後，我們從output上來看<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.9.png"></p>
-<p>…</p>
+<p>Now, we call these function</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-41-39.png"></p>
+<p>Result:</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-42-15.png"></p>
+<hr>
+<p>Test transfer:</p>
+<p>See address</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-43-36.png"></p>
+<p>call transfer:</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-43-57.png"></p>
+<p>Call balanceof:</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-44-52.png"></p>
+<p>result:</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-45-07.png"></p>
 ]]></content>
       <categories>
         <category>solidity</category>
       </categories>
       <tags>
         <tag>solidity</tag>
-        <tag>vscode</tag>
-        <tag>remix</tag>
       </tags>
   </entry>
   <entry>
@@ -265,6 +286,80 @@
       </tags>
   </entry>
   <entry>
+    <title>flutter lifecycle</title>
+    <url>/2021/12/flutter/f95ae0025bf4/</url>
+    <content><![CDATA[<h1 id="關於flutter的lifecycle"><a href="#關於flutter的lifecycle" class="headerlink" title="關於flutter的lifecycle"></a>關於flutter的lifecycle</h1><p>最近在學習有關於flutter widget中的state內交互以及生命週期。整理了一下資料並把他做成筆記。</p>
+<p><img data-src="/2021/12/flutter/f95ae0025bf4/life-cycle.drawio.png"><br><img data-src="/2021/12/flutter/f95ae0025bf4/2021-12-13-10-08-39.png"></p>
+<p>Flutter的三種tree</p>
+<blockquote>
+<p>1.Widget：UI 的不可變描述，並還描述了Element的配置</p>
+<p>2.Element：在特定位置的小部件樹中的小部件實例化，並進行狀態管理</p>
+<p>3.Render：處理大小、繪畫和其他低級的東西</p>
+<p>Widget樹只是一個藍圖；元素樹進行比較；渲染樹​​進行實際渲染</p>
+</blockquote>
+<p>Flutter組件生命周期：</p>
+<blockquote>
+<p>1、組件實例化後添加到render tree，即Navigator.push</p>
+<p>(構造函數-&gt;initState-&gt;didChangeDependencies-&gt; Widget build，此時頁面加載完成)</p>
+<p>2、狀態State改變，也就是開新的widget或其依賴的上級widget發生改變</p>
+<p>(didUpdateWidget-&gt;Widget build，頁面刷新)</p>
+<p>3、從render tree移除，即Navigator.pop</p>
+<p>(deactivate-&gt;dispose，組件移除並銷毀)</p>
+</blockquote>
+<p>Flutter打開和關閉widget時，都是先處理即將顯示的介面。</p>
+<hr>
+<p>當我們開始渲染時，最先呼叫構造函數constructor(當呼叫這個widget時就會自動調用並做初始化)</p>
+<p>initState():</p>
+<blockquote>
+<p>將我們的widget插入到我們的渲染樹中</p>
+</blockquote>
+<p>didChangeDependencies()-&gt;void</p>
+<blockquote>
+<p>在初始化initState</p>
+<p>顯示/關閉其他widget</p>
+</blockquote>
+<p>didUpdateWidget()-&gt;void</p>
+<blockquote>
+<p>上級結點rebuild widget時，即上級widget state發生變化時會觸發子widget執行此函數</p>
+</blockquote>
+<p>deactivate()-&gt;void</p>
+<blockquote>
+<p>在打開新的widget或回到這個widget時會執行。在Element Tree中，State Widget的位置發生了變化，此時需暫時移除State Widget時，才會被呼叫。例如: 頁面切換時</p>
+<p>在某些情況下，框架會將 State 對象重新插入到樹的另一部分（例如，如果包含此 State 對象的子樹由於使用 GlobalKey 而從樹中的一個位置移植到另一個位置）。並調用 activate 以讓 State 對像有機會重新獲取它在停用時釋放的任何資源。然後它還會調用 build 來讓 State 對像有機會適應它在樹中的新位置。</p>
+<p>如果框架確實重新插入了這個子樹，它會在從樹中刪除子樹的動畫幀結束之前這樣做。</p>
+</blockquote>
+<p>dispose()-&gt;void</p>
+<blockquote>
+<p>在執行Navigator.pop後會調用該方法，表示組建已銷毀</p>
+</blockquote>
+<p>activate() → void</p>
+<blockquote>
+<p>在通過deactivate 刪除此對像後重新插入到樹中時調用</p>
+</blockquote>
+<p>reassemble()-&gt;void</p>
+<blockquote>
+<p>在調試期間重新組裝應用程序時調用，例如hor reload。release版本不会执行该函数。</p>
+</blockquote>
+<p>setState(VoidCallback fn) → void</p>
+<blockquote>
+<p>通知框架這個對象的內部狀態發生了變化</p>
+</blockquote>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://api.flutter.dev/flutter/widgets/State-class.html">Flutter State Class</a></li>
+<li><a href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">Flutter Navigator Class</a></li>
+<li><a href="https://blog.duicode.com/3108.html?fbclid=IwAR3yvdv5o3Nd2_3YRvBAqZVF4mN1Aef36WL1cE1LIfmC_SW26KZI8GWWNNU">Flutter中的生命周期</a></li>
+<li><a href="https://www.cnblogs.com/ssjf/p/11759366.html">Flutter的生命週期</a></li>
+<li><a href="https://www.youtube.com/watch?v=996ZgFRENMs">How Flutter renders Widgets</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>flutter</category>
+      </categories>
+      <tags>
+        <tag>flutter</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用flutter來建立dapp</title>
     <url>/2021/12/solidity/flutter/c2c8ee41f138/</url>
     <content><![CDATA[<h1 id="使用flutter來建立dapp"><a href="#使用flutter來建立dapp" class="headerlink" title="使用flutter來建立dapp"></a>使用flutter來建立dapp</h1><hr>
@@ -357,80 +452,6 @@
 <p>延遲初始化late<br>在程式中，我們可能需要通過method來初始化一個成員變數，我們發現變數可能會報錯，他會要求你需要對他做初始化。如果我們還沒想要做初始化，我們能加個?來表達他此時可空<br>但如果我們後面要用到他時，他會要求你去對Null進行判斷，這樣做有時會出問題<br>(某些情境下，我們要成員變數需要method來初始化(ex.constructor)。但我們能保證後續的使用總是在其初始化之後。那麼在這用?是不好的)<br>所以此時我們能用late來告訴編譯器，這個非空變數，稍後會去做初始化</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li><a href="https://dart.cn/null-safety/understanding-null-safety#using-nullable-types">深入理解空安全</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>flutter</category>
-      </categories>
-      <tags>
-        <tag>flutter</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>flutter lifecycle</title>
-    <url>/2021/12/flutter/f95ae0025bf4/</url>
-    <content><![CDATA[<h1 id="關於flutter的lifecycle"><a href="#關於flutter的lifecycle" class="headerlink" title="關於flutter的lifecycle"></a>關於flutter的lifecycle</h1><p>最近在學習有關於flutter widget中的state內交互以及生命週期。整理了一下資料並把他做成筆記。</p>
-<p><img data-src="/2021/12/flutter/f95ae0025bf4/life-cycle.drawio.png"><br><img data-src="/2021/12/flutter/f95ae0025bf4/2021-12-13-10-08-39.png"></p>
-<p>Flutter的三種tree</p>
-<blockquote>
-<p>1.Widget：UI 的不可變描述，並還描述了Element的配置</p>
-<p>2.Element：在特定位置的小部件樹中的小部件實例化，並進行狀態管理</p>
-<p>3.Render：處理大小、繪畫和其他低級的東西</p>
-<p>Widget樹只是一個藍圖；元素樹進行比較；渲染樹​​進行實際渲染</p>
-</blockquote>
-<p>Flutter組件生命周期：</p>
-<blockquote>
-<p>1、組件實例化後添加到render tree，即Navigator.push</p>
-<p>(構造函數-&gt;initState-&gt;didChangeDependencies-&gt; Widget build，此時頁面加載完成)</p>
-<p>2、狀態State改變，也就是開新的widget或其依賴的上級widget發生改變</p>
-<p>(didUpdateWidget-&gt;Widget build，頁面刷新)</p>
-<p>3、從render tree移除，即Navigator.pop</p>
-<p>(deactivate-&gt;dispose，組件移除並銷毀)</p>
-</blockquote>
-<p>Flutter打開和關閉widget時，都是先處理即將顯示的介面。</p>
-<hr>
-<p>當我們開始渲染時，最先呼叫構造函數constructor(當呼叫這個widget時就會自動調用並做初始化)</p>
-<p>initState():</p>
-<blockquote>
-<p>將我們的widget插入到我們的渲染樹中</p>
-</blockquote>
-<p>didChangeDependencies()-&gt;void</p>
-<blockquote>
-<p>在初始化initState</p>
-<p>顯示/關閉其他widget</p>
-</blockquote>
-<p>didUpdateWidget()-&gt;void</p>
-<blockquote>
-<p>上級結點rebuild widget時，即上級widget state發生變化時會觸發子widget執行此函數</p>
-</blockquote>
-<p>deactivate()-&gt;void</p>
-<blockquote>
-<p>在打開新的widget或回到這個widget時會執行。在Element Tree中，State Widget的位置發生了變化，此時需暫時移除State Widget時，才會被呼叫。例如: 頁面切換時</p>
-<p>在某些情況下，框架會將 State 對象重新插入到樹的另一部分（例如，如果包含此 State 對象的子樹由於使用 GlobalKey 而從樹中的一個位置移植到另一個位置）。並調用 activate 以讓 State 對像有機會重新獲取它在停用時釋放的任何資源。然後它還會調用 build 來讓 State 對像有機會適應它在樹中的新位置。</p>
-<p>如果框架確實重新插入了這個子樹，它會在從樹中刪除子樹的動畫幀結束之前這樣做。</p>
-</blockquote>
-<p>dispose()-&gt;void</p>
-<blockquote>
-<p>在執行Navigator.pop後會調用該方法，表示組建已銷毀</p>
-</blockquote>
-<p>activate() → void</p>
-<blockquote>
-<p>在通過deactivate 刪除此對像後重新插入到樹中時調用</p>
-</blockquote>
-<p>reassemble()-&gt;void</p>
-<blockquote>
-<p>在調試期間重新組裝應用程序時調用，例如hor reload。release版本不会执行该函数。</p>
-</blockquote>
-<p>setState(VoidCallback fn) → void</p>
-<blockquote>
-<p>通知框架這個對象的內部狀態發生了變化</p>
-</blockquote>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a href="https://api.flutter.dev/flutter/widgets/State-class.html">Flutter State Class</a></li>
-<li><a href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">Flutter Navigator Class</a></li>
-<li><a href="https://blog.duicode.com/3108.html?fbclid=IwAR3yvdv5o3Nd2_3YRvBAqZVF4mN1Aef36WL1cE1LIfmC_SW26KZI8GWWNNU">Flutter中的生命周期</a></li>
-<li><a href="https://www.cnblogs.com/ssjf/p/11759366.html">Flutter的生命週期</a></li>
-<li><a href="https://www.youtube.com/watch?v=996ZgFRENMs">How Flutter renders Widgets</a></li>
 </ul>
 ]]></content>
       <categories>
