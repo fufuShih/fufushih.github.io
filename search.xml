@@ -87,6 +87,45 @@
       </tags>
   </entry>
   <entry>
+    <title>Solidity:創建簡易代幣</title>
+    <url>/2021/12/solidity/3f900b5bbcb5/</url>
+    <content><![CDATA[<h1 id="Solidity-創建簡易代幣"><a href="#Solidity-創建簡易代幣" class="headerlink" title="Solidity:創建簡易代幣"></a>Solidity:創建簡易代幣</h1><p>在終端輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle create contract MyToken</span><br></pre></td></tr></table></figure>
+
+<p>創建<br><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyToken &#123;</span><br><span class="line">  uint INITIAL_SUPPLY = 10000;</span><br><span class="line">  mapping(address =&gt; uint) balances;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    balances[msg.sender] = INITIAL_SUPPLY;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // transfer token for a specified address</span><br><span class="line">  function transfer(address _to, uint _amount) public &#123;</span><br><span class="line">    require(balances[msg.sender] &gt; _amount);</span><br><span class="line">    balances[msg.sender] -= _amount;</span><br><span class="line">    balances[_to] += _amount;</span><br><span class="line">  &#125;</span><br><span class="line">  // Gets the balance of the specified address</span><br><span class="line">  // Constant and Immutable State Variables. See https://docs.soliditylang.org/en/v0.8.10/contracts.html#modifiers</span><br><span class="line">  function balanceOf(address _owner) public view returns (uint) &#123;</span><br><span class="line">    return balances[_owner];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在migrations資料夾新增</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line">var MyToken = artifacts.require(&quot;MyToken&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">  deployer.deploy(MyToken);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>編譯</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.1.png"></p>
+<p>開始部署，Run</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.6.png"><br><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.2.png"></p>
+<p>Test</p>
+<p>開啟console</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let contract</span><br><span class="line">MyToken.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.3.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf(accounts[1])</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.4.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.transfer(accounts[1], 123)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.5.png"></p>
+<p>…</p>
+]]></content>
+      <categories>
+        <category>solidity</category>
+      </categories>
+      <tags>
+        <tag>solidity</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Solidity:創建ERC20標準代幣</title>
     <url>/2021/12/solidity/3f4574248609/</url>
     <content><![CDATA[<h1 id="Solidity-創建ERC20標準代幣"><a href="#Solidity-創建ERC20標準代幣" class="headerlink" title="Solidity:創建ERC20標準代幣"></a>Solidity:創建ERC20標準代幣</h1><p>使用OpenZeppelin</p>
@@ -148,67 +187,28 @@
       </tags>
   </entry>
   <entry>
-    <title>Solidity:創建簡易代幣</title>
-    <url>/2021/12/solidity/3f900b5bbcb5/</url>
-    <content><![CDATA[<h1 id="Solidity-創建簡易代幣"><a href="#Solidity-創建簡易代幣" class="headerlink" title="Solidity:創建簡易代幣"></a>Solidity:創建簡易代幣</h1><p>在終端輸入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle create contract MyToken</span><br></pre></td></tr></table></figure>
-
-<p>創建<br><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyToken &#123;</span><br><span class="line">  uint INITIAL_SUPPLY = 10000;</span><br><span class="line">  mapping(address =&gt; uint) balances;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    balances[msg.sender] = INITIAL_SUPPLY;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // transfer token for a specified address</span><br><span class="line">  function transfer(address _to, uint _amount) public &#123;</span><br><span class="line">    require(balances[msg.sender] &gt; _amount);</span><br><span class="line">    balances[msg.sender] -= _amount;</span><br><span class="line">    balances[_to] += _amount;</span><br><span class="line">  &#125;</span><br><span class="line">  // Gets the balance of the specified address</span><br><span class="line">  // Constant and Immutable State Variables. See https://docs.soliditylang.org/en/v0.8.10/contracts.html#modifiers</span><br><span class="line">  function balanceOf(address _owner) public view returns (uint) &#123;</span><br><span class="line">    return balances[_owner];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在migrations資料夾新增</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line">var MyToken = artifacts.require(&quot;MyToken&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">  deployer.deploy(MyToken);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>編譯</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.1.png"></p>
-<p>開始部署，Run</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.6.png"><br><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.2.png"></p>
-<p>Test</p>
-<p>開啟console</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let contract</span><br><span class="line">MyToken.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.3.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf(accounts[1])</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.4.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.transfer(accounts[1], 123)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.5.png"></p>
-<p>…</p>
-]]></content>
-      <categories>
-        <category>solidity</category>
-      </categories>
-      <tags>
-        <tag>solidity</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用flutter來建立dapp-2</title>
-    <url>/2021/12/solidity/flutter/2fe3b24ab0ed/</url>
+    <url>/2021/12/solidity/2fe3b24ab0ed/</url>
     <content><![CDATA[<h1 id="使用flutter來建立dapp-2"><a href="#使用flutter來建立dapp-2" class="headerlink" title="使用flutter來建立dapp-2"></a>使用flutter來建立dapp-2</h1><h2 id="建立"><a href="#建立" class="headerlink" title="建立"></a>建立</h2><p>接下來，我們來新增一些功能，把我們的Name上傳並且回傳回來</p>
 <p>首先，是我們的合約，我們先新增一個合約MyName.sol:</p>
-<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-35-51.png" alt="contract structure"></p>
+<p><img data-src="/2021/12/solidity/2fe3b24ab0ed/2021-12-08-20-35-51.png" alt="contract structure"></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyName &#123;</span><br><span class="line">  string public _name;</span><br><span class="line"></span><br><span class="line">  constructor() &#123;</span><br><span class="line">    _name=&quot;Please Type Your Name&quot;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function setName(string memory name) public&#123;</span><br><span class="line">    _name = name ;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function getName() public view returns (string memory)&#123;</span><br><span class="line">    return _name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>並重新設定migrations:</p>
 <p>migrations/1_initial_migration.js:</p>
-<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-45-32.png"></p>
+<p><img data-src="/2021/12/solidity/2fe3b24ab0ed/2021-12-08-20-45-32.png"></p>
 <p>我們去編譯並佈署:</p>
 <figure class="highlight console"><table><tr><td class="code"><pre><span class="line">truffle compile</span><br><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-48-45.png"></p>
+<p><img data-src="/2021/12/solidity/2fe3b24ab0ed/2021-12-08-20-48-45.png"></p>
 <p>成功後，我們開始建立我們的flutter dapp</p>
 <p>我們的flutter專案架構:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lib</span><br><span class="line">  core</span><br><span class="line">    service</span><br><span class="line">    states</span><br><span class="line">  ui</span><br><span class="line">    screens</span><br><span class="line">    widgets</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-51-02.png"></p>
-<p>需要的套件以及assets:<br><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-56-02.png"></p>
-<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-59-31.png"></p>
-<p>我們把compile後的json檔放入flutter的assets中:<br><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-53-44.png"></p>
+<p><img data-src="/2021/12/solidity/2fe3b24ab0ed/2021-12-08-20-51-02.png"></p>
+<p>需要的套件以及assets:<br><img data-src="/2021/12/solidity/2fe3b24ab0ed/2021-12-08-20-56-02.png"></p>
+<p><img data-src="/2021/12/solidity/2fe3b24ab0ed/2021-12-08-20-59-31.png"></p>
+<p>我們把compile後的json檔放入flutter的assets中:<br><img data-src="/2021/12/solidity/2fe3b24ab0ed/2021-12-08-20-53-44.png"></p>
 <hr>
 <p>接下來，我們來實現我們要的功能:</p>
 <p>core/services/contract_linking_service.dart:</p>
@@ -236,14 +236,14 @@
 
 <hr>
 <p>接下來，我們來進行測試:</p>
-<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-06-40.png"></p>
+<p><img data-src="/2021/12/solidity/2fe3b24ab0ed/2021-12-08-21-06-40.png"></p>
 <p>我們先按fab，來獲取網路節點上的name</p>
-<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-28-12.png"></p>
+<p><img data-src="/2021/12/solidity/2fe3b24ab0ed/2021-12-08-21-28-12.png"></p>
 <p>接下來，我們輸入一個name並set(這邊我輸入fufu):</p>
-<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-28-53.png"></p>
+<p><img data-src="/2021/12/solidity/2fe3b24ab0ed/2021-12-08-21-28-53.png"></p>
 <p>改輸入別的name</p>
-<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-29-33.png"></p>
-<p>result:<br><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-29-55.png"></p>
+<p><img data-src="/2021/12/solidity/2fe3b24ab0ed/2021-12-08-21-29-33.png"></p>
+<p>result:<br><img data-src="/2021/12/solidity/2fe3b24ab0ed/2021-12-08-21-29-55.png"></p>
 <hr>
 <h2 id="Note"><a href="#Note" class="headerlink" title="Note:"></a>Note:</h2><p>在我們的core/states/contract_state.dart中:</p>
 <figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> ContractLinkingService contractLinkingService =</span><br><span class="line">    ContractLinkingService();</span><br><span class="line"><span class="keyword">final</span> <span class="built_in">String</span> _rpcUrl = <span class="string">&quot;http://10.0.2.2:8545&quot;</span>;</span><br><span class="line"><span class="keyword">final</span> <span class="built_in">String</span> _wsUrl = <span class="string">&quot;ws://10.0.2.2:8545/&quot;</span>;</span><br><span class="line"><span class="keyword">final</span> <span class="built_in">String</span> _privateKey =</span><br><span class="line">    <span class="string">&#x27;0xb57ae20c98201b5dd0216dfafc0f71b91113de9c1de09676065084ee83979ab2&#x27;</span>;</span><br></pre></td></tr></table></figure>
@@ -256,7 +256,7 @@
 <blockquote>
 <p>對於contractLinkingService.getContractAddress(“assets/artifacts/MyName.json”, “1638897663028”);<br>那個1638897663028是block的timestamp<br>我們能在deploy合約時，能看到</p>
 </blockquote>
-<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-44-10.png"></p>
+<p><img data-src="/2021/12/solidity/2fe3b24ab0ed/2021-12-08-21-44-10.png"></p>
 <figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">getName() <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="comment">// Getting the current name declared in the smart contract.</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> currentName = <span class="keyword">await</span> _client.call(</span><br><span class="line">      contract: _contract,</span><br><span class="line">      function: _contract.function(<span class="string">&quot;getName&quot;</span>),</span><br><span class="line">      params: []);</span><br><span class="line">  name = currentName[<span class="number">0</span>];</span><br><span class="line">  notifyListeners();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
@@ -275,7 +275,6 @@
 ]]></content>
       <categories>
         <category>solidity</category>
-        <category>flutter</category>
       </categories>
       <tags>
         <tag>solidity</tag>
@@ -283,6 +282,69 @@
         <tag>dapp</tag>
         <tag>truffle</tag>
         <tag>ganache</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用flutter來建立dapp</title>
+    <url>/2021/12/solidity/c2c8ee41f138/</url>
+    <content><![CDATA[<h1 id="使用flutter來建立dapp"><a href="#使用flutter來建立dapp" class="headerlink" title="使用flutter來建立dapp"></a>使用flutter來建立dapp</h1><hr>
+<h2 id="Create-the-Smart-Contract"><a href="#Create-the-Smart-Contract" class="headerlink" title="Create the Smart Contract"></a>Create the Smart Contract</h2><p>現在我們開始創建一個簡易合約:</p>
+<p><a href="https://fufushih.github.io/2021/11/30/SolidityHelloWorld/">solidity hello world smart contract</a></p>
+<p>啟動本地端:</p>
+<blockquote>
+<p>port=&gt;8545</p>
+</blockquote>
+<p><img data-src="/2021/12/solidity/c2c8ee41f138/2021-12-03-02-03-15.png" alt="ganache"></p>
+<p>接下來要把合約部署在本地測試端:</p>
+<p><img data-src="/2021/12/solidity/c2c8ee41f138/2021-12-03-01-56-19.png" alt="Solidity"></p>
+<p><img data-src="/2021/12/solidity/c2c8ee41f138/2021-12-03-01-56-55.png" alt="migration"></p>
+<p>佈署到的地址:</p>
+<p><img data-src="/2021/12/solidity/c2c8ee41f138/2021-12-03-02-07-20.png" alt="migrate address"></p>
+<p>compile完後得到一個json檔:</p>
+<p>而在裡面有個ABI，是告訴我們如何與合約溝通的接口介面</p>
+<blockquote>
+<p>web3要和智能合約溝通所需要的是ABI，也就是二進制接口(Application Binary Interface)<br>而ABI是以JSON來表達合約裡的方法，告訴web3如何以合約理解的方式格式化函數去做調用</p>
+</blockquote>
+<p><img data-src="/2021/12/solidity/c2c8ee41f138/2021-12-03-01-59-23.png" alt="Json"></p>
+<p>把他加入到flutter的assets中</p>
+<p><img data-src="/2021/12/solidity/c2c8ee41f138/2021-12-03-02-00-02.png" alt="assets"></p>
+<p><img data-src="/2021/12/solidity/c2c8ee41f138/2021-12-03-02-00-52.png" alt="pub"></p>
+<hr>
+<h2 id="Create-DAPP"><a href="#Create-DAPP" class="headerlink" title="Create DAPP"></a>Create DAPP</h2><p>Add package:</p>
+<p><img data-src="/2021/12/solidity/c2c8ee41f138/2021-12-03-01-54-15.png" alt="package list"></p>
+<p>The struct of folder:</p>
+<p><img data-src="/2021/12/solidity/c2c8ee41f138/2021-12-03-01-54-50.png" alt="folder struct"></p>
+<p>Add contract_linking:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinking</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Now add some feature:</p>
+</blockquote>
+<p>contract_linking.dart:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:convert&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/services.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:http/http.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web3dart/web3dart.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web_socket_channel/io.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinking</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _rpcUrl = <span class="string">&quot;http://10.0.2.2:8545&quot;</span>;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _wsUrl = <span class="string">&quot;ws://10.0.2.2:8545/&quot;</span>;</span><br><span class="line">  <span class="comment">// final String _privateKey =</span></span><br><span class="line">  <span class="comment">//     &quot;0x01d3fe7ae54ef4d39facb006cab009f9ebb412d1dff171303704b43ceae49736&quot;;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> Web3Client _client;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> <span class="built_in">String</span> _abiCode;</span><br><span class="line">  <span class="keyword">late</span> EthereumAddress _contractAddress;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> DeployedContract _contract;</span><br><span class="line">  <span class="keyword">late</span> ContractFunction _text;</span><br><span class="line">  <span class="built_in">String</span> message = <span class="string">&#x27;No message&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  ContractLinking() &#123;</span><br><span class="line">    initialSetup();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initialSetup() <span class="keyword">async</span> &#123;</span><br><span class="line">    _client = Web3Client(_rpcUrl, Client(), socketConnector: () &#123;</span><br><span class="line">      <span class="keyword">return</span> IOWebSocketChannel.connect(_wsUrl).cast&lt;<span class="built_in">String</span>&gt;();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> getAbi();</span><br><span class="line">    <span class="keyword">await</span> getDeployedContract();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; getAbi() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">// Reading the contract abi</span></span><br><span class="line">    <span class="built_in">String</span> abiStringFile =</span><br><span class="line">        <span class="keyword">await</span> rootBundle.loadString(<span class="string">&quot;assets/contracts/HelloWorld.json&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> jsonAbi = jsonDecode(abiStringFile);</span><br><span class="line">    _abiCode = jsonEncode(jsonAbi[<span class="string">&quot;abi&quot;</span>]);</span><br><span class="line"></span><br><span class="line">    _contractAddress = EthereumAddress.fromHex(</span><br><span class="line">        jsonAbi[<span class="string">&quot;networks&quot;</span>][<span class="string">&quot;1638459988787&quot;</span>][<span class="string">&quot;address&quot;</span>]); <span class="comment">// See HelloWorld.json</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; getDeployedContract() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">//  Telling Web3dart where our contract is declared.</span></span><br><span class="line">    _contract = DeployedContract(</span><br><span class="line">        ContractAbi.fromJson(_abiCode, <span class="string">&quot;HelloWorld&quot;</span>), _contractAddress);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Extracting the functions, declared in contract.</span></span><br><span class="line">    _text = _contract.function(<span class="string">&#x27;sayHello&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; sayHelloWorld() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> text =</span><br><span class="line">        <span class="keyword">await</span> _client.call(contract: _contract, function: _text, params: []);</span><br><span class="line">    message = text[<span class="number">0</span>];</span><br><span class="line">    notifyListeners();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我們部署的合約地址<br><img data-src="/2021/12/solidity/c2c8ee41f138/2021-12-03-02-06-09.png" alt="addr"></p>
+<p>In UI, we add some screen:</p>
+<p>home_screen.dart:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/contract_linking.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> HomeScreen(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// Getting the value and object or contract_linking</span></span><br><span class="line">    <span class="keyword">final</span> contractLink = Provider.of&lt;ContractLinking&gt;(context);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: <span class="keyword">const</span> Text(<span class="string">&quot;Smart Contract Test!&quot;</span>),</span><br><span class="line">        centerTitle: <span class="keyword">true</span>,</span><br><span class="line">      ),</span><br><span class="line">      body: Container(</span><br><span class="line">        padding: <span class="keyword">const</span> EdgeInsets.symmetric(horizontal: <span class="number">20</span>),</span><br><span class="line">        child: Center(</span><br><span class="line">          child: SingleChildScrollView(</span><br><span class="line">            child: Form(</span><br><span class="line">              child: Column(</span><br><span class="line">                children: [</span><br><span class="line">                  Row(</span><br><span class="line">                    mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">                    children: [</span><br><span class="line">                      Text(</span><br><span class="line">                        contractLink.message,</span><br><span class="line">                        style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">                            fontWeight: FontWeight.bold,</span><br><span class="line">                            fontSize: <span class="number">52</span>,</span><br><span class="line">                            color: Colors.tealAccent),</span><br><span class="line">                      ),</span><br><span class="line">                    ],</span><br><span class="line">                  ),</span><br><span class="line">                ],</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: FloatingActionButton(</span><br><span class="line">        onPressed: contractLink.sayHelloWorld,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>screens.dart:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="string">&#x27;./home_screen.dart&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>main.dart:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/contract_linking.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/ui/screens/screens.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(<span class="keyword">const</span> MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> MyApp(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> ChangeNotifierProvider&lt;ContractLinking&gt;(</span><br><span class="line">      create: (_) =&gt; ContractLinking(),</span><br><span class="line">      child: MaterialApp(</span><br><span class="line">        title: <span class="string">&quot;Hello World&quot;</span>,</span><br><span class="line">        theme: ThemeData(</span><br><span class="line">          brightness: Brightness.dark,</span><br><span class="line">          primaryColor: Colors.cyan[<span class="number">400</span>],</span><br><span class="line">        ),</span><br><span class="line">        home: <span class="keyword">const</span> HomeScreen(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>現在，我們啟動flutter emulator:<br><img data-src="/2021/12/solidity/c2c8ee41f138/2021-12-03-02-08-07.png" alt="emulator launch"></p>
+<p>我們按一下Button，會發現到:</p>
+<p><img data-src="/2021/12/solidity/c2c8ee41f138/2021-12-03-02-08-50.png" alt="click"></p>
+]]></content>
+      <categories>
+        <category>solidity</category>
+      </categories>
+      <tags>
+        <tag>solidity</tag>
+        <tag>flutter</tag>
+        <tag>dapp</tag>
       </tags>
   </entry>
   <entry>
@@ -360,67 +422,29 @@
       </tags>
   </entry>
   <entry>
-    <title>使用flutter來建立dapp</title>
-    <url>/2021/12/solidity/flutter/c2c8ee41f138/</url>
-    <content><![CDATA[<h1 id="使用flutter來建立dapp"><a href="#使用flutter來建立dapp" class="headerlink" title="使用flutter來建立dapp"></a>使用flutter來建立dapp</h1><hr>
-<h2 id="Create-the-Smart-Contract"><a href="#Create-the-Smart-Contract" class="headerlink" title="Create the Smart Contract"></a>Create the Smart Contract</h2><p>現在我們開始創建一個簡易合約:</p>
-<p><a href="https://fufushih.github.io/2021/11/30/SolidityHelloWorld/">solidity hello world smart contract</a></p>
-<p>啟動本地端:</p>
-<blockquote>
-<p>port=&gt;8545</p>
+    <title>使用flutter來製作過渡頁</title>
+    <url>/2021/12/flutter/951debf887fa/</url>
+    <content><![CDATA[<h1 id="使用flutter來製作過渡頁"><a href="#使用flutter來製作過渡頁" class="headerlink" title="使用flutter來製作過渡頁"></a>使用flutter來製作過渡頁</h1><blockquote>
+<p>當app啟動時，有些app會有一個過渡的啟動頁面(Splash page)<br>今天我們就來簡單去實現</p>
 </blockquote>
-<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-03-15.png" alt="ganache"></p>
-<p>接下來要把合約部署在本地測試端:</p>
-<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-56-19.png" alt="Solidity"></p>
-<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-56-55.png" alt="migration"></p>
-<p>佈署到的地址:</p>
-<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-07-20.png" alt="migrate address"></p>
-<p>compile完後得到一個json檔:</p>
-<p>而在裡面有個ABI，是告訴我們如何與合約溝通的接口介面</p>
-<blockquote>
-<p>web3要和智能合約溝通所需要的是ABI，也就是二進制接口(Application Binary Interface)<br>而ABI是以JSON來表達合約裡的方法，告訴web3如何以合約理解的方式格式化函數去做調用</p>
-</blockquote>
-<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-59-23.png" alt="Json"></p>
-<p>把他加入到flutter的assets中</p>
-<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-00-02.png" alt="assets"></p>
-<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-00-52.png" alt="pub"></p>
-<hr>
-<h2 id="Create-DAPP"><a href="#Create-DAPP" class="headerlink" title="Create DAPP"></a>Create DAPP</h2><p>Add package:</p>
-<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-54-15.png" alt="package list"></p>
-<p>The struct of folder:</p>
-<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-54-50.png" alt="folder struct"></p>
-<p>Add contract_linking:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinking</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p><img data-src="/2021/12/flutter/951debf887fa/2021-12-12-13-41-49.png" alt="structure"></p>
+<p>main:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:slash_screen/splash_screen.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(<span class="keyword">const</span> MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> MyApp(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">      ),</span><br><span class="line">      home: SplashScreen(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>Now add some feature:</p>
-</blockquote>
-<p>contract_linking.dart:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:convert&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/services.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:http/http.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web3dart/web3dart.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web_socket_channel/io.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinking</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _rpcUrl = <span class="string">&quot;http://10.0.2.2:8545&quot;</span>;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _wsUrl = <span class="string">&quot;ws://10.0.2.2:8545/&quot;</span>;</span><br><span class="line">  <span class="comment">// final String _privateKey =</span></span><br><span class="line">  <span class="comment">//     &quot;0x01d3fe7ae54ef4d39facb006cab009f9ebb412d1dff171303704b43ceae49736&quot;;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> Web3Client _client;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> <span class="built_in">String</span> _abiCode;</span><br><span class="line">  <span class="keyword">late</span> EthereumAddress _contractAddress;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> DeployedContract _contract;</span><br><span class="line">  <span class="keyword">late</span> ContractFunction _text;</span><br><span class="line">  <span class="built_in">String</span> message = <span class="string">&#x27;No message&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  ContractLinking() &#123;</span><br><span class="line">    initialSetup();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initialSetup() <span class="keyword">async</span> &#123;</span><br><span class="line">    _client = Web3Client(_rpcUrl, Client(), socketConnector: () &#123;</span><br><span class="line">      <span class="keyword">return</span> IOWebSocketChannel.connect(_wsUrl).cast&lt;<span class="built_in">String</span>&gt;();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> getAbi();</span><br><span class="line">    <span class="keyword">await</span> getDeployedContract();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; getAbi() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">// Reading the contract abi</span></span><br><span class="line">    <span class="built_in">String</span> abiStringFile =</span><br><span class="line">        <span class="keyword">await</span> rootBundle.loadString(<span class="string">&quot;assets/contracts/HelloWorld.json&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> jsonAbi = jsonDecode(abiStringFile);</span><br><span class="line">    _abiCode = jsonEncode(jsonAbi[<span class="string">&quot;abi&quot;</span>]);</span><br><span class="line"></span><br><span class="line">    _contractAddress = EthereumAddress.fromHex(</span><br><span class="line">        jsonAbi[<span class="string">&quot;networks&quot;</span>][<span class="string">&quot;1638459988787&quot;</span>][<span class="string">&quot;address&quot;</span>]); <span class="comment">// See HelloWorld.json</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; getDeployedContract() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">//  Telling Web3dart where our contract is declared.</span></span><br><span class="line">    _contract = DeployedContract(</span><br><span class="line">        ContractAbi.fromJson(_abiCode, <span class="string">&quot;HelloWorld&quot;</span>), _contractAddress);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Extracting the functions, declared in contract.</span></span><br><span class="line">    _text = _contract.function(<span class="string">&#x27;sayHello&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; sayHelloWorld() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> text =</span><br><span class="line">        <span class="keyword">await</span> _client.call(contract: _contract, function: _text, params: []);</span><br><span class="line">    message = text[<span class="number">0</span>];</span><br><span class="line">    notifyListeners();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>home_screen:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> HomeScreen(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">const</span> Scaffold(</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Text(<span class="string">&#x27;Home Page&#x27;</span>),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>我們部署的合約地址<br><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-06-09.png" alt="addr"></p>
-<p>In UI, we add some screen:</p>
-<p>home_screen.dart:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/contract_linking.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> HomeScreen(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// Getting the value and object or contract_linking</span></span><br><span class="line">    <span class="keyword">final</span> contractLink = Provider.of&lt;ContractLinking&gt;(context);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: <span class="keyword">const</span> Text(<span class="string">&quot;Smart Contract Test!&quot;</span>),</span><br><span class="line">        centerTitle: <span class="keyword">true</span>,</span><br><span class="line">      ),</span><br><span class="line">      body: Container(</span><br><span class="line">        padding: <span class="keyword">const</span> EdgeInsets.symmetric(horizontal: <span class="number">20</span>),</span><br><span class="line">        child: Center(</span><br><span class="line">          child: SingleChildScrollView(</span><br><span class="line">            child: Form(</span><br><span class="line">              child: Column(</span><br><span class="line">                children: [</span><br><span class="line">                  Row(</span><br><span class="line">                    mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">                    children: [</span><br><span class="line">                      Text(</span><br><span class="line">                        contractLink.message,</span><br><span class="line">                        style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">                            fontWeight: FontWeight.bold,</span><br><span class="line">                            fontSize: <span class="number">52</span>,</span><br><span class="line">                            color: Colors.tealAccent),</span><br><span class="line">                      ),</span><br><span class="line">                    ],</span><br><span class="line">                  ),</span><br><span class="line">                ],</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: FloatingActionButton(</span><br><span class="line">        onPressed: contractLink.sayHelloWorld,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>splash_screen:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:async&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:slash_screen/home_screen.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashScreen</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> SplashScreen(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  State&lt;SplashScreen&gt; createState() =&gt; _SplashScreenState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_SplashScreenState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">SplashScreen</span>&gt; </span>&#123;</span><br><span class="line">  <span class="built_in">int</span> _time = <span class="number">5</span>;</span><br><span class="line">  <span class="keyword">late</span> Timer _timer;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> initState() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">    startTimer();</span><br><span class="line">    _navToPage();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> dispose() &#123;</span><br><span class="line">    _timer.cancel();</span><br><span class="line">    <span class="keyword">super</span>.dispose();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//跳轉頁面</span></span><br><span class="line">  _navToPage() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> Future.delayed(</span><br><span class="line">      <span class="keyword">const</span> <span class="built_in">Duration</span>(seconds: <span class="number">5</span>),</span><br><span class="line">    );</span><br><span class="line">    Navigator.pushReplacement(</span><br><span class="line">      context,</span><br><span class="line">      MaterialPageRoute(</span><br><span class="line">        builder: (context) =&gt; HomeScreen(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 計數器</span></span><br><span class="line">  startTimer() &#123;</span><br><span class="line">    _timer = Timer.periodic(</span><br><span class="line">      <span class="keyword">const</span> <span class="built_in">Duration</span>(seconds: <span class="number">1</span>),</span><br><span class="line">      (Timer timer) &#123;</span><br><span class="line">        <span class="keyword">if</span> (_time == <span class="number">0</span>) &#123;</span><br><span class="line">          setState(() &#123;</span><br><span class="line">            timer.cancel();</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          setState(() &#123;</span><br><span class="line">            _time--;</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Container(</span><br><span class="line">          child: Text(</span><br><span class="line">            <span class="string">&#x27;Splash and time <span class="subst">$_time</span>&#x27;</span>,</span><br><span class="line">            style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">              fontSize: <span class="number">24</span>,</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>screens.dart:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="string">&#x27;./home_screen.dart&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>main.dart:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/contract_linking.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/ui/screens/screens.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(<span class="keyword">const</span> MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> MyApp(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> ChangeNotifierProvider&lt;ContractLinking&gt;(</span><br><span class="line">      create: (_) =&gt; ContractLinking(),</span><br><span class="line">      child: MaterialApp(</span><br><span class="line">        title: <span class="string">&quot;Hello World&quot;</span>,</span><br><span class="line">        theme: ThemeData(</span><br><span class="line">          brightness: Brightness.dark,</span><br><span class="line">          primaryColor: Colors.cyan[<span class="number">400</span>],</span><br><span class="line">        ),</span><br><span class="line">        home: <span class="keyword">const</span> HomeScreen(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>現在，我們啟動flutter emulator:<br><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-08-07.png" alt="emulator launch"></p>
-<p>我們按一下Button，會發現到:</p>
-<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-08-50.png" alt="click"></p>
+<h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><p><img data-src="/2021/12/flutter/951debf887fa/splash_screen.gif" alt="splash"></p>
 ]]></content>
       <categories>
-        <category>solidity</category>
         <category>flutter</category>
       </categories>
       <tags>
-        <tag>solidity</tag>
         <tag>flutter</tag>
-        <tag>dapp</tag>
+        <tag>splash</tag>
       </tags>
   </entry>
   <entry>
@@ -459,32 +483,6 @@
       </categories>
       <tags>
         <tag>flutter</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用flutter來製作過渡頁</title>
-    <url>/2021/12/flutter/951debf887fa/</url>
-    <content><![CDATA[<h1 id="使用flutter來製作過渡頁"><a href="#使用flutter來製作過渡頁" class="headerlink" title="使用flutter來製作過渡頁"></a>使用flutter來製作過渡頁</h1><blockquote>
-<p>當app啟動時，有些app會有一個過渡的啟動頁面(Splash page)<br>今天我們就來簡單去實現</p>
-</blockquote>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p><img data-src="/2021/12/flutter/951debf887fa/2021-12-12-13-41-49.png" alt="structure"></p>
-<p>main:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:slash_screen/splash_screen.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(<span class="keyword">const</span> MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> MyApp(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">      ),</span><br><span class="line">      home: SplashScreen(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>home_screen:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> HomeScreen(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">const</span> Scaffold(</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Text(<span class="string">&#x27;Home Page&#x27;</span>),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>splash_screen:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:async&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:slash_screen/home_screen.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashScreen</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> SplashScreen(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  State&lt;SplashScreen&gt; createState() =&gt; _SplashScreenState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_SplashScreenState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">SplashScreen</span>&gt; </span>&#123;</span><br><span class="line">  <span class="built_in">int</span> _time = <span class="number">5</span>;</span><br><span class="line">  <span class="keyword">late</span> Timer _timer;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> initState() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">    startTimer();</span><br><span class="line">    _navToPage();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> dispose() &#123;</span><br><span class="line">    _timer.cancel();</span><br><span class="line">    <span class="keyword">super</span>.dispose();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//跳轉頁面</span></span><br><span class="line">  _navToPage() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> Future.delayed(</span><br><span class="line">      <span class="keyword">const</span> <span class="built_in">Duration</span>(seconds: <span class="number">5</span>),</span><br><span class="line">    );</span><br><span class="line">    Navigator.pushReplacement(</span><br><span class="line">      context,</span><br><span class="line">      MaterialPageRoute(</span><br><span class="line">        builder: (context) =&gt; HomeScreen(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 計數器</span></span><br><span class="line">  startTimer() &#123;</span><br><span class="line">    _timer = Timer.periodic(</span><br><span class="line">      <span class="keyword">const</span> <span class="built_in">Duration</span>(seconds: <span class="number">1</span>),</span><br><span class="line">      (Timer timer) &#123;</span><br><span class="line">        <span class="keyword">if</span> (_time == <span class="number">0</span>) &#123;</span><br><span class="line">          setState(() &#123;</span><br><span class="line">            timer.cancel();</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          setState(() &#123;</span><br><span class="line">            _time--;</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Container(</span><br><span class="line">          child: Text(</span><br><span class="line">            <span class="string">&#x27;Splash and time <span class="subst">$_time</span>&#x27;</span>,</span><br><span class="line">            style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">              fontSize: <span class="number">24</span>,</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><p><img data-src="/2021/12/flutter/951debf887fa/splash_screen.gif" alt="splash"></p>
-]]></content>
-      <categories>
-        <category>flutter</category>
-      </categories>
-      <tags>
-        <tag>flutter</tag>
-        <tag>splash</tag>
       </tags>
   </entry>
 </search>

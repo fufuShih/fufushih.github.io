@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://fufushih.github.io/2021/12/solidity/c2c8ee41f138/</loc>
+    
+    <lastmod>2021-12-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://fufushih.github.io/2021/12/solidity/2fe3b24ab0ed/</loc>
+    
+    <lastmod>2021-12-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://fufushih.github.io/2021/12/solidity/3f4574248609/</loc>
     
     <lastmod>2021-12-15</lastmod>
@@ -12,24 +30,6 @@
   
   <url>
     <loc>https://fufushih.github.io/2021/12/flutter/a929576e2db7/</loc>
-    
-    <lastmod>2021-12-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/</loc>
-    
-    <lastmod>2021-12-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/</loc>
     
     <lastmod>2021-12-13</lastmod>
     
@@ -178,13 +178,6 @@
   
   <url>
     <loc>https://fufushih.github.io/categories/solidity/</loc>
-    <lastmod>2021-12-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://fufushih.github.io/categories/solidity/flutter/</loc>
     <lastmod>2021-12-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
