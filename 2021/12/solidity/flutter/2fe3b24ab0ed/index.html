@@ -23,23 +23,23 @@
   <meta name="description" content="使用flutter來建立dapp-2建立接下來，我們來新增一些功能，把我們的Name上傳並且回傳回來 首先，是我們的合約，我們先新增一個合約MyName.sol:  123456789101112131415161718&#x2F;&#x2F; SPDX-License-Identifier: MITpragma solidity &gt;&#x3D;0.4.22 &lt;0.9.0;contract MyName &amp;#123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用flutter來建立dapp-2">
-<meta property="og:url" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/index.html">
+<meta property="og:url" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/index.html">
 <meta property="og:site_name" content="阿甫筆記">
 <meta property="og:description" content="使用flutter來建立dapp-2建立接下來，我們來新增一些功能，把我們的Name上傳並且回傳回來 首先，是我們的合約，我們先新增一個合約MyName.sol:  123456789101112131415161718&#x2F;&#x2F; SPDX-License-Identifier: MITpragma solidity &gt;&#x3D;0.4.22 &lt;0.9.0;contract MyName &amp;#123">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/2021-12-08-20-35-51.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/2021-12-08-20-45-32.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/2021-12-08-20-48-45.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/2021-12-08-20-51-02.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/2021-12-08-20-56-02.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/2021-12-08-20-59-31.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/2021-12-08-20-53-44.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/2021-12-08-21-06-40.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/2021-12-08-21-28-12.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/2021-12-08-21-28-53.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/2021-12-08-21-29-33.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/2021-12-08-21-29-55.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/2021-12-08-21-44-10.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-35-51.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-45-32.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-48-45.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-51-02.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-56-02.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-59-31.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-53-44.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-06-40.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-28-12.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-28-53.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-29-33.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-29-55.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-44-10.png">
 <meta property="article:published_time" content="2021-12-08T13:32:06.000Z">
 <meta property="article:modified_time" content="2021-12-13T05:52:43.830Z">
 <meta property="article:author" content="FufuShih">
@@ -49,9 +49,9 @@
 <meta property="article:tag" content="truffle">
 <meta property="article:tag" content="ganache">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://fufushih.github.io/2021/12/08/flutter-dapp-2/2021-12-08-20-35-51.png">
+<meta name="twitter:image" content="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-35-51.png">
 
-<link rel="canonical" href="https://fufushih.github.io/2021/12/08/flutter-dapp-2/">
+<link rel="canonical" href="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/">
 
 
 <script id="page-configurations">
@@ -222,7 +222,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/08/flutter-dapp-2/">
+    <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -277,8 +277,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2021/12/08/flutter-dapp-2/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/08/flutter-dapp-2/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2021/12/solidity/flutter/2fe3b24ab0ed/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/solidity/flutter/2fe3b24ab0ed/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -295,24 +295,24 @@
       
         <h1 id="使用flutter來建立dapp-2"><a href="#使用flutter來建立dapp-2" class="headerlink" title="使用flutter來建立dapp-2"></a>使用flutter來建立dapp-2</h1><h2 id="建立"><a href="#建立" class="headerlink" title="建立"></a>建立</h2><p>接下來，我們來新增一些功能，把我們的Name上傳並且回傳回來</p>
 <p>首先，是我們的合約，我們先新增一個合約MyName.sol:</p>
-<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-20-35-51.png" alt="contract structure"></p>
+<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-35-51.png" alt="contract structure"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyName &#123;</span><br><span class="line">  string public _name;</span><br><span class="line"></span><br><span class="line">  constructor() &#123;</span><br><span class="line">    _name=&quot;Please Type Your Name&quot;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function setName(string memory name) public&#123;</span><br><span class="line">    _name = name ;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function getName() public view returns (string memory)&#123;</span><br><span class="line">    return _name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>並重新設定migrations:</p>
 <p>migrations/1_initial_migration.js:</p>
-<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-20-45-32.png"></p>
+<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-45-32.png"></p>
 <p>我們去編譯並佈署:</p>
 <figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">truffle compile</span><br><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-20-48-45.png"></p>
+<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-48-45.png"></p>
 <p>成功後，我們開始建立我們的flutter dapp</p>
 <p>我們的flutter專案架構:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lib</span><br><span class="line">  core</span><br><span class="line">    service</span><br><span class="line">    states</span><br><span class="line">  ui</span><br><span class="line">    screens</span><br><span class="line">    widgets</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-20-51-02.png"></p>
-<p>需要的套件以及assets:<br><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-20-56-02.png"></p>
-<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-20-59-31.png"></p>
-<p>我們把compile後的json檔放入flutter的assets中:<br><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-20-53-44.png"></p>
+<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-51-02.png"></p>
+<p>需要的套件以及assets:<br><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-56-02.png"></p>
+<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-59-31.png"></p>
+<p>我們把compile後的json檔放入flutter的assets中:<br><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-20-53-44.png"></p>
 <hr>
 <p>接下來，我們來實現我們要的功能:</p>
 <p>core/services/contract_linking_service.dart:</p>
@@ -340,14 +340,14 @@
 
 <hr>
 <p>接下來，我們來進行測試:</p>
-<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-21-06-40.png"></p>
+<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-06-40.png"></p>
 <p>我們先按fab，來獲取網路節點上的name</p>
-<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-21-28-12.png"></p>
+<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-28-12.png"></p>
 <p>接下來，我們輸入一個name並set(這邊我輸入fufu):</p>
-<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-21-28-53.png"></p>
+<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-28-53.png"></p>
 <p>改輸入別的name</p>
-<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-21-29-33.png"></p>
-<p>result:<br><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-21-29-55.png"></p>
+<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-29-33.png"></p>
+<p>result:<br><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-29-55.png"></p>
 <hr>
 <h2 id="Note"><a href="#Note" class="headerlink" title="Note:"></a>Note:</h2><p>在我們的core/states/contract_state.dart中:</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> ContractLinkingService contractLinkingService =</span><br><span class="line">    ContractLinkingService();</span><br><span class="line"><span class="keyword">final</span> <span class="built_in">String</span> _rpcUrl = <span class="string">&quot;http://10.0.2.2:8545&quot;</span>;</span><br><span class="line"><span class="keyword">final</span> <span class="built_in">String</span> _wsUrl = <span class="string">&quot;ws://10.0.2.2:8545/&quot;</span>;</span><br><span class="line"><span class="keyword">final</span> <span class="built_in">String</span> _privateKey =</span><br><span class="line">    <span class="string">&#x27;0xb57ae20c98201b5dd0216dfafc0f71b91113de9c1de09676065084ee83979ab2&#x27;</span>;</span><br></pre></td></tr></table></figure>
@@ -360,7 +360,7 @@
 <blockquote>
 <p>對於contractLinkingService.getContractAddress(“assets/artifacts/MyName.json”, “1638897663028”);<br>那個1638897663028是block的timestamp<br>我們能在deploy合約時，能看到</p>
 </blockquote>
-<p><img data-src="/2021/12/08/flutter-dapp-2/2021-12-08-21-44-10.png"></p>
+<p><img data-src="/2021/12/solidity/flutter/2fe3b24ab0ed/2021-12-08-21-44-10.png"></p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">getName() <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="comment">// Getting the current name declared in the smart contract.</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> currentName = <span class="keyword">await</span> _client.call(</span><br><span class="line">      contract: _contract,</span><br><span class="line">      function: _contract.function(<span class="string">&quot;getName&quot;</span>),</span><br><span class="line">      params: []);</span><br><span class="line">  name = currentName[<span class="number">0</span>];</span><br><span class="line">  notifyListeners();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
@@ -398,11 +398,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/05/Remix-On-Vscode/" rel="prev" title="在VSCode上使用Remix">
+    <a href="/2021/12/solidity/0ea97b244a3e/" rel="prev" title="在VSCode上使用Remix">
       <i class="fa fa-chevron-left"></i> 在VSCode上使用Remix
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/12/12/flutter-splash/" rel="next" title="使用flutter來製作過渡頁">
+    <a href="/2021/12/flutter/951debf887fa/" rel="next" title="使用flutter來製作過渡頁">
       使用flutter來製作過渡頁 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -486,7 +486,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -673,8 +673,8 @@ window.addEventListener('pjax:success', () => {
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://fufushih.github.io/2021/12/08/flutter-dapp-2/";
-    this.page.identifier = "2021/12/08/flutter-dapp-2/";
+    this.page.url = "https://fufushih.github.io/2021/12/solidity/flutter/2fe3b24ab0ed/";
+    this.page.identifier = "2021/12/solidity/flutter/2fe3b24ab0ed/";
     this.page.title = "使用flutter來建立dapp-2";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {

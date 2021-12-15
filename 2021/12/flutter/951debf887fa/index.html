@@ -23,21 +23,21 @@
   <meta name="description" content="使用flutter來製作過渡頁 當app啟動時，有些app會有一個過渡的啟動頁面(Splash page)今天我們就來簡單去實現  Code main: 12345678910111213141516171819202122import &amp;#x27;package:flutter&#x2F;material.dart&amp;#x27;;import &amp;#x27;package:slash_screen&#x2F;splas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用flutter來製作過渡頁">
-<meta property="og:url" content="https://fufushih.github.io/2021/12/12/flutter-splash/index.html">
+<meta property="og:url" content="https://fufushih.github.io/2021/12/flutter/951debf887fa/index.html">
 <meta property="og:site_name" content="阿甫筆記">
 <meta property="og:description" content="使用flutter來製作過渡頁 當app啟動時，有些app會有一個過渡的啟動頁面(Splash page)今天我們就來簡單去實現  Code main: 12345678910111213141516171819202122import &amp;#x27;package:flutter&#x2F;material.dart&amp;#x27;;import &amp;#x27;package:slash_screen&#x2F;splas">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/12/flutter-splash/2021-12-12-13-41-49.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/12/flutter-splash/splash_screen.gif">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/flutter/951debf887fa/2021-12-12-13-41-49.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/flutter/951debf887fa/splash_screen.gif">
 <meta property="article:published_time" content="2021-12-12T05:39:16.000Z">
 <meta property="article:modified_time" content="2021-12-12T05:52:49.548Z">
 <meta property="article:author" content="FufuShih">
 <meta property="article:tag" content="flutter">
 <meta property="article:tag" content="splash">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://fufushih.github.io/2021/12/12/flutter-splash/2021-12-12-13-41-49.png">
+<meta name="twitter:image" content="https://fufushih.github.io/2021/12/flutter/951debf887fa/2021-12-12-13-41-49.png">
 
-<link rel="canonical" href="https://fufushih.github.io/2021/12/12/flutter-splash/">
+<link rel="canonical" href="https://fufushih.github.io/2021/12/flutter/951debf887fa/">
 
 
 <script id="page-configurations">
@@ -208,7 +208,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/12/flutter-splash/">
+    <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/flutter/951debf887fa/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -253,8 +253,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2021/12/12/flutter-splash/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/12/flutter-splash/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2021/12/flutter/951debf887fa/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/flutter/951debf887fa/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -272,7 +272,7 @@
         <h1 id="使用flutter來製作過渡頁"><a href="#使用flutter來製作過渡頁" class="headerlink" title="使用flutter來製作過渡頁"></a>使用flutter來製作過渡頁</h1><blockquote>
 <p>當app啟動時，有些app會有一個過渡的啟動頁面(Splash page)<br>今天我們就來簡單去實現</p>
 </blockquote>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p><img data-src="/2021/12/12/flutter-splash/2021-12-12-13-41-49.png" alt="structure"></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p><img data-src="/2021/12/flutter/951debf887fa/2021-12-12-13-41-49.png" alt="structure"></p>
 <p>main:</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:slash_screen/splash_screen.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(<span class="keyword">const</span> MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> MyApp(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">      ),</span><br><span class="line">      home: SplashScreen(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -282,7 +282,7 @@
 <p>splash_screen:</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:async&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:slash_screen/home_screen.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashScreen</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> SplashScreen(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  State&lt;SplashScreen&gt; createState() =&gt; _SplashScreenState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_SplashScreenState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">SplashScreen</span>&gt; </span>&#123;</span><br><span class="line">  <span class="built_in">int</span> _time = <span class="number">5</span>;</span><br><span class="line">  <span class="keyword">late</span> Timer _timer;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> initState() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">    startTimer();</span><br><span class="line">    _navToPage();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> dispose() &#123;</span><br><span class="line">    _timer.cancel();</span><br><span class="line">    <span class="keyword">super</span>.dispose();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//跳轉頁面</span></span><br><span class="line">  _navToPage() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> Future.delayed(</span><br><span class="line">      <span class="keyword">const</span> <span class="built_in">Duration</span>(seconds: <span class="number">5</span>),</span><br><span class="line">    );</span><br><span class="line">    Navigator.pushReplacement(</span><br><span class="line">      context,</span><br><span class="line">      MaterialPageRoute(</span><br><span class="line">        builder: (context) =&gt; HomeScreen(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 計數器</span></span><br><span class="line">  startTimer() &#123;</span><br><span class="line">    _timer = Timer.periodic(</span><br><span class="line">      <span class="keyword">const</span> <span class="built_in">Duration</span>(seconds: <span class="number">1</span>),</span><br><span class="line">      (Timer timer) &#123;</span><br><span class="line">        <span class="keyword">if</span> (_time == <span class="number">0</span>) &#123;</span><br><span class="line">          setState(() &#123;</span><br><span class="line">            timer.cancel();</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          setState(() &#123;</span><br><span class="line">            _time--;</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Container(</span><br><span class="line">          child: Text(</span><br><span class="line">            <span class="string">&#x27;Splash and time <span class="subst">$_time</span>&#x27;</span>,</span><br><span class="line">            style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">              fontSize: <span class="number">24</span>,</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><p><img data-src="/2021/12/12/flutter-splash/splash_screen.gif" alt="splash"></p>
+<h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><p><img data-src="/2021/12/flutter/951debf887fa/splash_screen.gif" alt="splash"></p>
 
     </div>
 
@@ -302,11 +302,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/08/flutter-dapp-2/" rel="prev" title="使用flutter來建立dapp-2">
+    <a href="/2021/12/solidity/flutter/2fe3b24ab0ed/" rel="prev" title="使用flutter來建立dapp-2">
       <i class="fa fa-chevron-left"></i> 使用flutter來建立dapp-2
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/12/12/flutter-lifecycle/" rel="next" title="flutter lifecycle">
+    <a href="/2021/12/flutter/f95ae0025bf4/" rel="next" title="flutter lifecycle">
       flutter lifecycle <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -390,7 +390,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -577,8 +577,8 @@ window.addEventListener('pjax:success', () => {
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://fufushih.github.io/2021/12/12/flutter-splash/";
-    this.page.identifier = "2021/12/12/flutter-splash/";
+    this.page.url = "https://fufushih.github.io/2021/12/flutter/951debf887fa/";
+    this.page.identifier = "2021/12/flutter/951debf887fa/";
     this.page.title = "使用flutter來製作過渡頁";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {

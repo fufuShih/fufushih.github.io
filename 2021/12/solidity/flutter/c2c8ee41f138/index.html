@@ -23,22 +23,22 @@
   <meta name="description" content="使用flutter來建立dapp Create the Smart Contract現在我們開始創建一個簡易合約: solidity hello world smart contract 啟動本地端:  port&#x3D;&gt;8545   接下來要把合約部署在本地測試端:   佈署到的地址:  compile完後得到一個json檔: 而在裡面有個ABI，是告訴我們如何與合約溝通的接口介面  web3要">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用flutter來建立dapp">
-<meta property="og:url" content="https://fufushih.github.io/2021/12/03/flutter-dapp/index.html">
+<meta property="og:url" content="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/index.html">
 <meta property="og:site_name" content="阿甫筆記">
 <meta property="og:description" content="使用flutter來建立dapp Create the Smart Contract現在我們開始創建一個簡易合約: solidity hello world smart contract 啟動本地端:  port&#x3D;&gt;8545   接下來要把合約部署在本地測試端:   佈署到的地址:  compile完後得到一個json檔: 而在裡面有個ABI，是告訴我們如何與合約溝通的接口介面  web3要">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/03/flutter-dapp/2021-12-03-02-03-15.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/03/flutter-dapp/2021-12-03-01-56-19.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/03/flutter-dapp/2021-12-03-01-56-55.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/03/flutter-dapp/2021-12-03-02-07-20.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/03/flutter-dapp/2021-12-03-01-59-23.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/03/flutter-dapp/2021-12-03-02-00-02.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/03/flutter-dapp/2021-12-03-02-00-52.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/03/flutter-dapp/2021-12-03-01-54-15.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/03/flutter-dapp/2021-12-03-01-54-50.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/03/flutter-dapp/2021-12-03-02-06-09.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/03/flutter-dapp/2021-12-03-02-08-07.png">
-<meta property="og:image" content="https://fufushih.github.io/2021/12/03/flutter-dapp/2021-12-03-02-08-50.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-03-15.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-56-19.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-56-55.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-07-20.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-59-23.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-00-02.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-00-52.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-54-15.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-54-50.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-06-09.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-08-07.png">
+<meta property="og:image" content="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-08-50.png">
 <meta property="article:published_time" content="2021-12-02T18:12:18.000Z">
 <meta property="article:modified_time" content="2021-12-13T05:52:40.047Z">
 <meta property="article:author" content="FufuShih">
@@ -46,9 +46,9 @@
 <meta property="article:tag" content="flutter">
 <meta property="article:tag" content="dapp">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://fufushih.github.io/2021/12/03/flutter-dapp/2021-12-03-02-03-15.png">
+<meta name="twitter:image" content="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-03-15.png">
 
-<link rel="canonical" href="https://fufushih.github.io/2021/12/03/flutter-dapp/">
+<link rel="canonical" href="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/">
 
 
 <script id="page-configurations">
@@ -219,7 +219,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/03/flutter-dapp/">
+    <link itemprop="mainEntityOfPage" href="https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -274,8 +274,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2021/12/03/flutter-dapp/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/03/flutter-dapp/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2021/12/solidity/flutter/c2c8ee41f138/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/solidity/flutter/c2c8ee41f138/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -297,26 +297,26 @@
 <blockquote>
 <p>port=&gt;8545</p>
 </blockquote>
-<p><img data-src="/2021/12/03/flutter-dapp/2021-12-03-02-03-15.png" alt="ganache"></p>
+<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-03-15.png" alt="ganache"></p>
 <p>接下來要把合約部署在本地測試端:</p>
-<p><img data-src="/2021/12/03/flutter-dapp/2021-12-03-01-56-19.png" alt="Solidity"></p>
-<p><img data-src="/2021/12/03/flutter-dapp/2021-12-03-01-56-55.png" alt="migration"></p>
+<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-56-19.png" alt="Solidity"></p>
+<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-56-55.png" alt="migration"></p>
 <p>佈署到的地址:</p>
-<p><img data-src="/2021/12/03/flutter-dapp/2021-12-03-02-07-20.png" alt="migrate address"></p>
+<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-07-20.png" alt="migrate address"></p>
 <p>compile完後得到一個json檔:</p>
 <p>而在裡面有個ABI，是告訴我們如何與合約溝通的接口介面</p>
 <blockquote>
 <p>web3要和智能合約溝通所需要的是ABI，也就是二進制接口(Application Binary Interface)<br>而ABI是以JSON來表達合約裡的方法，告訴web3如何以合約理解的方式格式化函數去做調用</p>
 </blockquote>
-<p><img data-src="/2021/12/03/flutter-dapp/2021-12-03-01-59-23.png" alt="Json"></p>
+<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-59-23.png" alt="Json"></p>
 <p>把他加入到flutter的assets中</p>
-<p><img data-src="/2021/12/03/flutter-dapp/2021-12-03-02-00-02.png" alt="assets"></p>
-<p><img data-src="/2021/12/03/flutter-dapp/2021-12-03-02-00-52.png" alt="pub"></p>
+<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-00-02.png" alt="assets"></p>
+<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-00-52.png" alt="pub"></p>
 <hr>
 <h2 id="Create-DAPP"><a href="#Create-DAPP" class="headerlink" title="Create DAPP"></a>Create DAPP</h2><p>Add package:</p>
-<p><img data-src="/2021/12/03/flutter-dapp/2021-12-03-01-54-15.png" alt="package list"></p>
+<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-54-15.png" alt="package list"></p>
 <p>The struct of folder:</p>
-<p><img data-src="/2021/12/03/flutter-dapp/2021-12-03-01-54-50.png" alt="folder struct"></p>
+<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-01-54-50.png" alt="folder struct"></p>
 <p>Add contract_linking:</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinking</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -326,7 +326,7 @@
 <p>contract_linking.dart:</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:convert&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/services.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:http/http.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web3dart/web3dart.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web_socket_channel/io.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinking</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _rpcUrl = <span class="string">&quot;http://10.0.2.2:8545&quot;</span>;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _wsUrl = <span class="string">&quot;ws://10.0.2.2:8545/&quot;</span>;</span><br><span class="line">  <span class="comment">// final String _privateKey =</span></span><br><span class="line">  <span class="comment">//     &quot;0x01d3fe7ae54ef4d39facb006cab009f9ebb412d1dff171303704b43ceae49736&quot;;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> Web3Client _client;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> <span class="built_in">String</span> _abiCode;</span><br><span class="line">  <span class="keyword">late</span> EthereumAddress _contractAddress;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> DeployedContract _contract;</span><br><span class="line">  <span class="keyword">late</span> ContractFunction _text;</span><br><span class="line">  <span class="built_in">String</span> message = <span class="string">&#x27;No message&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  ContractLinking() &#123;</span><br><span class="line">    initialSetup();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initialSetup() <span class="keyword">async</span> &#123;</span><br><span class="line">    _client = Web3Client(_rpcUrl, Client(), socketConnector: () &#123;</span><br><span class="line">      <span class="keyword">return</span> IOWebSocketChannel.connect(_wsUrl).cast&lt;<span class="built_in">String</span>&gt;();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> getAbi();</span><br><span class="line">    <span class="keyword">await</span> getDeployedContract();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; getAbi() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">// Reading the contract abi</span></span><br><span class="line">    <span class="built_in">String</span> abiStringFile =</span><br><span class="line">        <span class="keyword">await</span> rootBundle.loadString(<span class="string">&quot;assets/contracts/HelloWorld.json&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> jsonAbi = jsonDecode(abiStringFile);</span><br><span class="line">    _abiCode = jsonEncode(jsonAbi[<span class="string">&quot;abi&quot;</span>]);</span><br><span class="line"></span><br><span class="line">    _contractAddress = EthereumAddress.fromHex(</span><br><span class="line">        jsonAbi[<span class="string">&quot;networks&quot;</span>][<span class="string">&quot;1638459988787&quot;</span>][<span class="string">&quot;address&quot;</span>]); <span class="comment">// See HelloWorld.json</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; getDeployedContract() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">//  Telling Web3dart where our contract is declared.</span></span><br><span class="line">    _contract = DeployedContract(</span><br><span class="line">        ContractAbi.fromJson(_abiCode, <span class="string">&quot;HelloWorld&quot;</span>), _contractAddress);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Extracting the functions, declared in contract.</span></span><br><span class="line">    _text = _contract.function(<span class="string">&#x27;sayHello&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; sayHelloWorld() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> text =</span><br><span class="line">        <span class="keyword">await</span> _client.call(contract: _contract, function: _text, params: []);</span><br><span class="line">    message = text[<span class="number">0</span>];</span><br><span class="line">    notifyListeners();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>我們部署的合約地址<br><img data-src="/2021/12/03/flutter-dapp/2021-12-03-02-06-09.png" alt="addr"></p>
+<p>我們部署的合約地址<br><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-06-09.png" alt="addr"></p>
 <p>In UI, we add some screen:</p>
 <p>home_screen.dart:</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/contract_linking.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> HomeScreen(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// Getting the value and object or contract_linking</span></span><br><span class="line">    <span class="keyword">final</span> contractLink = Provider.of&lt;ContractLinking&gt;(context);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: <span class="keyword">const</span> Text(<span class="string">&quot;Smart Contract Test!&quot;</span>),</span><br><span class="line">        centerTitle: <span class="keyword">true</span>,</span><br><span class="line">      ),</span><br><span class="line">      body: Container(</span><br><span class="line">        padding: <span class="keyword">const</span> EdgeInsets.symmetric(horizontal: <span class="number">20</span>),</span><br><span class="line">        child: Center(</span><br><span class="line">          child: SingleChildScrollView(</span><br><span class="line">            child: Form(</span><br><span class="line">              child: Column(</span><br><span class="line">                children: [</span><br><span class="line">                  Row(</span><br><span class="line">                    mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">                    children: [</span><br><span class="line">                      Text(</span><br><span class="line">                        contractLink.message,</span><br><span class="line">                        style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">                            fontWeight: FontWeight.bold,</span><br><span class="line">                            fontSize: <span class="number">52</span>,</span><br><span class="line">                            color: Colors.tealAccent),</span><br><span class="line">                      ),</span><br><span class="line">                    ],</span><br><span class="line">                  ),</span><br><span class="line">                ],</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: FloatingActionButton(</span><br><span class="line">        onPressed: contractLink.sayHelloWorld,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -337,9 +337,9 @@
 <p>main.dart:</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/contract_linking.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/ui/screens/screens.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(<span class="keyword">const</span> MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> MyApp(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> ChangeNotifierProvider&lt;ContractLinking&gt;(</span><br><span class="line">      create: (_) =&gt; ContractLinking(),</span><br><span class="line">      child: MaterialApp(</span><br><span class="line">        title: <span class="string">&quot;Hello World&quot;</span>,</span><br><span class="line">        theme: ThemeData(</span><br><span class="line">          brightness: Brightness.dark,</span><br><span class="line">          primaryColor: Colors.cyan[<span class="number">400</span>],</span><br><span class="line">        ),</span><br><span class="line">        home: <span class="keyword">const</span> HomeScreen(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>現在，我們啟動flutter emulator:<br><img data-src="/2021/12/03/flutter-dapp/2021-12-03-02-08-07.png" alt="emulator launch"></p>
+<p>現在，我們啟動flutter emulator:<br><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-08-07.png" alt="emulator launch"></p>
 <p>我們按一下Button，會發現到:</p>
-<p><img data-src="/2021/12/03/flutter-dapp/2021-12-03-02-08-50.png" alt="click"></p>
+<p><img data-src="/2021/12/solidity/flutter/c2c8ee41f138/2021-12-03-02-08-50.png" alt="click"></p>
 
     </div>
 
@@ -360,11 +360,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/01/Solidity_%E5%89%B5%E5%BB%BAERC20%E6%A8%99%E6%BA%96%E4%BB%A3%E5%B9%A3/" rel="prev" title="Solidity:創建ERC20標準代幣">
+    <a href="/2021/12/solidity/3f4574248609/" rel="prev" title="Solidity:創建ERC20標準代幣">
       <i class="fa fa-chevron-left"></i> Solidity:創建ERC20標準代幣
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/12/05/Remix-On-Vscode/" rel="next" title="在VSCode上使用Remix">
+    <a href="/2021/12/solidity/0ea97b244a3e/" rel="next" title="在VSCode上使用Remix">
       在VSCode上使用Remix <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -448,7 +448,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -635,8 +635,8 @@ window.addEventListener('pjax:success', () => {
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://fufushih.github.io/2021/12/03/flutter-dapp/";
-    this.page.identifier = "2021/12/03/flutter-dapp/";
+    this.page.url = "https://fufushih.github.io/2021/12/solidity/flutter/c2c8ee41f138/";
+    this.page.identifier = "2021/12/solidity/flutter/c2c8ee41f138/";
     this.page.title = "使用flutter來建立dapp";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
