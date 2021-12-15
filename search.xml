@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>在VSCode上使用Remix</title>
-    <url>/2021/12/solidity/0ea97b244a3e/</url>
-    <content><![CDATA[<h1 id="在VSCode上使用Remix"><a href="#在VSCode上使用Remix" class="headerlink" title="在VSCode上使用Remix"></a>在VSCode上使用Remix</h1><p>搜尋remix<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.1.png"><br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.png"><br>並安裝</p>
-<hr>
-<p>根據前面那篇我們改使用Remix來測試: <a href="https://fufushih.github.io/2021/11/30/Solidity-Hello-World/">Solidity: Hello World</a><br>(我們首先要開啟本地的測試網路，ganache-cli)<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.2.png"></p>
-<p><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.4.png"></p>
-<p>我們使用ganache啟動了本地測試網路，並且監聽port是在8545<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.3.png"></p>
-<p>所以，改成8545並connect<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.5.png"><br>compile合約<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.6.png"><br>並佈署到測試網上，deploy<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.7.png"></p>
-<p>我們來測試，到run並call我們的sayHello()<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.8.png"></p>
-<p>最後，我們從output上來看<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.9.png"></p>
-<p>…</p>
-]]></content>
-      <categories>
-        <category>solidity</category>
-      </categories>
-      <tags>
-        <tag>vscode</tag>
-        <tag>remix</tag>
-        <tag>solidity</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Solidity: Hello World</title>
     <url>/2021/11/solidity/bfbd39565543/</url>
     <content><![CDATA[<h1 id="Solidity-Hello-World"><a href="#Solidity-Hello-World" class="headerlink" title="Solidity: Hello World"></a>Solidity: Hello World</h1><p>開發工具與環境設置</p>
@@ -124,6 +102,28 @@
       </categories>
       <tags>
         <tag>solidity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在VSCode上使用Remix</title>
+    <url>/2021/12/solidity/0ea97b244a3e/</url>
+    <content><![CDATA[<h1 id="在VSCode上使用Remix"><a href="#在VSCode上使用Remix" class="headerlink" title="在VSCode上使用Remix"></a>在VSCode上使用Remix</h1><p>搜尋remix<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.1.png"><br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.png"><br>並安裝</p>
+<hr>
+<p>根據前面那篇我們改使用Remix來測試: <a href="https://fufushih.github.io/2021/11/30/Solidity-Hello-World/">Solidity: Hello World</a><br>(我們首先要開啟本地的測試網路，ganache-cli)<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.2.png"></p>
+<p><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.4.png"></p>
+<p>我們使用ganache啟動了本地測試網路，並且監聽port是在8545<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.3.png"></p>
+<p>所以，改成8545並connect<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.5.png"><br>compile合約<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.6.png"><br>並佈署到測試網上，deploy<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.7.png"></p>
+<p>我們來測試，到run並call我們的sayHello()<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.8.png"></p>
+<p>最後，我們從output上來看<br><img data-src="/2021/12/solidity/0ea97b244a3e/unknown_filename.9.png"></p>
+<p>…</p>
+]]></content>
+      <categories>
+        <category>solidity</category>
+      </categories>
+      <tags>
+        <tag>solidity</tag>
+        <tag>vscode</tag>
+        <tag>remix</tag>
       </tags>
   </entry>
   <entry>
@@ -329,6 +329,44 @@
       </tags>
   </entry>
   <entry>
+    <title>關於Flutter空安全</title>
+    <url>/2021/12/flutter/a929576e2db7/</url>
+    <content><![CDATA[<h1 id="關於Flutter空安全"><a href="#關於Flutter空安全" class="headerlink" title="關於Flutter空安全"></a>關於Flutter空安全</h1><p>從官網的解說中我們能看到，在null-safety推出前，靜態類型系統允許所有類型的表達式中每一處都有null<br>(Null類型被視作是所有類型的子類)</p>
+<p><img data-src="/2021/12/flutter/a929576e2db7/2021-12-14-02-10-29.png"></p>
+<blockquote>
+<p>問題:</p>
+<p>類型會定義一些操作對象(ex. getters、setters、方法和操作符)，在表達式中使用。當你調用時，有個問題在於<strong>null值並沒有那些類型定義的任何一個方法</strong>(ex.List類型調用add()、int類型調用+…等)</p>
+<p>導致當null傳遞至其他類型的表達式時，任何操作都有可能失敗。(而這錯誤都源自於<strong>嘗試在null類型上尋找一個不存在的方法或屬性</strong>)</p>
+</blockquote>
+<p>為解決null在那邊找不存在的方法或屬性，null safety改變了類型的層級結構來解決這個問題</p>
+<p><img data-src="/2021/12/flutter/a929576e2db7/2021-12-14-02-19-24.png"></p>
+<blockquote>
+<p>此時，Null 不再被視作所有類型的子類，也就是<strong>其他類型都默認不可空</strong>，除了<strong>特殊Null類型允許傳遞null值</strong>，其他則不允許。(ex.如果變量式string類型，就必須包含一個字符串)</p>
+</blockquote>
+<p>如果我們<strong>想要讓他可空</strong>，也就是原有類型加Null的組合類型呢? 可以使用? (ex. String?就是String|Null的縮寫)</p>
+<p><img data-src="/2021/12/flutter/a929576e2db7/2021-12-14-02-29-06.png"></p>
+<p>關鍵字:</p>
+<blockquote>
+<p>可空: ?</p>
+<p>非空: !</p>
+<p>延遲初始化: late</p>
+<p>引數不可空: required</p>
+</blockquote>
+<p>可空?<br>在程式裡面，有一些引數變數並不一定為必傳，又或是類型不確定，可能有空，此時可以用?來標註</p>
+<p>非空!<br>當使用可空變數時，當我們執行一個method，而這個方法可能是非空，導致編譯器報錯。我們可以使用!告訴編譯器，我確認這個值不會空</p>
+<p>延遲初始化late<br>在程式中，我們可能需要通過method來初始化一個成員變數，我們發現變數可能會報錯，他會要求你需要對他做初始化。如果我們還沒想要做初始化，我們能加個?來表達他此時可空<br>但如果我們後面要用到他時，他會要求你去對Null進行判斷，這樣做有時會出問題<br>(某些情境下，我們要成員變數需要method來初始化(ex.constructor)。但我們能保證後續的使用總是在其初始化之後。那麼在這用?是不好的)<br>所以此時我們能用late來告訴編譯器，這個非空變數，稍後會去做初始化</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://dart.cn/null-safety/understanding-null-safety#using-nullable-types">深入理解空安全</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>flutter</category>
+      </categories>
+      <tags>
+        <tag>flutter</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>flutter lifecycle</title>
     <url>/2021/12/flutter/f95ae0025bf4/</url>
     <content><![CDATA[<h1 id="關於flutter的lifecycle"><a href="#關於flutter的lifecycle" class="headerlink" title="關於flutter的lifecycle"></a>關於flutter的lifecycle</h1><p>最近在學習有關於flutter widget中的state內交互以及生命週期。整理了一下資料並把他做成筆記。</p>
@@ -393,44 +431,6 @@
 <li><a href="https://blog.duicode.com/3108.html?fbclid=IwAR3yvdv5o3Nd2_3YRvBAqZVF4mN1Aef36WL1cE1LIfmC_SW26KZI8GWWNNU">Flutter中的生命周期</a></li>
 <li><a href="https://www.cnblogs.com/ssjf/p/11759366.html">Flutter的生命週期</a></li>
 <li><a href="https://www.youtube.com/watch?v=996ZgFRENMs">How Flutter renders Widgets</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>flutter</category>
-      </categories>
-      <tags>
-        <tag>flutter</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>關於Flutter空安全</title>
-    <url>/2021/12/flutter/a929576e2db7/</url>
-    <content><![CDATA[<h1 id="關於Flutter空安全"><a href="#關於Flutter空安全" class="headerlink" title="關於Flutter空安全"></a>關於Flutter空安全</h1><p>從官網的解說中我們能看到，在null-safety推出前，靜態類型系統允許所有類型的表達式中每一處都有null<br>(Null類型被視作是所有類型的子類)</p>
-<p><img data-src="/2021-12-14-02-10-29.png"></p>
-<blockquote>
-<p>問題:</p>
-<p>類型會定義一些操作對象(ex. getters、setters、方法和操作符)，在表達式中使用。當你調用時，有個問題在於<strong>null值並沒有那些類型定義的任何一個方法</strong>(ex.List類型調用add()、int類型調用+…等)</p>
-<p>導致當null傳遞至其他類型的表達式時，任何操作都有可能失敗。(而這錯誤都源自於<strong>嘗試在null類型上尋找一個不存在的方法或屬性</strong>)</p>
-</blockquote>
-<p>為解決null在那邊找不存在的方法或屬性，null safety改變了類型的層級結構來解決這個問題</p>
-<p><img data-src="/2021-12-14-02-19-24.png"></p>
-<blockquote>
-<p>此時，Null 不再被視作所有類型的子類，也就是<strong>其他類型都默認不可空</strong>，除了<strong>特殊Null類型允許傳遞null值</strong>，其他則不允許。(ex.如果變量式string類型，就必須包含一個字符串)</p>
-</blockquote>
-<p>如果我們<strong>想要讓他可空</strong>，也就是原有類型加Null的組合類型呢? 可以使用? (ex. String?就是String|Null的縮寫)</p>
-<p><img data-src="/2021-12-14-02-29-06.png"></p>
-<p>關鍵字:</p>
-<blockquote>
-<p>可空: ?</p>
-<p>非空: !</p>
-<p>延遲初始化: late</p>
-<p>引數不可空: required</p>
-</blockquote>
-<p>可空?<br>在程式裡面，有一些引數變數並不一定為必傳，又或是類型不確定，可能有空，此時可以用?來標註</p>
-<p>非空!<br>當使用可空變數時，當我們執行一個method，而這個方法可能是非空，導致編譯器報錯。我們可以使用!告訴編譯器，我確認這個值不會空</p>
-<p>延遲初始化late<br>在程式中，我們可能需要通過method來初始化一個成員變數，我們發現變數可能會報錯，他會要求你需要對他做初始化。如果我們還沒想要做初始化，我們能加個?來表達他此時可空<br>但如果我們後面要用到他時，他會要求你去對Null進行判斷，這樣做有時會出問題<br>(某些情境下，我們要成員變數需要method來初始化(ex.constructor)。但我們能保證後續的使用總是在其初始化之後。那麼在這用?是不好的)<br>所以此時我們能用late來告訴編譯器，這個非空變數，稍後會去做初始化</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a href="https://dart.cn/null-safety/understanding-null-safety#using-nullable-types">深入理解空安全</a></li>
 </ul>
 ]]></content>
       <categories>

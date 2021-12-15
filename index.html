@@ -263,19 +263,19 @@
 
       
           <h1 id="關於Flutter空安全"><a href="#關於Flutter空安全" class="headerlink" title="關於Flutter空安全"></a>關於Flutter空安全</h1><p>從官網的解說中我們能看到，在null-safety推出前，靜態類型系統允許所有類型的表達式中每一處都有null<br>(Null類型被視作是所有類型的子類)</p>
-<p><img data-src="/2021-12-14-02-10-29.png"></p>
+<p><img data-src="/2021/12/flutter/a929576e2db7/2021-12-14-02-10-29.png"></p>
 <blockquote>
 <p>問題:</p>
 <p>類型會定義一些操作對象(ex. getters、setters、方法和操作符)，在表達式中使用。當你調用時，有個問題在於<strong>null值並沒有那些類型定義的任何一個方法</strong>(ex.List類型調用add()、int類型調用+…等)</p>
 <p>導致當null傳遞至其他類型的表達式時，任何操作都有可能失敗。(而這錯誤都源自於<strong>嘗試在null類型上尋找一個不存在的方法或屬性</strong>)</p>
 </blockquote>
 <p>為解決null在那邊找不存在的方法或屬性，null safety改變了類型的層級結構來解決這個問題</p>
-<p><img data-src="/2021-12-14-02-19-24.png"></p>
+<p><img data-src="/2021/12/flutter/a929576e2db7/2021-12-14-02-19-24.png"></p>
 <blockquote>
 <p>此時，Null 不再被視作所有類型的子類，也就是<strong>其他類型都默認不可空</strong>，除了<strong>特殊Null類型允許傳遞null值</strong>，其他則不允許。(ex.如果變量式string類型，就必須包含一個字符串)</p>
 </blockquote>
 <p>如果我們<strong>想要讓他可空</strong>，也就是原有類型加Null的組合類型呢? 可以使用? (ex. String?就是String|Null的縮寫)</p>
-<p><img data-src="/2021-12-14-02-29-06.png"></p>
+<p><img data-src="/2021/12/flutter/a929576e2db7/2021-12-14-02-29-06.png"></p>
 <p>關鍵字:</p>
 <blockquote>
 <p>可空: ?</p>
