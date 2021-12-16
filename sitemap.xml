@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://fufushih.github.io/2021/12/solidity/1ee6ee03be86/</loc>
+    
+    <lastmod>2021-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://fufushih.github.io/2021/12/solidity/c2c8ee41f138/</loc>
     
     <lastmod>2021-12-15</lastmod>
@@ -112,64 +121,64 @@
 
   <url>
     <loc>https://fufushih.github.io/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
+    <loc>https://fufushih.github.io/tags/solidity/</loc>
+    <lastmod>2021-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://fufushih.github.io/tags/vscode/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://fufushih.github.io/tags/remix/</loc>
-    <lastmod>2021-12-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://fufushih.github.io/tags/solidity/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://fufushih.github.io/tags/flutter/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://fufushih.github.io/tags/dapp/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://fufushih.github.io/tags/truffle/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://fufushih.github.io/tags/ganache/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://fufushih.github.io/tags/splash/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -178,14 +187,14 @@
   
   <url>
     <loc>https://fufushih.github.io/categories/solidity/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://fufushih.github.io/categories/flutter/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
