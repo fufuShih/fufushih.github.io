@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://fufushih.github.io/2021/12/solidity/1ee6ee03be86/</loc>
+    <loc>https://fufushih.github.io/2021/12/flutter/c2c8ee41f138/</loc>
     
     <lastmod>2021-12-16</lastmod>
     
@@ -11,18 +11,18 @@
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/2021/12/solidity/c2c8ee41f138/</loc>
+    <loc>https://fufushih.github.io/2021/12/flutter/1ee6ee03be86/</loc>
     
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/2021/12/solidity/2fe3b24ab0ed/</loc>
+    <loc>https://fufushih.github.io/2021/12/flutter/2fe3b24ab0ed/</loc>
     
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -128,13 +128,6 @@
 
   
   <url>
-    <loc>https://fufushih.github.io/tags/solidity/</loc>
-    <lastmod>2021-12-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://fufushih.github.io/tags/vscode/</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -143,6 +136,13 @@
   
   <url>
     <loc>https://fufushih.github.io/tags/remix/</loc>
+    <lastmod>2021-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://fufushih.github.io/tags/solidity/</loc>
     <lastmod>2021-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
