@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://fufushih.github.io/2021/12/flutter/c2c8ee41f138/</loc>
+    <loc>https://fufunote.com/2021/12/solidity/3f4574248609/</loc>
     
     <lastmod>2021-12-16</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/2021/12/flutter/1ee6ee03be86/</loc>
+    <loc>https://fufunote.com/2021/12/flutter/eb3237329b43/</loc>
     
     <lastmod>2021-12-16</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/2021/12/flutter/2fe3b24ab0ed/</loc>
+    <loc>https://fufunote.com/2021/12/flutter/f95ae0025bf4/</loc>
     
     <lastmod>2021-12-16</lastmod>
     
@@ -29,16 +29,43 @@
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/2021/12/solidity/3f4574248609/</loc>
+    <loc>https://fufunote.com/2021/12/solidity/0ea97b244a3e/</loc>
     
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/2021/12/flutter/a929576e2db7/</loc>
+    <loc>https://fufunote.com/2021/12/flutter/c2c8ee41f138/</loc>
+    
+    <lastmod>2021-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://fufunote.com/2021/12/flutter/1ee6ee03be86/</loc>
+    
+    <lastmod>2021-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://fufunote.com/2021/12/flutter/2fe3b24ab0ed/</loc>
+    
+    <lastmod>2021-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://fufunote.com/2021/12/flutter/a929576e2db7/</loc>
     
     <lastmod>2021-12-13</lastmod>
     
@@ -47,16 +74,7 @@
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/2021/12/flutter/f95ae0025bf4/</loc>
-    
-    <lastmod>2021-12-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://fufushih.github.io/2021/12/flutter/951debf887fa/</loc>
+    <loc>https://fufunote.com/2021/12/flutter/951debf887fa/</loc>
     
     <lastmod>2021-12-12</lastmod>
     
@@ -65,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/about/index.html</loc>
+    <loc>https://fufunote.com/about/index.html</loc>
     
     <lastmod>2021-12-05</lastmod>
     
@@ -74,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/2021/11/solidity/bfbd39565543/</loc>
+    <loc>https://fufunote.com/2021/11/solidity/bfbd39565543/</loc>
     
     <lastmod>2021-12-05</lastmod>
     
@@ -83,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/2021/12/solidity/3f900b5bbcb5/</loc>
+    <loc>https://fufunote.com/2021/12/solidity/3f900b5bbcb5/</loc>
     
     <lastmod>2021-12-05</lastmod>
     
@@ -92,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/2021/12/solidity/0ea97b244a3e/</loc>
+    <loc>https://fufunote.com/tags/index.html</loc>
     
     <lastmod>2021-12-05</lastmod>
     
@@ -101,16 +119,7 @@
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/tags/index.html</loc>
-    
-    <lastmod>2021-12-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://fufushih.github.io/categories/index.html</loc>
+    <loc>https://fufunote.com/categories/index.html</loc>
     
     <lastmod>2021-12-05</lastmod>
     
@@ -120,65 +129,72 @@
   
 
   <url>
-    <loc>https://fufushih.github.io/</loc>
-    <lastmod>2021-12-16</lastmod>
+    <loc>https://fufunote.com/</loc>
+    <lastmod>2021-12-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://fufushih.github.io/tags/vscode/</loc>
-    <lastmod>2021-12-16</lastmod>
+    <loc>https://fufunote.com/tags/vscode/</loc>
+    <lastmod>2021-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/tags/remix/</loc>
-    <lastmod>2021-12-16</lastmod>
+    <loc>https://fufunote.com/tags/remix/</loc>
+    <lastmod>2021-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/tags/solidity/</loc>
-    <lastmod>2021-12-16</lastmod>
+    <loc>https://fufunote.com/tags/solidity/</loc>
+    <lastmod>2021-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/tags/flutter/</loc>
-    <lastmod>2021-12-16</lastmod>
+    <loc>https://fufunote.com/tags/flutter/</loc>
+    <lastmod>2021-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/tags/dapp/</loc>
-    <lastmod>2021-12-16</lastmod>
+    <loc>https://fufunote.com/tags/dapp/</loc>
+    <lastmod>2021-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/tags/truffle/</loc>
-    <lastmod>2021-12-16</lastmod>
+    <loc>https://fufunote.com/tags/truffle/</loc>
+    <lastmod>2021-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/tags/ganache/</loc>
-    <lastmod>2021-12-16</lastmod>
+    <loc>https://fufunote.com/tags/ganache/</loc>
+    <lastmod>2021-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/tags/splash/</loc>
-    <lastmod>2021-12-16</lastmod>
+    <loc>https://fufunote.com/tags/splash/</loc>
+    <lastmod>2021-12-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://fufunote.com/tags/statement/</loc>
+    <lastmod>2021-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -186,15 +202,15 @@
 
   
   <url>
-    <loc>https://fufushih.github.io/categories/solidity/</loc>
-    <lastmod>2021-12-16</lastmod>
+    <loc>https://fufunote.com/categories/solidity/</loc>
+    <lastmod>2021-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://fufushih.github.io/categories/flutter/</loc>
-    <lastmod>2021-12-16</lastmod>
+    <loc>https://fufunote.com/categories/flutter/</loc>
+    <lastmod>2021-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
