@@ -137,6 +137,13 @@
 
   
   <url>
+    <loc>https://fufunote.com/tags/solidity/</loc>
+    <lastmod>2021-12-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://fufunote.com/tags/vscode/</loc>
     <lastmod>2021-12-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -145,13 +152,6 @@
   
   <url>
     <loc>https://fufunote.com/tags/remix/</loc>
-    <lastmod>2021-12-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://fufunote.com/tags/solidity/</loc>
     <lastmod>2021-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
