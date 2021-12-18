@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"fufunote.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Solidity:創建ERC20標準代幣關於ERC20 Token  具備完整貨幣交易功能的代幣。 所有ERC20 Token由ETH錢包地址來進行管理 (智能合約上面記載著某個以太坊地址有多少該Token的存在)  關於ERC20:ERC20EIP20 使用OpenZeppelin 1npm install @openzeppelin&#x2F;contracts  建立合約: 1truffle crea">
+  <meta name="description" content="Solidity:創建ERC20標準代幣關於ERC20 Token  具備完整貨幣交易功能的代幣。 所有ERC20 Token由ETH錢包地址來進行管理 (智能合約上面記載著某個以太坊地址有多少該Token的存在)  關於ERC20:ERC20EIP20 ERC20 簡述1.name: Token的名子  function name() public view returns (string)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Solidity:創建ERC20標準代幣">
 <meta property="og:url" content="https://fufunote.com/2021/12/solidity/3f4574248609/index.html">
 <meta property="og:site_name" content="阿甫筆記">
-<meta property="og:description" content="Solidity:創建ERC20標準代幣關於ERC20 Token  具備完整貨幣交易功能的代幣。 所有ERC20 Token由ETH錢包地址來進行管理 (智能合約上面記載著某個以太坊地址有多少該Token的存在)  關於ERC20:ERC20EIP20 使用OpenZeppelin 1npm install @openzeppelin&#x2F;contracts  建立合約: 1truffle crea">
+<meta property="og:description" content="Solidity:創建ERC20標準代幣關於ERC20 Token  具備完整貨幣交易功能的代幣。 所有ERC20 Token由ETH錢包地址來進行管理 (智能合約上面記載著某個以太坊地址有多少該Token的存在)  關於ERC20:ERC20EIP20 ERC20 簡述1.name: Token的名子  function name() public view returns (string)">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://fufunote.com/2021/12/solidity/3f4574248609/unknown_filename.2.png">
 <meta property="og:image" content="https://fufunote.com/2021/12/solidity/3f4574248609/unknown_filename.png">
@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://fufunote.com/2021/12/solidity/3f4574248609/2021-12-15-17-44-52.png">
 <meta property="og:image" content="https://fufunote.com/2021/12/solidity/3f4574248609/2021-12-15-17-45-07.png">
 <meta property="article:published_time" content="2021-11-30T17:04:19.000Z">
-<meta property="article:modified_time" content="2021-12-16T16:37:14.882Z">
+<meta property="article:modified_time" content="2021-12-18T09:02:19.831Z">
 <meta property="article:author" content="FufuShih">
 <meta property="article:tag" content="solidity">
 <meta name="twitter:card" content="summary">
@@ -252,7 +252,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-17 00:37:14" itemprop="dateModified" datetime="2021-12-17T00:37:14+08:00">2021-12-17</time>
+                <time title="Modified: 2021-12-18 17:02:19" itemprop="dateModified" datetime="2021-12-18T17:02:19+08:00">2021-12-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -284,14 +284,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.4k</span>
+              <span>3.4k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -309,7 +309,74 @@
 <li>所有ERC20 Token由ETH錢包地址來進行管理 (智能合約上面記載著某個以太坊地址有多少該Token的存在)</li>
 </ul>
 <p>關於ERC20:<br><a target="_blank" rel="noopener" href="https://theethereum.wiki/erc20_token_standard/">ERC20</a><br><a target="_blank" rel="noopener" href="https://eips.ethereum.org/EIPS/eip-20">EIP20</a></p>
-<p>使用OpenZeppelin</p>
+<h2 id="ERC20-簡述"><a href="#ERC20-簡述" class="headerlink" title="ERC20 簡述"></a>ERC20 簡述</h2><p>1.name: Token的名子</p>
+<blockquote>
+<p>function name() public view returns (string)</p>
+</blockquote>
+<p>2.symbol: Token的符號</p>
+<blockquote>
+<p>function symbol() public view returns (string)</p>
+</blockquote>
+<p>3.decimals: token使用的number of decimal(ex. 8, 代表將token數量除以100000000，讓用戶去表示)</p>
+<blockquote>
+<p>function decimals() public view returns (uint8)</p>
+</blockquote>
+<p>4.totalSupply: token的總供應</p>
+<blockquote>
+<p>function totalSupply() public view returns (uint256)</p>
+</blockquote>
+<p>5.balanceOf: 返回_owner的賬戶餘額</p>
+<blockquote>
+<p>function balanceOf(address _owner) public view returns (uint256 balance)</p>
+</blockquote>
+<p>6.transfer: 將_value數量的代幣轉移到地址_to，並且必須觸發Transfer事件。</p>
+<blockquote>
+<p>function transfer(address _to, uint256 _value) public returns (bool success)</p>
+</blockquote>
+<p>7.transferFrom: 將代幣從地址_from 轉移到地址 _to，並且必須觸發 Transfer 事件。</p>
+<blockquote>
+<p>function transferFrom(address _from, address _to, uint256 _value) public returns (bool success)</p>
+</blockquote>
+<p>8.approve: 允許_spender多次從您的賬戶中提款，最多可達_value 金額。</p>
+<blockquote>
+<p>function approve(address _spender, uint256 _value) public returns (bool success)</p>
+</blockquote>
+<p>9.allowance:  返回_spender仍可從_owner提取的金額。</p>
+<blockquote>
+<p>function allowance(address _owner, address _spender) public view returns (uint256 remaining)</p>
+</blockquote>
+<p>Token Contract運作方式</p>
+<p><strong>查詢Token Balance</strong>:</p>
+<blockquote>
+<p>0x1111111111111111111111111111111111111111 with a balance of 100 units</p>
+<p>0x2222222222222222222222222222222222222222 with a balance of 200 units</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">balances[0x1111111111111111111111111111111111111111] = 100</span><br><span class="line">balances[0x2222222222222222222222222222222222222222] = 200</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tokenContract.balanceOf(0x1111111111111111111111111111111111111111) will return 100</p>
+<p>tokenContract.balanceOf(0x2222222222222222222222222222222222222222) will return 200</p>
+</blockquote>
+<p><strong>轉移Token Balance</strong>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tokenContract.transfer(0x2222222222222222222222222222222222222222, 10) // 1...1想轉10 token給2...2</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tokenContract.balanceOf(0x1111111111111111111111111111111111111111) will return 90</p>
+<p>tokenContract.balanceOf(0x2222222222222222222222222222222222222222) will return 210</p>
+</blockquote>
+<p><strong>批准和從他處轉移Token Balance</strong>:</p>
+<p>如果0x1…1要授權0x2…2，並傳遞到0x2…2，0x1…1執行的函數：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tokenContract.approve(0x2222222222222222222222222222222222222222, 30)</span><br></pre></td></tr></table></figure>
+
+<p>如果0x2…2希望以後從0x1…1傳遞一些token，0x2…2執行transferFrom（…）函數：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tokenContract.transferFrom(0x1111111111111111111111111111111111111111, 0x2222222222222222222222222222222222222222, 20)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tokenContract.balances[0x1111111111111111111111111111111111111111] = 70</p>
+<p>tokenContract.balances[0x2222222222222222222222222222222222222222] = 230</p>
+</blockquote>
+<p>0x2…2 仍然可以花費 0x1…1的 10 個代幣。(30 - 20)</p>
+<h2 id="Practice練習"><a href="#Practice練習" class="headerlink" title="Practice練習"></a>Practice練習</h2><p>現在我們使用OpenZeppelin</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @openzeppelin/contracts</span><br></pre></td></tr></table></figure>
 
 <p>建立合約:</p>
@@ -387,7 +454,7 @@
       <div class="popular-posts-title"><a href="\2021\12\flutter\2fe3b24ab0ed\" rel="bookmark">使用flutter來建立dapp-2</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2021\12\flutter\c2c8ee41f138\" rel="bookmark">使用flutter來建立dapp</a></div>
+      <div class="popular-posts-title"><a href="\2021\12\flutter\1ee6ee03be86\" rel="bookmark">使用flutter來建立dapp-3</a></div>
     </li>
   </ul>
 
@@ -403,12 +470,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/11/solidity/bfbd39565543/" rel="prev" title="Solidity: Hello World">
-      <i class="fa fa-chevron-left"></i> Solidity: Hello World
+    <a href="/2021/12/solidity/3f900b5bbcb5/" rel="prev" title="Solidity:創建簡易代幣">
+      <i class="fa fa-chevron-left"></i> Solidity:創建簡易代幣
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/12/solidity/3f900b5bbcb5/" rel="next" title="Solidity:創建簡易代幣">
-      Solidity:創建簡易代幣 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/12/flutter/c2c8ee41f138/" rel="next" title="使用flutter來建立dapp">
+      使用flutter來建立dapp <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -475,7 +542,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Solidity-%E5%89%B5%E5%BB%BAERC20%E6%A8%99%E6%BA%96%E4%BB%A3%E5%B9%A3"><span class="nav-number">1.</span> <span class="nav-text">Solidity:創建ERC20標準代幣</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8remix"><span class="nav-number">1.1.</span> <span class="nav-text">使用remix</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Solidity-%E5%89%B5%E5%BB%BAERC20%E6%A8%99%E6%BA%96%E4%BB%A3%E5%B9%A3"><span class="nav-number">1.</span> <span class="nav-text">Solidity:創建ERC20標準代幣</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ERC20-%E7%B0%A1%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">ERC20 簡述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Practice%E7%B7%B4%E7%BF%92"><span class="nav-number">1.2.</span> <span class="nav-text">Practice練習</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8remix"><span class="nav-number">1.3.</span> <span class="nav-text">使用remix</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

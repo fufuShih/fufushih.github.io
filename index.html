@@ -231,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-17 00:27:01" itemprop="dateModified" datetime="2021-12-17T00:27:01+08:00">2021-12-17</time>
+                <time title="Modified: 2021-12-18 03:12:57" itemprop="dateModified" datetime="2021-12-18T03:12:57+08:00">2021-12-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -263,7 +263,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>81</span>
+              <span>1k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -284,8 +284,34 @@
       
           <h1 id="flutter的狀態管理"><a href="#flutter的狀態管理" class="headerlink" title="flutter的狀態管理"></a>flutter的狀態管理</h1><a href="/2021/12/flutter/f95ae0025bf4/" title="關於flutter的lifecycle">關於flutter的lifecycle</a>
 
-<h2 id="Stateful"><a href="#Stateful" class="headerlink" title="Stateful"></a>Stateful</h2><p>setState</p>
-<h2 id="Stateless"><a href="#Stateless" class="headerlink" title="Stateless"></a>Stateless</h2><p>使用State Management<br>Provider</p>
+<blockquote>
+<p>StatelessWidget在App初始化之後就不能改變，它是immutable。如果想要改變就得new一個新的StatelessWidget去做更換</p>
+<p>StatefulWidget可以在App內無限次的被重繪集及更新狀態，它是mutable，需要重繪時可以調用setState()，去標記自己為dirty狀態，為下次更新做準備</p>
+</blockquote>
+<p>Stateful與Stateless注意事項<br>盡可能用Stateless。<br>Stateful Wigets盡量在越低層級的節點使用，避免過多不必要的重build。<br>setState((){})會觸發State.build，如果你的觸發是在根節點，會造成所有Widgets被重build，會是個效能問題。<br>需要重build的Widget，盡量節點數越少越好。</p>
+<h2 id="StatefulWidget-and-State"><a href="#StatefulWidget-and-State" class="headerlink" title="StatefulWidget and State"></a>StatefulWidget and State</h2><p>for widgets that can build differently several times over their lifetime.</p>
+<p>setState</p>
+<blockquote>
+<p>如果需要跨組件傳遞，需要把傳遞的任務放到parent的widget上。由於每次setState需要rebuild widgets，如果是隔很多層的傳遞，需要被rebuild的widgets會越多，相對效能會比較差，僅適合小規模的更新</p>
+</blockquote>
+<h2 id="InheritedWidget"><a href="#InheritedWidget" class="headerlink" title="InheritedWidget"></a>InheritedWidget</h2><p>for widgets that introduce ambient state that can be read by descendant widgets.</p>
+<blockquote>
+<p>單純setState實在太過笨重沒效率，因此官方提出了InheritedWidget這個Widget。</p>
+<p>其核心理念是在父層級的Widget加入一層InheritedWidget，讓在其底下的Widgets可以參考到這個InheritedWidget底下的節點。</p>
+</blockquote>
+<blockquote>
+<p>InheritedWidget改善了撰寫的麻煩，不過同樣有些缺點：</p>
+<p>無法將View與Logic部分分開。</p>
+<p>無法定向通知。</p>
+<p>每次更新都會通知所有Widgets，無法區分哪些Widgets需要被更新。解決辦法可以透過StreamBuilder來監聽InheritedWidget中的stream的資料變化，然後判斷是否更新當前widget。</p>
+</blockquote>
+<h2 id="StatelessWidget"><a href="#StatelessWidget" class="headerlink" title="StatelessWidget"></a>StatelessWidget</h2><p>使用State Management</p>
+<p>Provider</p>
+<p>主要功能</p>
+<ul>
+<li>数据共享</li>
+<li>局部刷新</li>
+</ul>
 
       
     </div>
@@ -600,7 +626,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-17 00:24:08" itemprop="dateModified" datetime="2021-12-17T00:24:08+08:00">2021-12-17</time>
+                <time title="Modified: 2021-12-18 17:08:19" itemprop="dateModified" datetime="2021-12-18T17:08:19+08:00">2021-12-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -653,14 +679,16 @@
       
           <h1 id="關於flutter的lifecycle"><a href="#關於flutter的lifecycle" class="headerlink" title="關於flutter的lifecycle"></a>關於flutter的lifecycle</h1><p>最近在學習有關於flutter widget中的state內交互以及生命週期。整理了一下資料並把他做成筆記。</p>
 <p><img data-src="/2021/12/flutter/f95ae0025bf4/life-cycle.drawio.png"><br><img data-src="/2021/12/flutter/f95ae0025bf4/2021-12-13-10-08-39.png"></p>
-<p>Flutter的三種tree</p>
+<p>Flutter的三種tree:</p>
 <blockquote>
 <p>1.Widget：UI 的不可變描述，並還描述了Element的配置</p>
 <p>2.Element：在特定位置的小部件樹中的小部件實例化，並進行狀態管理</p>
 <p>3.Render：處理大小、繪畫和其他低級的東西</p>
 <p>Widget樹只是一個藍圖；元素樹進行比較；渲染樹​​進行實際渲染</p>
 </blockquote>
-<p>Flutter組件生命周期：</p>
+<p>三大類Widget:</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6886361064330493960#heading-3">Flutter Provider 原理解析</a><br><img data-src="/2021-12-18-17-07-45.png" alt="Flutter Provider 原理解析"></p>
+<p>Flutter Widget生命周期：</p>
 <blockquote>
 <p>1、組件實例化後添加到render tree，即Navigator.push</p>
 <p>(構造函數-&gt;initState-&gt;didChangeDependencies-&gt; Widget build，此時頁面加載完成)</p>
@@ -1304,6 +1332,236 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
+    <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/12/solidity/3f4574248609/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="FufuShih">
+      <meta itemprop="description" content="紀錄、思考與分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿甫筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/solidity/3f4574248609/" class="post-title-link" itemprop="url">Solidity:創建ERC20標準代幣</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-01 01:04:19" itemprop="dateCreated datePublished" datetime="2021-12-01T01:04:19+08:00">2021-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-18 17:02:19" itemprop="dateModified" datetime="2021-12-18T17:02:19+08:00">2021-12-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solidity/" itemprop="url" rel="index"><span itemprop="name">solidity</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2021/12/solidity/3f4574248609/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/solidity/3f4574248609/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Solidity-創建ERC20標準代幣"><a href="#Solidity-創建ERC20標準代幣" class="headerlink" title="Solidity:創建ERC20標準代幣"></a>Solidity:創建ERC20標準代幣</h1><p>關於ERC20 Token</p>
+<ul>
+<li>具備完整貨幣交易功能的代幣。</li>
+<li>所有ERC20 Token由ETH錢包地址來進行管理 (智能合約上面記載著某個以太坊地址有多少該Token的存在)</li>
+</ul>
+<p>關於ERC20:<br><a target="_blank" rel="noopener" href="https://theethereum.wiki/erc20_token_standard/">ERC20</a><br><a target="_blank" rel="noopener" href="https://eips.ethereum.org/EIPS/eip-20">EIP20</a></p>
+<h2 id="ERC20-簡述"><a href="#ERC20-簡述" class="headerlink" title="ERC20 簡述"></a>ERC20 簡述</h2><p>1.name: Token的名子</p>
+<blockquote>
+<p>function name() public view returns (string)</p>
+</blockquote>
+<p>2.symbol: Token的符號</p>
+<blockquote>
+<p>function symbol() public view returns (string)</p>
+</blockquote>
+<p>3.decimals: token使用的number of decimal(ex. 8, 代表將token數量除以100000000，讓用戶去表示)</p>
+<blockquote>
+<p>function decimals() public view returns (uint8)</p>
+</blockquote>
+<p>4.totalSupply: token的總供應</p>
+<blockquote>
+<p>function totalSupply() public view returns (uint256)</p>
+</blockquote>
+<p>5.balanceOf: 返回_owner的賬戶餘額</p>
+<blockquote>
+<p>function balanceOf(address _owner) public view returns (uint256 balance)</p>
+</blockquote>
+<p>6.transfer: 將_value數量的代幣轉移到地址_to，並且必須觸發Transfer事件。</p>
+<blockquote>
+<p>function transfer(address _to, uint256 _value) public returns (bool success)</p>
+</blockquote>
+<p>7.transferFrom: 將代幣從地址_from 轉移到地址 _to，並且必須觸發 Transfer 事件。</p>
+<blockquote>
+<p>function transferFrom(address _from, address _to, uint256 _value) public returns (bool success)</p>
+</blockquote>
+<p>8.approve: 允許_spender多次從您的賬戶中提款，最多可達_value 金額。</p>
+<blockquote>
+<p>function approve(address _spender, uint256 _value) public returns (bool success)</p>
+</blockquote>
+<p>9.allowance:  返回_spender仍可從_owner提取的金額。</p>
+<blockquote>
+<p>function allowance(address _owner, address _spender) public view returns (uint256 remaining)</p>
+</blockquote>
+<p>Token Contract運作方式</p>
+<p><strong>查詢Token Balance</strong>:</p>
+<blockquote>
+<p>0x1111111111111111111111111111111111111111 with a balance of 100 units</p>
+<p>0x2222222222222222222222222222222222222222 with a balance of 200 units</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">balances[0x1111111111111111111111111111111111111111] = 100</span><br><span class="line">balances[0x2222222222222222222222222222222222222222] = 200</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tokenContract.balanceOf(0x1111111111111111111111111111111111111111) will return 100</p>
+<p>tokenContract.balanceOf(0x2222222222222222222222222222222222222222) will return 200</p>
+</blockquote>
+<p><strong>轉移Token Balance</strong>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tokenContract.transfer(0x2222222222222222222222222222222222222222, 10) // 1...1想轉10 token給2...2</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tokenContract.balanceOf(0x1111111111111111111111111111111111111111) will return 90</p>
+<p>tokenContract.balanceOf(0x2222222222222222222222222222222222222222) will return 210</p>
+</blockquote>
+<p><strong>批准和從他處轉移Token Balance</strong>:</p>
+<p>如果0x1…1要授權0x2…2，並傳遞到0x2…2，0x1…1執行的函數：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tokenContract.approve(0x2222222222222222222222222222222222222222, 30)</span><br></pre></td></tr></table></figure>
+
+<p>如果0x2…2希望以後從0x1…1傳遞一些token，0x2…2執行transferFrom（…）函數：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tokenContract.transferFrom(0x1111111111111111111111111111111111111111, 0x2222222222222222222222222222222222222222, 20)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tokenContract.balances[0x1111111111111111111111111111111111111111] = 70</p>
+<p>tokenContract.balances[0x2222222222222222222222222222222222222222] = 230</p>
+</blockquote>
+<p>0x2…2 仍然可以花費 0x1…1的 10 個代幣。(30 - 20)</p>
+<h2 id="Practice練習"><a href="#Practice練習" class="headerlink" title="Practice練習"></a>Practice練習</h2><p>現在我們使用OpenZeppelin</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @openzeppelin/contracts</span><br></pre></td></tr></table></figure>
+
+<p>建立合約:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle create contract MyTokenEnhance</span><br></pre></td></tr></table></figure>
+
+<p>MyTokenEnhance.sol:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract MyTokenEnhance is ERC20 &#123;</span><br><span class="line">  constructor() ERC20(&quot;MyToken&quot;, &quot;MTE&quot;) &#123;</span><br><span class="line">    // Mint 100 tokens to msg.sender</span><br><span class="line">    // Similar to how</span><br><span class="line">    // 1 dollar = 100 cents</span><br><span class="line">    // 1 token = 1 * (10 ** decimals)</span><br><span class="line">    _mint(msg.sender, 100 * 10**uint(decimals()));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>add</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line">// var MyToken = artifacts.require(&quot;MyToken&quot;);</span><br><span class="line">var MyTokenEnhance = artifacts.require(&quot;MyTokenEnhance&quot;)</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">//   deployer.deploy(MyToken);</span><br><span class="line">  deployer.deploy(MyTokenEnhance);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.2.png"></p>
+<p>run</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.png"></p>
+<p>and then, run</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.3.png"></p>
+<p>使用console測試:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
+
+<p>Test</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let contract</span><br><span class="line">MyTokenEnhance.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.1.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf(accounts[1])</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.4.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract.transfer(accounts[1], 50)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.5.png"></p>
+<p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.6.png"></p>
+<p>..</p>
+<h2 id="使用remix"><a href="#使用remix" class="headerlink" title="使用remix"></a>使用remix</h2><p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-38-33.png"></p>
+<p>connect local net</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-38-25.png"></p>
+<p>Click compile and deploy</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-39-41.png"></p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-40-45.png"></p>
+<hr>
+<p>Now, we call these function</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-41-39.png"></p>
+<p>Result:</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-42-15.png"></p>
+<hr>
+<p>Test transfer:</p>
+<p>See address</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-43-36.png"></p>
+<p>call transfer:</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-43-57.png"></p>
+<p>Call balanceof:</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-44-52.png"></p>
+<p>result:</p>
+<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-45-07.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
     <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/12/solidity/3f900b5bbcb5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1414,169 +1672,6 @@
 
 <p><img data-src="/2021/12/solidity/3f900b5bbcb5/unknown_filename.5.png"></p>
 <p>…</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/12/solidity/3f4574248609/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="紀錄、思考與分享">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/solidity/3f4574248609/" class="post-title-link" itemprop="url">Solidity:創建ERC20標準代幣</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-12-01 01:04:19" itemprop="dateCreated datePublished" datetime="2021-12-01T01:04:19+08:00">2021-12-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-17 00:37:14" itemprop="dateModified" datetime="2021-12-17T00:37:14+08:00">2021-12-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/solidity/" itemprop="url" rel="index"><span itemprop="name">solidity</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2021/12/solidity/3f4574248609/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/12/solidity/3f4574248609/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Solidity-創建ERC20標準代幣"><a href="#Solidity-創建ERC20標準代幣" class="headerlink" title="Solidity:創建ERC20標準代幣"></a>Solidity:創建ERC20標準代幣</h1><p>關於ERC20 Token</p>
-<ul>
-<li>具備完整貨幣交易功能的代幣。</li>
-<li>所有ERC20 Token由ETH錢包地址來進行管理 (智能合約上面記載著某個以太坊地址有多少該Token的存在)</li>
-</ul>
-<p>關於ERC20:<br><a target="_blank" rel="noopener" href="https://theethereum.wiki/erc20_token_standard/">ERC20</a><br><a target="_blank" rel="noopener" href="https://eips.ethereum.org/EIPS/eip-20">EIP20</a></p>
-<p>使用OpenZeppelin</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @openzeppelin/contracts</span><br></pre></td></tr></table></figure>
-
-<p>建立合約:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle create contract MyTokenEnhance</span><br></pre></td></tr></table></figure>
-
-<p>MyTokenEnhance.sol:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract MyTokenEnhance is ERC20 &#123;</span><br><span class="line">  constructor() ERC20(&quot;MyToken&quot;, &quot;MTE&quot;) &#123;</span><br><span class="line">    // Mint 100 tokens to msg.sender</span><br><span class="line">    // Similar to how</span><br><span class="line">    // 1 dollar = 100 cents</span><br><span class="line">    // 1 token = 1 * (10 ** decimals)</span><br><span class="line">    _mint(msg.sender, 100 * 10**uint(decimals()));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>add</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line">// var MyToken = artifacts.require(&quot;MyToken&quot;);</span><br><span class="line">var MyTokenEnhance = artifacts.require(&quot;MyTokenEnhance&quot;)</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">//   deployer.deploy(MyToken);</span><br><span class="line">  deployer.deploy(MyTokenEnhance);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.2.png"></p>
-<p>run</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.png"></p>
-<p>and then, run</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.3.png"></p>
-<p>使用console測試:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
-
-<p>Test</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let contract</span><br><span class="line">MyTokenEnhance.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.1.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf(accounts[1])</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.4.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract.transfer(accounts[1], 50)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.5.png"></p>
-<p><img data-src="/2021/12/solidity/3f4574248609/unknown_filename.6.png"></p>
-<p>..</p>
-<h2 id="使用remix"><a href="#使用remix" class="headerlink" title="使用remix"></a>使用remix</h2><p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-38-33.png"></p>
-<p>connect local net</p>
-<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-38-25.png"></p>
-<p>Click compile and deploy</p>
-<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-39-41.png"></p>
-<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-40-45.png"></p>
-<hr>
-<p>Now, we call these function</p>
-<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-41-39.png"></p>
-<p>Result:</p>
-<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-42-15.png"></p>
-<hr>
-<p>Test transfer:</p>
-<p>See address</p>
-<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-43-36.png"></p>
-<p>call transfer:</p>
-<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-43-57.png"></p>
-<p>Call balanceof:</p>
-<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-44-52.png"></p>
-<p>result:</p>
-<p><img data-src="/2021/12/solidity/3f4574248609/2021-12-15-17-45-07.png"></p>
 
       
     </div>
