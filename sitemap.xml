@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://fufunote.com/2021/flutter/7d9cf094f2f7/</loc>
+    
+    <lastmod>2021-12-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://fufunote.com/2021/flutter/c2c8ee41f138/</loc>
     
     <lastmod>2021-12-23</lastmod>
@@ -195,14 +204,21 @@
   </url>
   
   <url>
-    <loc>https://fufunote.com/tags/splash/</loc>
+    <loc>https://fufunote.com/tags/statement/</loc>
     <lastmod>2021-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://fufunote.com/tags/statement/</loc>
+    <loc>https://fufunote.com/tags/render/</loc>
+    <lastmod>2021-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://fufunote.com/tags/splash/</loc>
     <lastmod>2021-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -20,19 +20,26 @@
     var CONFIG = {"hostname":"fufunote.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="紀錄、思考與分享">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://fufunote.com/tags/index.html">
+  <meta name="description" content="flutter渲染原理與過程Flutter UI生成過程Flutter UI的生成與渲染: 渲染的帪數周期: UI的顯示是一帪一帪的，每繪製一次，則稱其為一帪。而flutter中的engine通過VSync信號不斷的觸發每一帪繪製 如果需要進行繪製，如何監聽VSync?  透過Flutter Engine的ScheduleFrame()來註冊VSync信號回調，當VSync信號來的時候就會收到通知">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flutter渲染原理與過程">
+<meta property="og:url" content="https://fufunote.com/2021/flutter/7d9cf094f2f7/index.html">
 <meta property="og:site_name" content="阿甫筆記">
-<meta property="og:description" content="紀錄、思考與分享">
+<meta property="og:description" content="flutter渲染原理與過程Flutter UI生成過程Flutter UI的生成與渲染: 渲染的帪數周期: UI的顯示是一帪一帪的，每繪製一次，則稱其為一帪。而flutter中的engine通過VSync信號不斷的觸發每一帪繪製 如果需要進行繪製，如何監聽VSync?  透過Flutter Engine的ScheduleFrame()來註冊VSync信號回調，當VSync信號來的時候就會收到通知">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2021-12-05T06:47:43.000Z">
-<meta property="article:modified_time" content="2021-12-05T06:48:36.466Z">
+<meta property="og:image" content="https://fufunote.com/2021/flutter/7d9cf094f2f7/flutter-ui-render.png">
+<meta property="og:image" content="https://fufunote.com/2021/flutter/7d9cf094f2f7/flutter-vsync-cycle.png">
+<meta property="og:image" content="https://fufunote.com/2021/flutter/7d9cf094f2f7/Flutter-render-frame.png">
+<meta property="article:published_time" content="2021-12-24T18:59:14.000Z">
+<meta property="article:modified_time" content="2021-12-24T19:17:57.523Z">
 <meta property="article:author" content="FufuShih">
+<meta property="article:tag" content="flutter">
+<meta property="article:tag" content="statement">
+<meta property="article:tag" content="render">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fufunote.com/2021/flutter/7d9cf094f2f7/flutter-ui-render.png">
 
-<link rel="canonical" href="https://fufunote.com/tags/">
+<link rel="canonical" href="https://fufunote.com/2021/flutter/7d9cf094f2f7/">
 
 
 <script id="page-configurations">
@@ -40,13 +47,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-tw'
   };
 </script>
 
-  <title>tags | 阿甫筆記
-</title>
+  <title>flutter渲染原理與過程 | 阿甫筆記</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWS053782Y"></script>
     <script data-pjax>
@@ -201,51 +207,150 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-tw">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/flutter/7d9cf094f2f7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="FufuShih">
+      <meta itemprop="description" content="紀錄、思考與分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿甫筆記">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          flutter渲染原理與過程
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">tags
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
 
-<div class="post-meta">
+              <time title="Created: 2021-12-25 02:59:14 / Modified: 03:17:57" itemprop="dateCreated datePublished" datetime="2021-12-25T02:59:14+08:00">2021-12-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/flutter/" itemprop="url" rel="index"><span itemprop="name">flutter</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2021/flutter/7d9cf094f2f7/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/flutter/7d9cf094f2f7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>359</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="flutter渲染原理與過程"><a href="#flutter渲染原理與過程" class="headerlink" title="flutter渲染原理與過程"></a>flutter渲染原理與過程</h1><h2 id="Flutter-UI生成過程"><a href="#Flutter-UI生成過程" class="headerlink" title="Flutter UI生成過程"></a>Flutter UI生成過程</h2><p>Flutter UI的生成與渲染:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-ui-render.png" alt="flutter ui render"></p>
+<p>渲染的帪數周期:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-vsync-cycle.png" alt="flutter fps cycle"></p>
+<p>UI的顯示是一帪一帪的，每繪製一次，則稱其為一帪。而flutter中的engine通過VSync信號不斷的觸發每一帪繪製</p>
+<p>如果需要進行繪製，如何監聽VSync?</p>
+<blockquote>
+<p>透過Flutter Engine的ScheduleFrame()來註冊VSync信號回調，當VSync信號來的時候就會收到通知，然後就會開始進行渲染繪製</p>
+</blockquote>
+<h2 id="Flutter在Android上渲染過程"><a href="#Flutter在Android上渲染過程" class="headerlink" title="Flutter在Android上渲染過程"></a>Flutter在Android上渲染過程</h2><p>flutter在android上渲染一帪:<br><img data-src="/2021/flutter/7d9cf094f2f7/Flutter-render-frame.png" alt="flutter ui generator"></p>
+<p>如果需要进行绘制操作，如何来监听这个VSync信号呢？我们首先需要通过引擎Engine的ScheduleFrame()方法来注册VSYNC信号回调，这个时候当Vsync信号到来的时候就会收到通知，然后就可以进行渲染绘制操作了。</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\flutter\82add4d40d95\" rel="bookmark">flutter的狀態管理2</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\flutter\eb3237329b43\" rel="bookmark">flutter的狀態管理</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\flutter\2fe3b24ab0ed\" rel="bookmark">使用flutter來建立dapp-2</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\flutter\1ee6ee03be86\" rel="bookmark">使用flutter來建立dapp-3</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\flutter\f95ae0025bf4\" rel="bookmark">flutter lifecycle</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/flutter/" rel="tag"># flutter</a>
+              <a href="/tags/statement/" rel="tag"># statement</a>
+              <a href="/tags/render/" rel="tag"># render</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/flutter/82add4d40d95/" rel="prev" title="flutter的狀態管理2">
+      <i class="fa fa-chevron-left"></i> flutter的狀態管理2
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              10 tags in total
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/dapp/" style="font-size: 21px; color: #6f6f6f">dapp</a> <a href="/tags/flutter/" style="font-size: 30px; color: #111">flutter</a> <a href="/tags/ganache/" style="font-size: 16.5px; color: #9d9d9d">ganache</a> <a href="/tags/remix/" style="font-size: 12px; color: #ccc">remix</a> <a href="/tags/render/" style="font-size: 12px; color: #ccc">render</a> <a href="/tags/solidity/" style="font-size: 25.5px; color: #404040">solidity</a> <a href="/tags/splash/" style="font-size: 12px; color: #ccc">splash</a> <a href="/tags/statement/" style="font-size: 21px; color: #6f6f6f">statement</a> <a href="/tags/truffle/" style="font-size: 16.5px; color: #9d9d9d">truffle</a> <a href="/tags/vscode/" style="font-size: 12px; color: #ccc">vscode</a>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -303,6 +408,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#flutter%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86%E8%88%87%E9%81%8E%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">flutter渲染原理與過程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter-UI%E7%94%9F%E6%88%90%E9%81%8E%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Flutter UI生成過程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter%E5%9C%A8Android%E4%B8%8A%E6%B8%B2%E6%9F%93%E9%81%8E%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">Flutter在Android上渲染過程</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -505,9 +611,9 @@ window.addEventListener('pjax:success', () => {
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://fufunote.com/tags/index.html";
-    this.page.identifier = "tags/index.html";
-    this.page.title = "tags";
+    this.page.url = "https://fufunote.com/2021/flutter/7d9cf094f2f7/";
+    this.page.identifier = "2021/flutter/7d9cf094f2f7/";
+    this.page.title = "flutter渲染原理與過程";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
