@@ -23,6 +23,109 @@
       </tags>
   </entry>
   <entry>
+    <title>Solidity: Hello World</title>
+    <url>/2021/solidity/bfbd39565543/</url>
+    <content><![CDATA[<h1 id="Solidity-Hello-World"><a href="#Solidity-Hello-World" class="headerlink" title="Solidity: Hello World"></a>Solidity: Hello World</h1><p>開發工具與環境設置</p>
+<p>安裝所需要工具</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g truffle ganache-cli</span><br></pre></td></tr></table></figure>
+
+<p>啟動 ganache-cli來啟動乙太坊測試環境</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ganache-cli</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/solidity/bfbd39565543/unknown_filename.png"><br><img data-src="/2021/solidity/bfbd39565543/unknown_filename.1.png"></p>
+<p>建立智能合約</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir hello</span><br><span class="line">cd hello</span><br><span class="line">truffle init</span><br><span class="line"></span><br><span class="line">truffle create contract HelloWorld #建立合約</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/solidity/bfbd39565543/unknown_filename.2.png"></p>
+<p><img data-src="/2021/solidity/bfbd39565543/unknown_filename.3.png"><br>HelloWorld.sol:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract HelloWorld &#123;</span><br><span class="line">  // constructor() public &#123;</span><br><span class="line">  // &#125;</span><br><span class="line"></span><br><span class="line">  function sayHello() public pure returns (string memory)&#123;</span><br><span class="line">    return (&quot;Hello World&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>編譯</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
+
+<p>編譯成功的話，在build/contracts/目錄下會多出HelloWorld.json這個檔案<br><img data-src="/2021/solidity/bfbd39565543/unknown_filename.4.png"></p>
+<p>部署</p>
+<p>在migrate中新增2_deploy_contracts.js<br>(migration檔案會依照檔案的編號來執行。例如2_就會在1_之後執行。檔案後面的文字只為協助開發者理解之用)<br><img data-src="/2021/solidity/bfbd39565543/unknown_filename.5.png"><br>2_deploy_contracts.js:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>區塊網路設定<br>在truffle-config檔案裡L<br><img data-src="/2021/solidity/bfbd39565543/unknown_filename.6.png"><br>加入設定<br><img data-src="/2021/solidity/bfbd39565543/unknown_filename.7.png"></p>
+<p>開始部署:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/solidity/bfbd39565543/unknown_filename.8.png"></p>
+<p>測試</p>
+<p>使用truffle提供的命令行工具，執行:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
+<p>輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; let contract</span><br><span class="line">&gt; HelloWorld.deployed().then(instance =&gt; contract = instance)</span><br><span class="line">&gt; contract.sayHello.call()</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/solidity/bfbd39565543/unknown_filename.9.png"><br><img data-src="/2021/solidity/bfbd39565543/unknown_filename.10.png"><br>..</p>
+<h2 id="我的名子合約"><a href="#我的名子合約" class="headerlink" title="我的名子合約"></a>我的名子合約</h2><blockquote>
+<p>輸入名子，並藉由呼叫函數來顯示</p>
+</blockquote>
+<p>MyName.sol:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyName &#123;</span><br><span class="line">  string public _name;</span><br><span class="line"></span><br><span class="line">  constructor() &#123;</span><br><span class="line">    _name=&quot;Please Type Your Name&quot;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function setName(string memory name) public&#123;</span><br><span class="line">    _name = name ;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function getName() public view returns (string memory)&#123;</span><br><span class="line">    return _name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>編譯並佈署後</p>
+<p>我們開始測試</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle console</span><br><span class="line"></span><br><span class="line">let contract</span><br><span class="line">MyName.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/solidity/bfbd39565543/2021-12-03-19-11-46.png"></p>
+<p>call function:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.getName.call()</span><br><span class="line">contract.setName(&quot;Test Name&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/solidity/bfbd39565543/2021-12-03-19-14-18.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.getName.call()</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/solidity/bfbd39565543/2021-12-03-19-14-46.png"></p>
+]]></content>
+      <categories>
+        <category>solidity</category>
+      </categories>
+      <tags>
+        <tag>solidity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Solidity:創建簡易代幣</title>
+    <url>/2021/solidity/3f900b5bbcb5/</url>
+    <content><![CDATA[<h1 id="Solidity-創建簡易代幣"><a href="#Solidity-創建簡易代幣" class="headerlink" title="Solidity:創建簡易代幣"></a>Solidity:創建簡易代幣</h1><p>在終端輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle create contract MyToken</span><br></pre></td></tr></table></figure>
+
+<p>創建<br><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyToken &#123;</span><br><span class="line">  uint INITIAL_SUPPLY = 10000;</span><br><span class="line">  mapping(address =&gt; uint) balances;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    balances[msg.sender] = INITIAL_SUPPLY;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // transfer token for a specified address</span><br><span class="line">  function transfer(address _to, uint _amount) public &#123;</span><br><span class="line">    require(balances[msg.sender] &gt; _amount);</span><br><span class="line">    balances[msg.sender] -= _amount;</span><br><span class="line">    balances[_to] += _amount;</span><br><span class="line">  &#125;</span><br><span class="line">  // Gets the balance of the specified address</span><br><span class="line">  // Constant and Immutable State Variables. See https://docs.soliditylang.org/en/v0.8.10/contracts.html#modifiers</span><br><span class="line">  function balanceOf(address _owner) public view returns (uint) &#123;</span><br><span class="line">    return balances[_owner];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在migrations資料夾新增</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line">var MyToken = artifacts.require(&quot;MyToken&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">  deployer.deploy(MyToken);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>編譯</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.1.png"></p>
+<p>開始部署，Run</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.6.png"><br><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.2.png"></p>
+<p>Test</p>
+<p>開啟console</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let contract</span><br><span class="line">MyToken.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.3.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf(accounts[1])</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.4.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.transfer(accounts[1], 123)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.5.png"></p>
+<p>…</p>
+]]></content>
+      <categories>
+        <category>solidity</category>
+      </categories>
+      <tags>
+        <tag>solidity</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Solidity:創建ERC20標準代幣</title>
     <url>/2021/solidity/3f4574248609/</url>
     <content><![CDATA[<h1 id="Solidity-創建ERC20標準代幣"><a href="#Solidity-創建ERC20標準代幣" class="headerlink" title="Solidity:創建ERC20標準代幣"></a>Solidity:創建ERC20標準代幣</h1><p>關於ERC20 Token</p>
@@ -163,109 +266,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Solidity: Hello World</title>
-    <url>/2021/solidity/bfbd39565543/</url>
-    <content><![CDATA[<h1 id="Solidity-Hello-World"><a href="#Solidity-Hello-World" class="headerlink" title="Solidity: Hello World"></a>Solidity: Hello World</h1><p>開發工具與環境設置</p>
-<p>安裝所需要工具</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g truffle ganache-cli</span><br></pre></td></tr></table></figure>
-
-<p>啟動 ganache-cli來啟動乙太坊測試環境</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ganache-cli</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/solidity/bfbd39565543/unknown_filename.png"><br><img data-src="/2021/solidity/bfbd39565543/unknown_filename.1.png"></p>
-<p>建立智能合約</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir hello</span><br><span class="line">cd hello</span><br><span class="line">truffle init</span><br><span class="line"></span><br><span class="line">truffle create contract HelloWorld #建立合約</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/solidity/bfbd39565543/unknown_filename.2.png"></p>
-<p><img data-src="/2021/solidity/bfbd39565543/unknown_filename.3.png"><br>HelloWorld.sol:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract HelloWorld &#123;</span><br><span class="line">  // constructor() public &#123;</span><br><span class="line">  // &#125;</span><br><span class="line"></span><br><span class="line">  function sayHello() public pure returns (string memory)&#123;</span><br><span class="line">    return (&quot;Hello World&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>編譯</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
-
-<p>編譯成功的話，在build/contracts/目錄下會多出HelloWorld.json這個檔案<br><img data-src="/2021/solidity/bfbd39565543/unknown_filename.4.png"></p>
-<p>部署</p>
-<p>在migrate中新增2_deploy_contracts.js<br>(migration檔案會依照檔案的編號來執行。例如2_就會在1_之後執行。檔案後面的文字只為協助開發者理解之用)<br><img data-src="/2021/solidity/bfbd39565543/unknown_filename.5.png"><br>2_deploy_contracts.js:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>區塊網路設定<br>在truffle-config檔案裡L<br><img data-src="/2021/solidity/bfbd39565543/unknown_filename.6.png"><br>加入設定<br><img data-src="/2021/solidity/bfbd39565543/unknown_filename.7.png"></p>
-<p>開始部署:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/solidity/bfbd39565543/unknown_filename.8.png"></p>
-<p>測試</p>
-<p>使用truffle提供的命令行工具，執行:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
-<p>輸入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; let contract</span><br><span class="line">&gt; HelloWorld.deployed().then(instance =&gt; contract = instance)</span><br><span class="line">&gt; contract.sayHello.call()</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/solidity/bfbd39565543/unknown_filename.9.png"><br><img data-src="/2021/solidity/bfbd39565543/unknown_filename.10.png"><br>..</p>
-<h2 id="我的名子合約"><a href="#我的名子合約" class="headerlink" title="我的名子合約"></a>我的名子合約</h2><blockquote>
-<p>輸入名子，並藉由呼叫函數來顯示</p>
-</blockquote>
-<p>MyName.sol:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyName &#123;</span><br><span class="line">  string public _name;</span><br><span class="line"></span><br><span class="line">  constructor() &#123;</span><br><span class="line">    _name=&quot;Please Type Your Name&quot;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function setName(string memory name) public&#123;</span><br><span class="line">    _name = name ;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function getName() public view returns (string memory)&#123;</span><br><span class="line">    return _name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>編譯並佈署後</p>
-<p>我們開始測試</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle console</span><br><span class="line"></span><br><span class="line">let contract</span><br><span class="line">MyName.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/solidity/bfbd39565543/2021-12-03-19-11-46.png"></p>
-<p>call function:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.getName.call()</span><br><span class="line">contract.setName(&quot;Test Name&quot;)</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/solidity/bfbd39565543/2021-12-03-19-14-18.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.getName.call()</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/solidity/bfbd39565543/2021-12-03-19-14-46.png"></p>
-]]></content>
-      <categories>
-        <category>solidity</category>
-      </categories>
-      <tags>
-        <tag>solidity</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Solidity:創建簡易代幣</title>
-    <url>/2021/solidity/3f900b5bbcb5/</url>
-    <content><![CDATA[<h1 id="Solidity-創建簡易代幣"><a href="#Solidity-創建簡易代幣" class="headerlink" title="Solidity:創建簡易代幣"></a>Solidity:創建簡易代幣</h1><p>在終端輸入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle create contract MyToken</span><br></pre></td></tr></table></figure>
-
-<p>創建<br><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyToken &#123;</span><br><span class="line">  uint INITIAL_SUPPLY = 10000;</span><br><span class="line">  mapping(address =&gt; uint) balances;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    balances[msg.sender] = INITIAL_SUPPLY;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // transfer token for a specified address</span><br><span class="line">  function transfer(address _to, uint _amount) public &#123;</span><br><span class="line">    require(balances[msg.sender] &gt; _amount);</span><br><span class="line">    balances[msg.sender] -= _amount;</span><br><span class="line">    balances[_to] += _amount;</span><br><span class="line">  &#125;</span><br><span class="line">  // Gets the balance of the specified address</span><br><span class="line">  // Constant and Immutable State Variables. See https://docs.soliditylang.org/en/v0.8.10/contracts.html#modifiers</span><br><span class="line">  function balanceOf(address _owner) public view returns (uint) &#123;</span><br><span class="line">    return balances[_owner];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在migrations資料夾新增</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line">var MyToken = artifacts.require(&quot;MyToken&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">  deployer.deploy(MyToken);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>編譯</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.1.png"></p>
-<p>開始部署，Run</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.6.png"><br><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.2.png"></p>
-<p>Test</p>
-<p>開啟console</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let contract</span><br><span class="line">MyToken.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.3.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf(accounts[1])</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.4.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.transfer(accounts[1], 123)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.5.png"></p>
-<p>…</p>
-]]></content>
-      <categories>
-        <category>solidity</category>
-      </categories>
-      <tags>
-        <tag>solidity</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用flutter來建立dapp-2</title>
     <url>/2021/flutter/2fe3b24ab0ed/</url>
     <content><![CDATA[<h1 id="使用flutter來建立dapp-2"><a href="#使用flutter來建立dapp-2" class="headerlink" title="使用flutter來建立dapp-2"></a>使用flutter來建立dapp-2</h1><h2 id="建立"><a href="#建立" class="headerlink" title="建立"></a>建立</h2><p>接下來，我們來新增一些功能，把我們的Name上傳並且回傳回來</p>
@@ -361,6 +361,70 @@
         <tag>dapp</tag>
         <tag>truffle</tag>
         <tag>ganache</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用flutter來建立dapp</title>
+    <url>/2021/flutter/c2c8ee41f138/</url>
+    <content><![CDATA[<h1 id="使用flutter來建立dapp"><a href="#使用flutter來建立dapp" class="headerlink" title="使用flutter來建立dapp"></a>使用flutter來建立dapp</h1><hr>
+<h2 id="Create-the-Smart-Contract"><a href="#Create-the-Smart-Contract" class="headerlink" title="Create the Smart Contract"></a>Create the Smart Contract</h2><p>現在我們開始創建一個簡易合約:</p>
+<a href="/2021/solidity/bfbd39565543/" title="solidity hello world smart contract">solidity hello world smart contract</a>
+
+<p>啟動本地端:</p>
+<blockquote>
+<p>port=&gt;8545</p>
+</blockquote>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-03-15.png" alt="ganache"></p>
+<p>接下來要把合約部署在本地測試端:</p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-56-19.png" alt="Solidity"></p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-56-55.png" alt="migration"></p>
+<p>佈署到的地址:</p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-07-20.png" alt="migrate address"></p>
+<p>compile完後得到一個json檔:</p>
+<p>而在裡面有個ABI，是告訴我們如何與合約溝通的接口介面</p>
+<blockquote>
+<p>web3要和智能合約溝通所需要的是ABI，也就是二進制接口(Application Binary Interface)<br>而ABI是以JSON來表達合約裡的方法，告訴web3如何以合約理解的方式格式化函數去做調用</p>
+</blockquote>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-59-23.png" alt="Json"></p>
+<p>把他加入到flutter的assets中</p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-00-02.png" alt="assets"></p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-00-52.png" alt="pub"></p>
+<hr>
+<h2 id="Create-DAPP"><a href="#Create-DAPP" class="headerlink" title="Create DAPP"></a>Create DAPP</h2><p>Add package:</p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-54-15.png" alt="package list"></p>
+<p>The struct of folder:</p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-54-50.png" alt="folder struct"></p>
+<p>Add contract_linking:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinking</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Now add some feature:</p>
+</blockquote>
+<p>contract_linking.dart:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:convert&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/services.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:http/http.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web3dart/web3dart.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web_socket_channel/io.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinking</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _rpcUrl = <span class="string">&quot;http://10.0.2.2:8545&quot;</span>;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _wsUrl = <span class="string">&quot;ws://10.0.2.2:8545/&quot;</span>;</span><br><span class="line">  <span class="comment">// final String _privateKey =</span></span><br><span class="line">  <span class="comment">//     &quot;0x01d3fe7ae54ef4d39facb006cab009f9ebb412d1dff171303704b43ceae49736&quot;;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> Web3Client _client;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> <span class="built_in">String</span> _abiCode;</span><br><span class="line">  <span class="keyword">late</span> EthereumAddress _contractAddress;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> DeployedContract _contract;</span><br><span class="line">  <span class="keyword">late</span> ContractFunction _text;</span><br><span class="line">  <span class="built_in">String</span> message = <span class="string">&#x27;No message&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  ContractLinking() &#123;</span><br><span class="line">    initialSetup();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initialSetup() <span class="keyword">async</span> &#123;</span><br><span class="line">    _client = Web3Client(_rpcUrl, Client(), socketConnector: () &#123;</span><br><span class="line">      <span class="keyword">return</span> IOWebSocketChannel.connect(_wsUrl).cast&lt;<span class="built_in">String</span>&gt;();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> getAbi();</span><br><span class="line">    <span class="keyword">await</span> getDeployedContract();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; getAbi() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">// Reading the contract abi</span></span><br><span class="line">    <span class="built_in">String</span> abiStringFile =</span><br><span class="line">        <span class="keyword">await</span> rootBundle.loadString(<span class="string">&quot;assets/contracts/HelloWorld.json&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> jsonAbi = jsonDecode(abiStringFile);</span><br><span class="line">    _abiCode = jsonEncode(jsonAbi[<span class="string">&quot;abi&quot;</span>]);</span><br><span class="line"></span><br><span class="line">    _contractAddress = EthereumAddress.fromHex(</span><br><span class="line">        jsonAbi[<span class="string">&quot;networks&quot;</span>][<span class="string">&quot;1638459988787&quot;</span>][<span class="string">&quot;address&quot;</span>]); <span class="comment">// See HelloWorld.json</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; getDeployedContract() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">//  Telling Web3dart where our contract is declared.</span></span><br><span class="line">    _contract = DeployedContract(</span><br><span class="line">        ContractAbi.fromJson(_abiCode, <span class="string">&quot;HelloWorld&quot;</span>), _contractAddress);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Extracting the functions, declared in contract.</span></span><br><span class="line">    _text = _contract.function(<span class="string">&#x27;sayHello&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; sayHelloWorld() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> text =</span><br><span class="line">        <span class="keyword">await</span> _client.call(contract: _contract, function: _text, params: []);</span><br><span class="line">    message = text[<span class="number">0</span>];</span><br><span class="line">    notifyListeners();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我們部署的合約地址<br><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-06-09.png" alt="addr"></p>
+<p>In UI, we add some screen:</p>
+<p>home_screen.dart:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/contract_linking.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> HomeScreen(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// Getting the value and object or contract_linking</span></span><br><span class="line">    <span class="keyword">final</span> contractLink = Provider.of&lt;ContractLinking&gt;(context);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: <span class="keyword">const</span> Text(<span class="string">&quot;Smart Contract Test!&quot;</span>),</span><br><span class="line">        centerTitle: <span class="keyword">true</span>,</span><br><span class="line">      ),</span><br><span class="line">      body: Container(</span><br><span class="line">        padding: <span class="keyword">const</span> EdgeInsets.symmetric(horizontal: <span class="number">20</span>),</span><br><span class="line">        child: Center(</span><br><span class="line">          child: SingleChildScrollView(</span><br><span class="line">            child: Form(</span><br><span class="line">              child: Column(</span><br><span class="line">                children: [</span><br><span class="line">                  Row(</span><br><span class="line">                    mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">                    children: [</span><br><span class="line">                      Text(</span><br><span class="line">                        contractLink.message,</span><br><span class="line">                        style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">                            fontWeight: FontWeight.bold,</span><br><span class="line">                            fontSize: <span class="number">52</span>,</span><br><span class="line">                            color: Colors.tealAccent),</span><br><span class="line">                      ),</span><br><span class="line">                    ],</span><br><span class="line">                  ),</span><br><span class="line">                ],</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: FloatingActionButton(</span><br><span class="line">        onPressed: contractLink.sayHelloWorld,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>screens.dart:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="string">&#x27;./home_screen.dart&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>main.dart:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/contract_linking.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/ui/screens/screens.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(<span class="keyword">const</span> MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> MyApp(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> ChangeNotifierProvider&lt;ContractLinking&gt;(</span><br><span class="line">      create: (_) =&gt; ContractLinking(),</span><br><span class="line">      child: MaterialApp(</span><br><span class="line">        title: <span class="string">&quot;Hello World&quot;</span>,</span><br><span class="line">        theme: ThemeData(</span><br><span class="line">          brightness: Brightness.dark,</span><br><span class="line">          primaryColor: Colors.cyan[<span class="number">400</span>],</span><br><span class="line">        ),</span><br><span class="line">        home: <span class="keyword">const</span> HomeScreen(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>現在，我們啟動flutter emulator:<br><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-08-07.png" alt="emulator launch"></p>
+<p>我們按一下Button，會發現到:</p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-08-50.png" alt="click"></p>
+]]></content>
+      <categories>
+        <category>flutter</category>
+      </categories>
+      <tags>
+        <tag>solidity</tag>
+        <tag>flutter</tag>
+        <tag>dapp</tag>
       </tags>
   </entry>
   <entry>
@@ -529,70 +593,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用flutter來建立dapp</title>
-    <url>/2021/flutter/c2c8ee41f138/</url>
-    <content><![CDATA[<h1 id="使用flutter來建立dapp"><a href="#使用flutter來建立dapp" class="headerlink" title="使用flutter來建立dapp"></a>使用flutter來建立dapp</h1><hr>
-<h2 id="Create-the-Smart-Contract"><a href="#Create-the-Smart-Contract" class="headerlink" title="Create the Smart Contract"></a>Create the Smart Contract</h2><p>現在我們開始創建一個簡易合約:</p>
-<a href="/2021/solidity/bfbd39565543/" title="solidity hello world smart contract">solidity hello world smart contract</a>
-
-<p>啟動本地端:</p>
-<blockquote>
-<p>port=&gt;8545</p>
-</blockquote>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-03-15.png" alt="ganache"></p>
-<p>接下來要把合約部署在本地測試端:</p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-56-19.png" alt="Solidity"></p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-56-55.png" alt="migration"></p>
-<p>佈署到的地址:</p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-07-20.png" alt="migrate address"></p>
-<p>compile完後得到一個json檔:</p>
-<p>而在裡面有個ABI，是告訴我們如何與合約溝通的接口介面</p>
-<blockquote>
-<p>web3要和智能合約溝通所需要的是ABI，也就是二進制接口(Application Binary Interface)<br>而ABI是以JSON來表達合約裡的方法，告訴web3如何以合約理解的方式格式化函數去做調用</p>
-</blockquote>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-59-23.png" alt="Json"></p>
-<p>把他加入到flutter的assets中</p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-00-02.png" alt="assets"></p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-00-52.png" alt="pub"></p>
-<hr>
-<h2 id="Create-DAPP"><a href="#Create-DAPP" class="headerlink" title="Create DAPP"></a>Create DAPP</h2><p>Add package:</p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-54-15.png" alt="package list"></p>
-<p>The struct of folder:</p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-54-50.png" alt="folder struct"></p>
-<p>Add contract_linking:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinking</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>Now add some feature:</p>
-</blockquote>
-<p>contract_linking.dart:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:convert&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/services.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:http/http.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web3dart/web3dart.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web_socket_channel/io.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinking</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _rpcUrl = <span class="string">&quot;http://10.0.2.2:8545&quot;</span>;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _wsUrl = <span class="string">&quot;ws://10.0.2.2:8545/&quot;</span>;</span><br><span class="line">  <span class="comment">// final String _privateKey =</span></span><br><span class="line">  <span class="comment">//     &quot;0x01d3fe7ae54ef4d39facb006cab009f9ebb412d1dff171303704b43ceae49736&quot;;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> Web3Client _client;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> <span class="built_in">String</span> _abiCode;</span><br><span class="line">  <span class="keyword">late</span> EthereumAddress _contractAddress;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> DeployedContract _contract;</span><br><span class="line">  <span class="keyword">late</span> ContractFunction _text;</span><br><span class="line">  <span class="built_in">String</span> message = <span class="string">&#x27;No message&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  ContractLinking() &#123;</span><br><span class="line">    initialSetup();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initialSetup() <span class="keyword">async</span> &#123;</span><br><span class="line">    _client = Web3Client(_rpcUrl, Client(), socketConnector: () &#123;</span><br><span class="line">      <span class="keyword">return</span> IOWebSocketChannel.connect(_wsUrl).cast&lt;<span class="built_in">String</span>&gt;();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> getAbi();</span><br><span class="line">    <span class="keyword">await</span> getDeployedContract();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; getAbi() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">// Reading the contract abi</span></span><br><span class="line">    <span class="built_in">String</span> abiStringFile =</span><br><span class="line">        <span class="keyword">await</span> rootBundle.loadString(<span class="string">&quot;assets/contracts/HelloWorld.json&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> jsonAbi = jsonDecode(abiStringFile);</span><br><span class="line">    _abiCode = jsonEncode(jsonAbi[<span class="string">&quot;abi&quot;</span>]);</span><br><span class="line"></span><br><span class="line">    _contractAddress = EthereumAddress.fromHex(</span><br><span class="line">        jsonAbi[<span class="string">&quot;networks&quot;</span>][<span class="string">&quot;1638459988787&quot;</span>][<span class="string">&quot;address&quot;</span>]); <span class="comment">// See HelloWorld.json</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; getDeployedContract() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">//  Telling Web3dart where our contract is declared.</span></span><br><span class="line">    _contract = DeployedContract(</span><br><span class="line">        ContractAbi.fromJson(_abiCode, <span class="string">&quot;HelloWorld&quot;</span>), _contractAddress);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Extracting the functions, declared in contract.</span></span><br><span class="line">    _text = _contract.function(<span class="string">&#x27;sayHello&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; sayHelloWorld() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> text =</span><br><span class="line">        <span class="keyword">await</span> _client.call(contract: _contract, function: _text, params: []);</span><br><span class="line">    message = text[<span class="number">0</span>];</span><br><span class="line">    notifyListeners();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我們部署的合約地址<br><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-06-09.png" alt="addr"></p>
-<p>In UI, we add some screen:</p>
-<p>home_screen.dart:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/contract_linking.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> HomeScreen(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// Getting the value and object or contract_linking</span></span><br><span class="line">    <span class="keyword">final</span> contractLink = Provider.of&lt;ContractLinking&gt;(context);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: <span class="keyword">const</span> Text(<span class="string">&quot;Smart Contract Test!&quot;</span>),</span><br><span class="line">        centerTitle: <span class="keyword">true</span>,</span><br><span class="line">      ),</span><br><span class="line">      body: Container(</span><br><span class="line">        padding: <span class="keyword">const</span> EdgeInsets.symmetric(horizontal: <span class="number">20</span>),</span><br><span class="line">        child: Center(</span><br><span class="line">          child: SingleChildScrollView(</span><br><span class="line">            child: Form(</span><br><span class="line">              child: Column(</span><br><span class="line">                children: [</span><br><span class="line">                  Row(</span><br><span class="line">                    mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">                    children: [</span><br><span class="line">                      Text(</span><br><span class="line">                        contractLink.message,</span><br><span class="line">                        style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">                            fontWeight: FontWeight.bold,</span><br><span class="line">                            fontSize: <span class="number">52</span>,</span><br><span class="line">                            color: Colors.tealAccent),</span><br><span class="line">                      ),</span><br><span class="line">                    ],</span><br><span class="line">                  ),</span><br><span class="line">                ],</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: FloatingActionButton(</span><br><span class="line">        onPressed: contractLink.sayHelloWorld,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>screens.dart:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="string">&#x27;./home_screen.dart&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>main.dart:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/contract_linking.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/ui/screens/screens.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(<span class="keyword">const</span> MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> MyApp(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> ChangeNotifierProvider&lt;ContractLinking&gt;(</span><br><span class="line">      create: (_) =&gt; ContractLinking(),</span><br><span class="line">      child: MaterialApp(</span><br><span class="line">        title: <span class="string">&quot;Hello World&quot;</span>,</span><br><span class="line">        theme: ThemeData(</span><br><span class="line">          brightness: Brightness.dark,</span><br><span class="line">          primaryColor: Colors.cyan[<span class="number">400</span>],</span><br><span class="line">        ),</span><br><span class="line">        home: <span class="keyword">const</span> HomeScreen(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>現在，我們啟動flutter emulator:<br><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-08-07.png" alt="emulator launch"></p>
-<p>我們按一下Button，會發現到:</p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-08-50.png" alt="click"></p>
-]]></content>
-      <categories>
-        <category>flutter</category>
-      </categories>
-      <tags>
-        <tag>solidity</tag>
-        <tag>flutter</tag>
-        <tag>dapp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>flutter渲染原理與過程</title>
     <url>/2021/flutter/7d9cf094f2f7/</url>
     <content><![CDATA[<h1 id="flutter渲染原理與過程"><a href="#flutter渲染原理與過程" class="headerlink" title="flutter渲染原理與過程"></a>flutter渲染原理與過程</h1><h2 id="Flutter-UI生成過程"><a href="#Flutter-UI生成過程" class="headerlink" title="Flutter UI生成過程"></a>Flutter UI生成過程</h2><p>Flutter UI的生成與渲染:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-ui-render.png" alt="flutter ui render"></p>
@@ -603,7 +603,6 @@
 <p>透過Flutter Engine的ScheduleFrame()來註冊VSync信號回調，當VSync信號來的時候就會收到通知，然後就會開始進行渲染繪製</p>
 </blockquote>
 <h2 id="Flutter在Android上渲染過程"><a href="#Flutter在Android上渲染過程" class="headerlink" title="Flutter在Android上渲染過程"></a>Flutter在Android上渲染過程</h2><p>flutter在android上渲染一帪:<br><img data-src="/2021/flutter/7d9cf094f2f7/Flutter-render-frame.png" alt="flutter ui generator"></p>
-<p>如果需要进行绘制操作，如何来监听这个VSync信号呢？我们首先需要通过引擎Engine的ScheduleFrame()方法来注册VSYNC信号回调，这个时候当Vsync信号到来的时候就会收到通知，然后就可以进行渲染绘制操作了。</p>
 ]]></content>
       <categories>
         <category>flutter</category>
@@ -638,151 +637,6 @@
       <tags>
         <tag>flutter</tag>
         <tag>splash</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>flutter的狀態管理2</title>
-    <url>/2021/flutter/82add4d40d95/</url>
-    <content><![CDATA[<h1 id="flutter的狀態管理2"><a href="#flutter的狀態管理2" class="headerlink" title="flutter的狀態管理2"></a>flutter的狀態管理2</h1><h2 id="StatelessWidget"><a href="#StatelessWidget" class="headerlink" title="StatelessWidget"></a>StatelessWidget</h2><p>Provider</p>
-<p>InheritedWidget能夠與它的子孫控件建立依賴關係，並且當InheritedWidget資料發生變化時，可以自動更新有依賴它的子孫控件，<br>而Provider利用這一點來解決跨widget 狀態共享的問題，將需要跨widget 共享的狀態存在InheritedWidget中，然後在子widget 引用InheritedWidget即可</p>
-<p>主要功能</p>
-<ul>
-<li>数据共享</li>
-<li>局部刷新</li>
-</ul>
-<p>建立一個Item類，用於表示商品信息<br>cart_item.dart：</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> </span>&#123;</span><br><span class="line">  Item(<span class="keyword">this</span>.price, <span class="keyword">this</span>.count);</span><br><span class="line">  <span class="built_in">double</span> price; </span><br><span class="line">  <span class="built_in">int</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>定義一個保存購物車內商品資料的CartModel類<br>cart_model.dart：</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:collection&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;cart_item.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CartModel</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">List</span>&lt;Item&gt; _items = [];</span><br><span class="line"></span><br><span class="line">  UnmodifiableListView&lt;Item&gt; <span class="keyword">get</span> items =&gt; UnmodifiableListView(_items);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">double</span> <span class="keyword">get</span> totalPrice =&gt;</span><br><span class="line">      _items.fold(<span class="number">0</span>, (value, item) =&gt; value + item.count * item.price);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> add(Item item) &#123;</span><br><span class="line">    _items.add(item);</span><br><span class="line">    notifyListeners();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用 provider，在widget 上建立監聽、訂閱，達成共享狀態資訊等等<br>main.dart：</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider_tutorial/cart_model.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;cart_item.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(ChangeNotifierProvider(</span><br><span class="line">    create: (context) =&gt; CartModel(),</span><br><span class="line">    child: MyApp(),</span><br><span class="line">  ));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">      ),</span><br><span class="line">      home: MyHomePage(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">&#x27;Flutter Demo Home Page&#x27;</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Column(</span><br><span class="line">          mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            Consumer&lt;CartModel&gt;(</span><br><span class="line">              builder: (context, cartModel, child) =&gt; Text(</span><br><span class="line">                <span class="string">&#x27;總價：<span class="subst">$&#123;cartModel.totalPrice&#125;</span>&#x27;</span>,</span><br><span class="line">                style: Theme.of(context).textTheme.headline5,</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">            Builder(builder: (context) &#123;</span><br><span class="line">              <span class="keyword">return</span> RaisedButton(</span><br><span class="line">                child: Text(<span class="string">&quot;添加商品&quot;</span>),</span><br><span class="line">                onPressed: () &#123;</span><br><span class="line">                  <span class="keyword">var</span> counter = context.read&lt;CartModel&gt;();</span><br><span class="line">                  counter.add(Item(<span class="number">10.0</span>, <span class="number">1</span>));</span><br><span class="line">                &#125;,</span><br><span class="line">              );</span><br><span class="line">            &#125;)</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>應用與類型:</p>
-<p><strong>Provider.of</strong></p>
-<p>有的時候你不需要Model中的資料來改變UI，但是你可能還是需要使用該數據，比如，清空購物車的所有商品，它不需要顯示購物車裡的內容，只要調用clear()方法</p>
-<p>此時我們可以使用Provider.of，並且將listen設置為false，這樣就可以使用特定數據，又不會讓整體 UI 框架重構</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在build 方法中使用代碼，當notifyListeners被調用的時候，並不會使widget被重構</span></span><br><span class="line">Provider.of&lt;CartModel&gt;(context, listen: <span class="keyword">false</span>).removeAll();</span><br></pre></td></tr></table></figure>
-
-<p><strong>建立新的物件</strong></p>
-<p>想讓某個物件資料( 變量 ) 能夠被一個widget 以及其子widget 引用，我們可以使用Provider的建構create來建立所要的物件widget</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">Provider(</span><br><span class="line">  create: (_) =&gt; MyModel(), <span class="comment">//所要共享的物件資料</span></span><br><span class="line">  child: ...</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>如果要將隨時間變化的變量傳遞給對象，請考慮使用ProxyProvider：</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span> count;</span><br><span class="line"></span><br><span class="line">ProxyProvider0(</span><br><span class="line">  update: (_, __) =&gt; MyModel(count),</span><br><span class="line">  child: ...</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p><strong>重複使用已存在的物件</strong></p>
-<p>想使用已建立的Provider 物件，則使用Provider的建構函數.value</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">MyChangeNotifier variable;</span><br><span class="line"></span><br><span class="line">ChangeNotifierProvider.value(</span><br><span class="line">  value: variable,</span><br><span class="line">  child: ...</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p><strong>讀取Provider中的資料</strong></p>
-<p>最簡單的讀取資料的方式就是使用BuildContext的擴展方法：</p>
-<ul>
-<li>context.watch<T>()：讓widget 去監聽共享資料 T 的變化</li>
-<li>context.read<T>()：直接返回 T ，而不去監聽它的變化</li>
-<li>context.select&lt;T, R&gt;(R cb(T value))：讓widget 可以只去監聽 T 的部分變化</li>
-</ul>
-<p>當然也可以使用我們之前講的靜態方法Provider.of<T>(context)，它和watch/read的行為很像，這也是在上面擴展方法出現之前，我們獲取數據的方式之一</p>
-<p>這些方法將從傳遞過來的BuildContext相關的widget 開始查詢它的widget tree，並返回找到的符合類型 T 的最近變量 ( 如果未找到則拋出異常 )</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Home</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Text(</span><br><span class="line">      <span class="comment">// 不要忘記將想要獲取的對像類型傳遞給`watch`</span></span><br><span class="line">      context.watch&lt;<span class="built_in">String</span>&gt;(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>dispose</strong></p>
-<blockquote>
-<p>typedef Disposer<T> = void Function(BuildContext context, T value);</p>
-</blockquote>
-<p>Provider提供了dispose的回調，當Provider 所在節點被移除的時候，它就會啟動Disposer<T>，然後我們便可以在這裡釋放資源</p>
-<p>在之前使用過BLoC 的經驗，我們遇到過一個問題，BloC 使用了觀察者模式，它旨在替代StatefulWidget，然而大量的流使用完畢之後必須close 掉，以釋放資源，但是應該在什麼時候釋放資源呢？而StatelessWidget並沒有類似於dispose 的方法，讓我們不得不為了釋放資源而使用StatefulWidget，然而Provider則為我們解決了這一點提供了dispose的回調</p>
-<p>我們有一個 BLoC</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleBLoC</span> </span>&#123;</span><br><span class="line">  StreamController&lt;<span class="built_in">String</span>&gt; _data = StreamController&lt;<span class="built_in">String</span>&gt;.broadcast();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> data =&gt; _data.stream;</span><br><span class="line"></span><br><span class="line">  doSomething(<span class="built_in">String</span> text) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  dispose() &#123;</span><br><span class="line">    _data.close();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我們想要提供這個BLoC卻又不想使用StatefulWidget，此時可以透過Provider使用</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">Provider(</span><br><span class="line">    create:(_) =&gt; ExampleBLoC(),</span><br><span class="line">    dispose:(_, ExampleBLoC bloc) =&gt; bloc.dispose(), <span class="comment">//在dispose 回調中關閉不再使用的流，即解決了資源釋放的問題    </span></span><br><span class="line">)  </span><br></pre></td></tr></table></figure>
-
-<p><strong>Selector</strong></p>
-<p>相當於Consumer，可以在特定值改變時，再去重新構建widget</p>
-<p>當List 長度改變時，才重新構建widget：</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">Selector&lt;<span class="built_in">List</span>, <span class="built_in">int</span>&gt;(</span><br><span class="line">  selector: (_, list) =&gt; list.length,</span><br><span class="line">  builder: (_, length, __) &#123;</span><br><span class="line">    <span class="keyword">return</span> Text(<span class="string">&#x27;<span class="subst">$length</span>&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p><strong>MultiProvider</strong></p>
-<p>將多個Provider 合併成一個widget:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">MultiProvider(</span><br><span class="line">  providers: [</span><br><span class="line">    Provider&lt;Something&gt;(create: (_) =&gt; Something()),</span><br><span class="line">    Provider&lt;SomethingElse&gt;(create: (_) =&gt; SomethingElse()),</span><br><span class="line">    Provider&lt;AnotherThing&gt;(create: (_) =&gt; AnotherThing()),</span><br><span class="line">  ],</span><br><span class="line">  child: someWidget,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p><strong>ProxyProvider</strong></p>
-<p>將多個provider裡個別共享的值，整合成一個新對象，並將結果發送給外層的provider，當所依賴的多個provider 的任一個發生變化時，此新對象都會更新</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  <span class="keyword">return</span> MultiProvider(</span><br><span class="line">    providers: [</span><br><span class="line">      ChangeNotifierProvider(create: (_) =&gt; Counter()),</span><br><span class="line">      <span class="comment">// ProxyProvider vs ProxyProvider2 vs ProxyProvider3，… 類別名後面的數字是ProxyProvider依賴其他providers的數量</span></span><br><span class="line">      ProxyProvider&lt;Counter, Translations&gt;(</span><br><span class="line">        update: (_, counter, __) =&gt; Translations(counter.value),</span><br><span class="line">      ),</span><br><span class="line">    ],</span><br><span class="line">    child: Foo(),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Translations</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> Translations(<span class="keyword">this</span>._value);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">int</span> _value;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">String</span> <span class="keyword">get</span> title =&gt; <span class="string">&#x27;You clicked <span class="subst">$_value</span> times&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>ChangeNotifierProvider</strong></p>
-<blockquote>
-<p>ListenableProvider和ChangeNotifierProvider其實是 父與子的關係，ChangeNotifierProvider在ListenableProvider的基礎上，且可以在 Model 中覆寫 ChangeNotifier 的 dispose 方法，來釋放其資源，這對於複雜 Model 的情況下十分有用，在需要的時候能夠自動調用其 disposer 方法</p>
-</blockquote>
-<p><strong>ListenableProvider</strong></p>
-<blockquote>
-<p>監聽一個 Listenable，將其暴露給它的後代並在偵聽器發出事件時rebuild依賴項</p>
-<p>用來共享可以監聽的對象，會隨著監聽對象的改變而更新widget。</p>
-</blockquote>
-<ul>
-<li>數據綁定</li>
-</ul>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 透過構造器綁定數據並進行監聽，當從Widget Tree中刪除時dispose要銷毀(構造器builder不可為空)</span></span><br><span class="line">    <span class="keyword">return</span> ListenableProvider&lt;User&gt;(</span><br><span class="line">        builder: (_) =&gt; User(<span class="string">&#x27;Flutter&#x27;</span>, <span class="number">0</span>),</span><br><span class="line">        child: MaterialApp(</span><br><span class="line">            title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">            theme: ThemeData(primarySwatch: Colors.blue),</span><br><span class="line">            home: MyHomePage(title: <span class="string">&#x27;Peovider Demo&#x27;</span>)));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 透過.value對數據進行監聽listenable</span></span><br><span class="line">    <span class="keyword">return</span> ListenableProvider&lt;User&gt;.value(</span><br><span class="line">        listenable: User(<span class="string">&#x27;Flutter&#x27;</span>, <span class="number">0</span>),</span><br><span class="line">        child: MaterialApp(</span><br><span class="line">            title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">            theme: ThemeData(primarySwatch: Colors.blue),</span><br><span class="line">            home: MyHomePage(title: <span class="string">&#x27;Peovider Demo&#x27;</span>)));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>獲取數據</li>
-</ul>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProviderText</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> user = Provider.of&lt;User&gt;(context); <span class="comment">// 使用Provider.of(context)</span></span><br><span class="line">    <span class="keyword">return</span> Text(<span class="string">&#x27;<span class="subst">$&#123;user.getName&#125;</span>&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProviderText</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 使用Consumer Widget構造器</span></span><br><span class="line">    <span class="keyword">return</span> Consumer&lt;User&gt;(builder: (context, user, _) &#123;</span><br><span class="line">        <span class="keyword">return</span> Text(user.getName);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>ValueListenableProvider</strong></p>
-<blockquote>
-<p>要注意需要綁定的數據要繼承自ValueNotifier<T>，並且實現其構造方法，來對value的操作進行更新</p>
-</blockquote>
-<p>新建一個person實體類進行操作</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 基本數據類型</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringBean</span> <span class="keyword">extends</span> <span class="title">ValueNotifier</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">  StringBean(<span class="built_in">String</span> value) : <span class="keyword">super</span>(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定義實體類</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">extends</span> <span class="title">ValueNotifier</span>&lt;<span class="title">User</span>&gt; </span>&#123;</span><br><span class="line">  Person(User value) : <span class="keyword">super</span>(value);</span><br><span class="line">  <span class="built_in">String</span> <span class="keyword">get</span> getPersonName =&gt; value.name;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> setPersonName(<span class="built_in">String</span> name) &#123;</span><br><span class="line">    value.name = name;</span><br><span class="line">    notifyListeners();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>綁定數據</li>
-</ul>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 透過構造器(builder)綁定數據並進行監聽</span></span><br><span class="line">    <span class="keyword">return</span> ValueListenableProvider&lt;User&gt;(</span><br><span class="line">        builder: (_) =&gt; Person(User(<span class="string">&#x27;person&#x27;</span>, <span class="number">101</span>)),</span><br><span class="line">        child: MaterialApp(</span><br><span class="line">            title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">            theme: ThemeData(primarySwatch: Colors.blue),</span><br><span class="line">            home: MyHomePage(title: <span class="string">&#x27;Peovider Demo&#x27;</span>)));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//////</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 透過value方式對數據進行綁定監聽</span></span><br><span class="line">    <span class="keyword">return</span> ValueListenableProvider&lt;User&gt;.value(</span><br><span class="line">        valueListenable: Person(User(<span class="string">&#x27;person&#x27;</span>, <span class="number">101</span>)),</span><br><span class="line">        child: MaterialApp(</span><br><span class="line">            title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">            theme: ThemeData(primarySwatch: Colors.blue),</span><br><span class="line">            home: MyHomePage(title: <span class="string">&#x27;Peovider Demo&#x27;</span>)));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>獲取數據</li>
-</ul>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProviderText</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> number = Provider.of&lt;<span class="built_in">String</span>&gt;(context);</span><br><span class="line">    <span class="keyword">final</span> person = Provider.of&lt;User&gt;(context);</span><br><span class="line">    <span class="keyword">return</span> Center(</span><br><span class="line">        child: Column(children: &lt;Widget&gt;[</span><br><span class="line">      Text(<span class="string">&#x27;<span class="subst">$&#123;number.toString()&#125;</span>==<span class="subst">$&#123;person.getName&#125;</span>&#x27;</span>),</span><br><span class="line">      Consumer&lt;User&gt;(builder: (context, user, _) &#123;</span><br><span class="line">        <span class="keyword">return</span> Text(user.getName);</span><br><span class="line">      &#125;)</span><br><span class="line">    ]));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>StreamProvider</strong></p>
-<blockquote>
-<p>監聽一個流，並且expose 其最近發送的值</p>
-</blockquote>
-<ul>
-<li>綁定數據</li>
-</ul>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 通過構建器創建StreamController後進行綁定</span></span><br><span class="line">    <span class="keyword">return</span> StreamProvider&lt;Teacher&gt;(</span><br><span class="line">        builder: (_) =&gt; StreamController&lt;Teacher&gt;(),</span><br><span class="line">        initialData: Teacher(<span class="string">&#x27;Teacher&#x27;</span>, <span class="number">101</span>),</span><br><span class="line">        child: MaterialApp(</span><br><span class="line">            title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">            theme: ThemeData(primarySwatch: Colors.blue),</span><br><span class="line">            home: MyHomePage(title: <span class="string">&#x27;Peovider Demo&#x27;</span>)));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tname;</span><br><span class="line">  <span class="keyword">var</span> tage;</span><br><span class="line">  Teacher(<span class="keyword">this</span>.tname, <span class="keyword">this</span>.tage);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>獲取數據</li>
-</ul>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProviderText</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> teacher = Provider.of&lt;Teacher&gt;(context);</span><br><span class="line">    <span class="keyword">return</span> Center(</span><br><span class="line">        child: Column(children: &lt;Widget&gt;[</span><br><span class="line">      Text(<span class="string">&#x27;<span class="subst">$&#123;teacher.tname&#125;</span>&#x27;</span>),</span><br><span class="line">      Consumer&lt;Teacher&gt;(builder: (context, teacher, _) &#123;</span><br><span class="line">        <span class="keyword">return</span> Text(<span class="string">&#x27;<span class="subst">$&#123;teacher.tname&#125;</span>==<span class="subst">$&#123;teacher.tage&#125;</span>&#x27;</span>);</span><br><span class="line">      &#125;)</span><br><span class="line">    ]));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>FutureProvider</strong></p>
-<blockquote>
-<p>監聽Future並將其結果暴露給child及其後代。在Future 完成時，通知依賴的子孫節點進行刷新</p>
-</blockquote>
-<ul>
-<li>綁定數據</li>
-</ul>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 通過構建器進行綁定</span></span><br><span class="line">    <span class="keyword">return</span> FutureProvider&lt;<span class="built_in">int</span>&gt;(</span><br><span class="line">        initialData: <span class="number">0</span>,</span><br><span class="line">        builder: (_) =&gt; Future.value(<span class="number">42</span>),</span><br><span class="line">        child: ...</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>獲取數據</li>
-</ul>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">Provider.of&lt;<span class="built_in">int</span>&gt;(context)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Or</span></span><br><span class="line"></span><br><span class="line">Consumer&lt;<span class="built_in">int</span>&gt;(</span><br><span class="line">  builder: (context, value, __) &#123;</span><br><span class="line">    <span class="keyword">return</span> Text(value.toString());</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>flutter</category>
-      </categories>
-      <tags>
-        <tag>flutter</tag>
-        <tag>statement</tag>
       </tags>
   </entry>
   <entry>
@@ -943,6 +797,151 @@
 <p>我們能發現點擊按鈕後，按鈕不會被重新構建，而總價仍會更新 (因為Consumer中調用ChangeNotifierProvider.of時listen值為true，所以還是會建立依賴關係)</p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>flutter</category>
+      </categories>
+      <tags>
+        <tag>flutter</tag>
+        <tag>statement</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>flutter的狀態管理2</title>
+    <url>/2021/flutter/82add4d40d95/</url>
+    <content><![CDATA[<h1 id="flutter的狀態管理2"><a href="#flutter的狀態管理2" class="headerlink" title="flutter的狀態管理2"></a>flutter的狀態管理2</h1><h2 id="StatelessWidget"><a href="#StatelessWidget" class="headerlink" title="StatelessWidget"></a>StatelessWidget</h2><p>Provider</p>
+<p>InheritedWidget能夠與它的子孫控件建立依賴關係，並且當InheritedWidget資料發生變化時，可以自動更新有依賴它的子孫控件，<br>而Provider利用這一點來解決跨widget 狀態共享的問題，將需要跨widget 共享的狀態存在InheritedWidget中，然後在子widget 引用InheritedWidget即可</p>
+<p>主要功能</p>
+<ul>
+<li>数据共享</li>
+<li>局部刷新</li>
+</ul>
+<p>建立一個Item類，用於表示商品信息<br>cart_item.dart：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> </span>&#123;</span><br><span class="line">  Item(<span class="keyword">this</span>.price, <span class="keyword">this</span>.count);</span><br><span class="line">  <span class="built_in">double</span> price; </span><br><span class="line">  <span class="built_in">int</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定義一個保存購物車內商品資料的CartModel類<br>cart_model.dart：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:collection&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;cart_item.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CartModel</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">List</span>&lt;Item&gt; _items = [];</span><br><span class="line"></span><br><span class="line">  UnmodifiableListView&lt;Item&gt; <span class="keyword">get</span> items =&gt; UnmodifiableListView(_items);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">double</span> <span class="keyword">get</span> totalPrice =&gt;</span><br><span class="line">      _items.fold(<span class="number">0</span>, (value, item) =&gt; value + item.count * item.price);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> add(Item item) &#123;</span><br><span class="line">    _items.add(item);</span><br><span class="line">    notifyListeners();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 provider，在widget 上建立監聽、訂閱，達成共享狀態資訊等等<br>main.dart：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider_tutorial/cart_model.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;cart_item.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(ChangeNotifierProvider(</span><br><span class="line">    create: (context) =&gt; CartModel(),</span><br><span class="line">    child: MyApp(),</span><br><span class="line">  ));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">      ),</span><br><span class="line">      home: MyHomePage(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">&#x27;Flutter Demo Home Page&#x27;</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Column(</span><br><span class="line">          mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            Consumer&lt;CartModel&gt;(</span><br><span class="line">              builder: (context, cartModel, child) =&gt; Text(</span><br><span class="line">                <span class="string">&#x27;總價：<span class="subst">$&#123;cartModel.totalPrice&#125;</span>&#x27;</span>,</span><br><span class="line">                style: Theme.of(context).textTheme.headline5,</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">            Builder(builder: (context) &#123;</span><br><span class="line">              <span class="keyword">return</span> RaisedButton(</span><br><span class="line">                child: Text(<span class="string">&quot;添加商品&quot;</span>),</span><br><span class="line">                onPressed: () &#123;</span><br><span class="line">                  <span class="keyword">var</span> counter = context.read&lt;CartModel&gt;();</span><br><span class="line">                  counter.add(Item(<span class="number">10.0</span>, <span class="number">1</span>));</span><br><span class="line">                &#125;,</span><br><span class="line">              );</span><br><span class="line">            &#125;)</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>應用與類型:</p>
+<p><strong>Provider.of</strong></p>
+<p>有的時候你不需要Model中的資料來改變UI，但是你可能還是需要使用該數據，比如，清空購物車的所有商品，它不需要顯示購物車裡的內容，只要調用clear()方法</p>
+<p>此時我們可以使用Provider.of，並且將listen設置為false，這樣就可以使用特定數據，又不會讓整體 UI 框架重構</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在build 方法中使用代碼，當notifyListeners被調用的時候，並不會使widget被重構</span></span><br><span class="line">Provider.of&lt;CartModel&gt;(context, listen: <span class="keyword">false</span>).removeAll();</span><br></pre></td></tr></table></figure>
+
+<p><strong>建立新的物件</strong></p>
+<p>想讓某個物件資料( 變量 ) 能夠被一個widget 以及其子widget 引用，我們可以使用Provider的建構create來建立所要的物件widget</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">Provider(</span><br><span class="line">  create: (_) =&gt; MyModel(), <span class="comment">//所要共享的物件資料</span></span><br><span class="line">  child: ...</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>如果要將隨時間變化的變量傳遞給對象，請考慮使用ProxyProvider：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span> count;</span><br><span class="line"></span><br><span class="line">ProxyProvider0(</span><br><span class="line">  update: (_, __) =&gt; MyModel(count),</span><br><span class="line">  child: ...</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><strong>重複使用已存在的物件</strong></p>
+<p>想使用已建立的Provider 物件，則使用Provider的建構函數.value</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">MyChangeNotifier variable;</span><br><span class="line"></span><br><span class="line">ChangeNotifierProvider.value(</span><br><span class="line">  value: variable,</span><br><span class="line">  child: ...</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><strong>讀取Provider中的資料</strong></p>
+<p>最簡單的讀取資料的方式就是使用BuildContext的擴展方法：</p>
+<ul>
+<li>context.watch<T>()：讓widget 去監聽共享資料 T 的變化</li>
+<li>context.read<T>()：直接返回 T ，而不去監聽它的變化</li>
+<li>context.select&lt;T, R&gt;(R cb(T value))：讓widget 可以只去監聽 T 的部分變化</li>
+</ul>
+<p>當然也可以使用我們之前講的靜態方法Provider.of<T>(context)，它和watch/read的行為很像，這也是在上面擴展方法出現之前，我們獲取數據的方式之一</p>
+<p>這些方法將從傳遞過來的BuildContext相關的widget 開始查詢它的widget tree，並返回找到的符合類型 T 的最近變量 ( 如果未找到則拋出異常 )</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Home</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Text(</span><br><span class="line">      <span class="comment">// 不要忘記將想要獲取的對像類型傳遞給`watch`</span></span><br><span class="line">      context.watch&lt;<span class="built_in">String</span>&gt;(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>dispose</strong></p>
+<blockquote>
+<p>typedef Disposer<T> = void Function(BuildContext context, T value);</p>
+</blockquote>
+<p>Provider提供了dispose的回調，當Provider 所在節點被移除的時候，它就會啟動Disposer<T>，然後我們便可以在這裡釋放資源</p>
+<p>在之前使用過BLoC 的經驗，我們遇到過一個問題，BloC 使用了觀察者模式，它旨在替代StatefulWidget，然而大量的流使用完畢之後必須close 掉，以釋放資源，但是應該在什麼時候釋放資源呢？而StatelessWidget並沒有類似於dispose 的方法，讓我們不得不為了釋放資源而使用StatefulWidget，然而Provider則為我們解決了這一點提供了dispose的回調</p>
+<p>我們有一個 BLoC</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleBLoC</span> </span>&#123;</span><br><span class="line">  StreamController&lt;<span class="built_in">String</span>&gt; _data = StreamController&lt;<span class="built_in">String</span>&gt;.broadcast();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> data =&gt; _data.stream;</span><br><span class="line"></span><br><span class="line">  doSomething(<span class="built_in">String</span> text) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  dispose() &#123;</span><br><span class="line">    _data.close();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我們想要提供這個BLoC卻又不想使用StatefulWidget，此時可以透過Provider使用</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">Provider(</span><br><span class="line">    create:(_) =&gt; ExampleBLoC(),</span><br><span class="line">    dispose:(_, ExampleBLoC bloc) =&gt; bloc.dispose(), <span class="comment">//在dispose 回調中關閉不再使用的流，即解決了資源釋放的問題    </span></span><br><span class="line">)  </span><br></pre></td></tr></table></figure>
+
+<p><strong>Selector</strong></p>
+<p>相當於Consumer，可以在特定值改變時，再去重新構建widget</p>
+<p>當List 長度改變時，才重新構建widget：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">Selector&lt;<span class="built_in">List</span>, <span class="built_in">int</span>&gt;(</span><br><span class="line">  selector: (_, list) =&gt; list.length,</span><br><span class="line">  builder: (_, length, __) &#123;</span><br><span class="line">    <span class="keyword">return</span> Text(<span class="string">&#x27;<span class="subst">$length</span>&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p><strong>MultiProvider</strong></p>
+<p>將多個Provider 合併成一個widget:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">MultiProvider(</span><br><span class="line">  providers: [</span><br><span class="line">    Provider&lt;Something&gt;(create: (_) =&gt; Something()),</span><br><span class="line">    Provider&lt;SomethingElse&gt;(create: (_) =&gt; SomethingElse()),</span><br><span class="line">    Provider&lt;AnotherThing&gt;(create: (_) =&gt; AnotherThing()),</span><br><span class="line">  ],</span><br><span class="line">  child: someWidget,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><strong>ProxyProvider</strong></p>
+<p>將多個provider裡個別共享的值，整合成一個新對象，並將結果發送給外層的provider，當所依賴的多個provider 的任一個發生變化時，此新對象都會更新</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  <span class="keyword">return</span> MultiProvider(</span><br><span class="line">    providers: [</span><br><span class="line">      ChangeNotifierProvider(create: (_) =&gt; Counter()),</span><br><span class="line">      <span class="comment">// ProxyProvider vs ProxyProvider2 vs ProxyProvider3，… 類別名後面的數字是ProxyProvider依賴其他providers的數量</span></span><br><span class="line">      ProxyProvider&lt;Counter, Translations&gt;(</span><br><span class="line">        update: (_, counter, __) =&gt; Translations(counter.value),</span><br><span class="line">      ),</span><br><span class="line">    ],</span><br><span class="line">    child: Foo(),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Translations</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> Translations(<span class="keyword">this</span>._value);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">int</span> _value;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">String</span> <span class="keyword">get</span> title =&gt; <span class="string">&#x27;You clicked <span class="subst">$_value</span> times&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>ChangeNotifierProvider</strong></p>
+<blockquote>
+<p>ListenableProvider和ChangeNotifierProvider其實是 父與子的關係，ChangeNotifierProvider在ListenableProvider的基礎上，且可以在 Model 中覆寫 ChangeNotifier 的 dispose 方法，來釋放其資源，這對於複雜 Model 的情況下十分有用，在需要的時候能夠自動調用其 disposer 方法</p>
+</blockquote>
+<p><strong>ListenableProvider</strong></p>
+<blockquote>
+<p>監聽一個 Listenable，將其暴露給它的後代並在偵聽器發出事件時rebuild依賴項</p>
+<p>用來共享可以監聽的對象，會隨著監聽對象的改變而更新widget。</p>
+</blockquote>
+<ul>
+<li>數據綁定</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 透過構造器綁定數據並進行監聽，當從Widget Tree中刪除時dispose要銷毀(構造器builder不可為空)</span></span><br><span class="line">    <span class="keyword">return</span> ListenableProvider&lt;User&gt;(</span><br><span class="line">        builder: (_) =&gt; User(<span class="string">&#x27;Flutter&#x27;</span>, <span class="number">0</span>),</span><br><span class="line">        child: MaterialApp(</span><br><span class="line">            title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">            theme: ThemeData(primarySwatch: Colors.blue),</span><br><span class="line">            home: MyHomePage(title: <span class="string">&#x27;Peovider Demo&#x27;</span>)));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 透過.value對數據進行監聽listenable</span></span><br><span class="line">    <span class="keyword">return</span> ListenableProvider&lt;User&gt;.value(</span><br><span class="line">        listenable: User(<span class="string">&#x27;Flutter&#x27;</span>, <span class="number">0</span>),</span><br><span class="line">        child: MaterialApp(</span><br><span class="line">            title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">            theme: ThemeData(primarySwatch: Colors.blue),</span><br><span class="line">            home: MyHomePage(title: <span class="string">&#x27;Peovider Demo&#x27;</span>)));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>獲取數據</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProviderText</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> user = Provider.of&lt;User&gt;(context); <span class="comment">// 使用Provider.of(context)</span></span><br><span class="line">    <span class="keyword">return</span> Text(<span class="string">&#x27;<span class="subst">$&#123;user.getName&#125;</span>&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProviderText</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 使用Consumer Widget構造器</span></span><br><span class="line">    <span class="keyword">return</span> Consumer&lt;User&gt;(builder: (context, user, _) &#123;</span><br><span class="line">        <span class="keyword">return</span> Text(user.getName);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>ValueListenableProvider</strong></p>
+<blockquote>
+<p>要注意需要綁定的數據要繼承自ValueNotifier<T>，並且實現其構造方法，來對value的操作進行更新</p>
+</blockquote>
+<p>新建一個person實體類進行操作</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 基本數據類型</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringBean</span> <span class="keyword">extends</span> <span class="title">ValueNotifier</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">  StringBean(<span class="built_in">String</span> value) : <span class="keyword">super</span>(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定義實體類</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">extends</span> <span class="title">ValueNotifier</span>&lt;<span class="title">User</span>&gt; </span>&#123;</span><br><span class="line">  Person(User value) : <span class="keyword">super</span>(value);</span><br><span class="line">  <span class="built_in">String</span> <span class="keyword">get</span> getPersonName =&gt; value.name;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> setPersonName(<span class="built_in">String</span> name) &#123;</span><br><span class="line">    value.name = name;</span><br><span class="line">    notifyListeners();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>綁定數據</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 透過構造器(builder)綁定數據並進行監聽</span></span><br><span class="line">    <span class="keyword">return</span> ValueListenableProvider&lt;User&gt;(</span><br><span class="line">        builder: (_) =&gt; Person(User(<span class="string">&#x27;person&#x27;</span>, <span class="number">101</span>)),</span><br><span class="line">        child: MaterialApp(</span><br><span class="line">            title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">            theme: ThemeData(primarySwatch: Colors.blue),</span><br><span class="line">            home: MyHomePage(title: <span class="string">&#x27;Peovider Demo&#x27;</span>)));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//////</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 透過value方式對數據進行綁定監聽</span></span><br><span class="line">    <span class="keyword">return</span> ValueListenableProvider&lt;User&gt;.value(</span><br><span class="line">        valueListenable: Person(User(<span class="string">&#x27;person&#x27;</span>, <span class="number">101</span>)),</span><br><span class="line">        child: MaterialApp(</span><br><span class="line">            title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">            theme: ThemeData(primarySwatch: Colors.blue),</span><br><span class="line">            home: MyHomePage(title: <span class="string">&#x27;Peovider Demo&#x27;</span>)));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>獲取數據</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProviderText</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> number = Provider.of&lt;<span class="built_in">String</span>&gt;(context);</span><br><span class="line">    <span class="keyword">final</span> person = Provider.of&lt;User&gt;(context);</span><br><span class="line">    <span class="keyword">return</span> Center(</span><br><span class="line">        child: Column(children: &lt;Widget&gt;[</span><br><span class="line">      Text(<span class="string">&#x27;<span class="subst">$&#123;number.toString()&#125;</span>==<span class="subst">$&#123;person.getName&#125;</span>&#x27;</span>),</span><br><span class="line">      Consumer&lt;User&gt;(builder: (context, user, _) &#123;</span><br><span class="line">        <span class="keyword">return</span> Text(user.getName);</span><br><span class="line">      &#125;)</span><br><span class="line">    ]));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>StreamProvider</strong></p>
+<blockquote>
+<p>監聽一個流，並且expose 其最近發送的值</p>
+</blockquote>
+<ul>
+<li>綁定數據</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 通過構建器創建StreamController後進行綁定</span></span><br><span class="line">    <span class="keyword">return</span> StreamProvider&lt;Teacher&gt;(</span><br><span class="line">        builder: (_) =&gt; StreamController&lt;Teacher&gt;(),</span><br><span class="line">        initialData: Teacher(<span class="string">&#x27;Teacher&#x27;</span>, <span class="number">101</span>),</span><br><span class="line">        child: MaterialApp(</span><br><span class="line">            title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">            theme: ThemeData(primarySwatch: Colors.blue),</span><br><span class="line">            home: MyHomePage(title: <span class="string">&#x27;Peovider Demo&#x27;</span>)));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tname;</span><br><span class="line">  <span class="keyword">var</span> tage;</span><br><span class="line">  Teacher(<span class="keyword">this</span>.tname, <span class="keyword">this</span>.tage);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>獲取數據</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProviderText</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> teacher = Provider.of&lt;Teacher&gt;(context);</span><br><span class="line">    <span class="keyword">return</span> Center(</span><br><span class="line">        child: Column(children: &lt;Widget&gt;[</span><br><span class="line">      Text(<span class="string">&#x27;<span class="subst">$&#123;teacher.tname&#125;</span>&#x27;</span>),</span><br><span class="line">      Consumer&lt;Teacher&gt;(builder: (context, teacher, _) &#123;</span><br><span class="line">        <span class="keyword">return</span> Text(<span class="string">&#x27;<span class="subst">$&#123;teacher.tname&#125;</span>==<span class="subst">$&#123;teacher.tage&#125;</span>&#x27;</span>);</span><br><span class="line">      &#125;)</span><br><span class="line">    ]));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>FutureProvider</strong></p>
+<blockquote>
+<p>監聽Future並將其結果暴露給child及其後代。在Future 完成時，通知依賴的子孫節點進行刷新</p>
+</blockquote>
+<ul>
+<li>綁定數據</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 通過構建器進行綁定</span></span><br><span class="line">    <span class="keyword">return</span> FutureProvider&lt;<span class="built_in">int</span>&gt;(</span><br><span class="line">        initialData: <span class="number">0</span>,</span><br><span class="line">        builder: (_) =&gt; Future.value(<span class="number">42</span>),</span><br><span class="line">        child: ...</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>獲取數據</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">Provider.of&lt;<span class="built_in">int</span>&gt;(context)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Or</span></span><br><span class="line"></span><br><span class="line">Consumer&lt;<span class="built_in">int</span>&gt;(</span><br><span class="line">  builder: (context, value, __) &#123;</span><br><span class="line">    <span class="keyword">return</span> Text(value.toString());</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>flutter</category>
       </categories>
