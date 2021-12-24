@@ -431,7 +431,8 @@
     <url>/2021/12/flutter/c2c8ee41f138/</url>
     <content><![CDATA[<h1 id="使用flutter來建立dapp"><a href="#使用flutter來建立dapp" class="headerlink" title="使用flutter來建立dapp"></a>使用flutter來建立dapp</h1><hr>
 <h2 id="Create-the-Smart-Contract"><a href="#Create-the-Smart-Contract" class="headerlink" title="Create the Smart Contract"></a>Create the Smart Contract</h2><p>現在我們開始創建一個簡易合約:</p>
-<p><a href="https://fufushih.github.io/2021/11/30/SolidityHelloWorld/">solidity hello world smart contract</a></p>
+<a href="/2021/11/solidity/bfbd39565543/" title="solidity hello world smart contract">solidity hello world smart contract</a>
+
 <p>啟動本地端:</p>
 <blockquote>
 <p>port=&gt;8545</p>
@@ -660,7 +661,7 @@
       </tags>
   </entry>
   <entry>
-    <title>flutter-state-management-2</title>
+    <title>flutter的狀態管理2</title>
     <url>/2021/12/flutter/82add4d40d95/</url>
     <content><![CDATA[<h1 id="flutter的狀態管理2"><a href="#flutter的狀態管理2" class="headerlink" title="flutter的狀態管理2"></a>flutter的狀態管理2</h1><h2 id="StatelessWidget"><a href="#StatelessWidget" class="headerlink" title="StatelessWidget"></a>StatelessWidget</h2><p>Provider</p>
 <p>InheritedWidget能夠與它的子孫控件建立依賴關係，並且當InheritedWidget資料發生變化時，可以自動更新有依賴它的子孫控件，<br>而Provider利用這一點來解決跨widget 狀態共享的問題，將需要跨widget 共享的狀態存在InheritedWidget中，然後在子widget 引用InheritedWidget即可</p>
