@@ -87,6 +87,45 @@
       </tags>
   </entry>
   <entry>
+    <title>Solidity:創建簡易代幣</title>
+    <url>/2021/solidity/3f900b5bbcb5/</url>
+    <content><![CDATA[<h1 id="Solidity-創建簡易代幣"><a href="#Solidity-創建簡易代幣" class="headerlink" title="Solidity:創建簡易代幣"></a>Solidity:創建簡易代幣</h1><p>在終端輸入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle create contract MyToken</span><br></pre></td></tr></table></figure>
+
+<p>創建<br><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyToken &#123;</span><br><span class="line">  uint INITIAL_SUPPLY = 10000;</span><br><span class="line">  mapping(address =&gt; uint) balances;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    balances[msg.sender] = INITIAL_SUPPLY;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // transfer token for a specified address</span><br><span class="line">  function transfer(address _to, uint _amount) public &#123;</span><br><span class="line">    require(balances[msg.sender] &gt; _amount);</span><br><span class="line">    balances[msg.sender] -= _amount;</span><br><span class="line">    balances[_to] += _amount;</span><br><span class="line">  &#125;</span><br><span class="line">  // Gets the balance of the specified address</span><br><span class="line">  // Constant and Immutable State Variables. See https://docs.soliditylang.org/en/v0.8.10/contracts.html#modifiers</span><br><span class="line">  function balanceOf(address _owner) public view returns (uint) &#123;</span><br><span class="line">    return balances[_owner];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在migrations資料夾新增</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line">var MyToken = artifacts.require(&quot;MyToken&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">  deployer.deploy(MyToken);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>編譯</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.1.png"></p>
+<p>開始部署，Run</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.6.png"><br><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.2.png"></p>
+<p>Test</p>
+<p>開啟console</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let contract</span><br><span class="line">MyToken.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.3.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf(accounts[1])</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.4.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.transfer(accounts[1], 123)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.5.png"></p>
+<p>…</p>
+]]></content>
+      <categories>
+        <category>solidity</category>
+      </categories>
+      <tags>
+        <tag>solidity</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Solidity:創建ERC20標準代幣</title>
     <url>/2021/solidity/3f4574248609/</url>
     <content><![CDATA[<h1 id="Solidity-創建ERC20標準代幣"><a href="#Solidity-創建ERC20標準代幣" class="headerlink" title="Solidity:創建ERC20標準代幣"></a>Solidity:創建ERC20標準代幣</h1><p>關於ERC20 Token</p>
@@ -218,45 +257,6 @@
 <p><img data-src="/2021/solidity/3f4574248609/2021-12-15-17-44-52.png"></p>
 <p>result:</p>
 <p><img data-src="/2021/solidity/3f4574248609/2021-12-15-17-45-07.png"></p>
-]]></content>
-      <categories>
-        <category>solidity</category>
-      </categories>
-      <tags>
-        <tag>solidity</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Solidity:創建簡易代幣</title>
-    <url>/2021/solidity/3f900b5bbcb5/</url>
-    <content><![CDATA[<h1 id="Solidity-創建簡易代幣"><a href="#Solidity-創建簡易代幣" class="headerlink" title="Solidity:創建簡易代幣"></a>Solidity:創建簡易代幣</h1><p>在終端輸入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle create contract MyToken</span><br></pre></td></tr></table></figure>
-
-<p>創建<br><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyToken &#123;</span><br><span class="line">  uint INITIAL_SUPPLY = 10000;</span><br><span class="line">  mapping(address =&gt; uint) balances;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    balances[msg.sender] = INITIAL_SUPPLY;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // transfer token for a specified address</span><br><span class="line">  function transfer(address _to, uint _amount) public &#123;</span><br><span class="line">    require(balances[msg.sender] &gt; _amount);</span><br><span class="line">    balances[msg.sender] -= _amount;</span><br><span class="line">    balances[_to] += _amount;</span><br><span class="line">  &#125;</span><br><span class="line">  // Gets the balance of the specified address</span><br><span class="line">  // Constant and Immutable State Variables. See https://docs.soliditylang.org/en/v0.8.10/contracts.html#modifiers</span><br><span class="line">  function balanceOf(address _owner) public view returns (uint) &#123;</span><br><span class="line">    return balances[_owner];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在migrations資料夾新增</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line">var MyToken = artifacts.require(&quot;MyToken&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">  deployer.deploy(MyToken);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>編譯</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.1.png"></p>
-<p>開始部署，Run</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.6.png"><br><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.2.png"></p>
-<p>Test</p>
-<p>開啟console</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let contract</span><br><span class="line">MyToken.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.3.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf(accounts[1])</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.4.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract.transfer(accounts[1], 123)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/solidity/3f900b5bbcb5/unknown_filename.5.png"></p>
-<p>…</p>
 ]]></content>
       <categories>
         <category>solidity</category>
@@ -637,10 +637,9 @@
   <entry>
     <title>flutter渲染原理與過程</title>
     <url>/2021/flutter/7d9cf094f2f7/</url>
-    <content><![CDATA[<h1 id="flutter渲染原理與過程"><a href="#flutter渲染原理與過程" class="headerlink" title="flutter渲染原理與過程"></a>flutter渲染原理與過程</h1><h2 id="Flutter-UI生成過程"><a href="#Flutter-UI生成過程" class="headerlink" title="Flutter UI生成過程"></a>Flutter UI生成過程</h2><p>platform channel:<br><img data-src="/2021/flutter/7d9cf094f2f7/2021-12-25-20-18-11.png" alt="Platform channels"></p>
-<p>Flutter的三棵樹:<br><img data-src="/2021/flutter/7d9cf094f2f7/2021-12-25-20-16-41.png" alt="Three Tree"></p>
-<p>Flutter UI的生成與渲染:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-ui-render.png" alt="flutter ui render"></p>
+    <content><![CDATA[<h1 id="flutter渲染原理與過程"><a href="#flutter渲染原理與過程" class="headerlink" title="flutter渲染原理與過程"></a>flutter渲染原理與過程</h1><h2 id="Flutter-UI生成過程"><a href="#Flutter-UI生成過程" class="headerlink" title="Flutter UI生成過程"></a>Flutter UI生成過程</h2><p>Flutter UI的生成與渲染:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-ui-render.png" alt="flutter ui render"></p>
 <p>我們透過flutter engine來與Native來溝通，並將接收到的VSync訊號給發送到給Framework，並開始進行UI的生成與渲染</p>
+<p>Flutter的三棵樹:<br><img data-src="/2021/flutter/7d9cf094f2f7/2021-12-25-20-16-41.png" alt="Three Tree"></p>
 <hr>
 <p>而UI的顯示是一幀一幀的，每繪製一次，則稱其為一幀。而flutter中的engine通過VSync信號不斷的觸發每一幀繪製</p>
 <p>渲染的幀數周期:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-vsync-cycle.png" alt="flutter fps cycle"></p>
@@ -648,15 +647,37 @@
 <blockquote>
 <p>透過Flutter Engine的ScheduleFrame()來註冊VSync信號回調，當VSync信號來的時候就會收到通知，然後就會開始進行渲染繪製</p>
 </blockquote>
-<h2 id="Flutter在Android上渲染過程"><a href="#Flutter在Android上渲染過程" class="headerlink" title="Flutter在Android上渲染過程"></a>Flutter在Android上渲染過程</h2><p><img data-src="/2021/flutter/7d9cf094f2f7/2021-12-25-20-14-01.png" alt="flutter arch-overview"></p>
-<p><img data-src="/2021/flutter/7d9cf094f2f7/Flutter-render-frame.png" alt="flutter ui generator"></p>
+<h2 id="Flutter在Android上渲染過程"><a href="#Flutter在Android上渲染過程" class="headerlink" title="Flutter在Android上渲染過程"></a>Flutter在Android上渲染過程</h2><p><img data-src="/2021/flutter/7d9cf094f2f7/Flutter-render-frame.png" alt="flutter ui generator"></p>
+<p>Platform channel:<br><img data-src="/2021/flutter/7d9cf094f2f7/2021-12-25-20-18-11.png" alt="Platform channels"></p>
 <ol>
-<li>Flutter的Engine藉ScheduleFrame()來註冊Vsync信號；而Engine與Framework(Dart)是藉由Window來進行構通</li>
+<li>Flutter的Engine藉ScheduleFrame()來註冊Vsync信號，而Engine與Framework(Dart)是藉由Window來進行構通</li>
 <li>Engine收到Vsync信號，通過Window的onBeginFrame和onDrawFrame來進行回調，此時信號已經回調到Framework</li>
 <li>Framework將Widget構建出相對應的Element Tree和RenderObject Tree</li>
 <li>將RenderObject進行layout和paint，最後把繪製的結果輸出在Layer上</li>
 <li>Framework通過Window的render方法回到Engine，Engine再向GPU Thread提交繪製任務並渲染</li>
 </ol>
+<h1 id="Flutter架構"><a href="#Flutter架構" class="headerlink" title="Flutter架構"></a>Flutter架構</h1><p>Flutter架構:<br><img data-src="/2021/flutter/7d9cf094f2f7/2021-12-25-20-14-01.png" alt="flutter arch-overview"></p>
+<p>Flutter Engine本身不串建管理Thread，Flutter Engine Thread的建立和管理是由embedder負責。(Embeder指的是將Engine移植到平台的middleware)</p>
+<p>並且Engine要求Embeder提供四個Task Runner:<br>1.Platform Task Runner<br>2.UI Task Runner Thread(Dart Runner)<br>3.GPU Task Runner<br>4.IO Task Runner</p>
+<h2 id="Platform-Task-Runner"><a href="#Platform-Task-Runner" class="headerlink" title="Platform Task Runner"></a>Platform Task Runner</h2><p>當一個Flutter應用啟動時會創建一個Engine實例，Engine創建的時候會創建一個Thread來供Platform Runner使用。(一個Engine對應一個Platform Runner，而我們能同時啟動多個Engine實例，每個Runner跑在各自的Thread。)</p>
+<p>Platform Runner所在的Thread進行主要的操作:<br>1.與Engine的交互(接口调用)<br>2.處理來自平台的消息</p>
+<h2 id="UI-Task-Runner"><a href="#UI-Task-Runner" class="headerlink" title="UI Task Runner"></a>UI Task Runner</h2><p>被Flutter Engine用來執行Dart root isolate (Root isolate運行應用的main code)</p>
+<p>Engine做的事情:</p>
+<ul>
+<li>Root isolate通知Flutter Engine有幀需要渲染</li>
+<li>Flutter Engine通知平台，需要在下個Vsync的時候得到通知</li>
+<li>平台等待下一個Vsync</li>
+<li>對創建的對象和Widgets進行Layout並產生一個Layer Tree，並且將Tree傳給Engine(沒進行任何光柵化，僅生成需要繪製內容的描述)</li>
+<li>創建或更新Tree</li>
+</ul>
+<h2 id="GPU-Task-Runner"><a href="#GPU-Task-Runner" class="headerlink" title="GPU Task Runner"></a>GPU Task Runner</h2><p>用來執行設備GPU的相關調用，負責將Layer Tree提供的信息轉化為實際的GPU指令，並且配置所需的GPU資源</p>
+<h2 id="IO-Task-Runner"><a href="#IO-Task-Runner" class="headerlink" title="IO Task Runner"></a>IO Task Runner</h2><p>有一些Thread的必要操作是比較耗時間的，比如IO，而這些操作我們使用IO Runner處理。</p>
+<blockquote>
+<p>從圖片存儲（比如磁盤）中讀取壓縮的圖片格式，並將圖片數據進行處理為GPU Runner的渲染做好準備</p>
+<p>Texture準備過程中，IO Runner首先讀取壓縮的圖片二進制數據（比如PNG，JPEG），將其解壓轉換成GPU能夠處理的格式然後將數據上傳到GPU</p>
+</blockquote>
+<hr>
+<h1 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h1><p><a href="https://docs.flutter.dev/resources/architectural-overview">Flutter architectural overview</a><br><a href="https://juejin.cn/post/6844903620064837645#heading-1">深入理解Flutter引擎线程模式</a><br><a href="https://book.flutterchina.club/chapter14/flutter_app_startup.html#_14-3-1-%E5%90%AF%E5%8A%A8">Flutter启动流程和渲染管线</a></p>
 ]]></content>
       <categories>
         <category>flutter</category>
