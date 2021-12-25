@@ -4,7 +4,7 @@
   <url>
     <loc>https://www.fufunote.com/2021/flutter/7d9cf094f2f7/</loc>
     
-    <lastmod>2021-12-24</lastmod>
+    <lastmod>2021-12-25</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -155,13 +155,6 @@
 
   
   <url>
-    <loc>https://www.fufunote.com/tags/solidity/</loc>
-    <lastmod>2021-12-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.fufunote.com/tags/vscode/</loc>
     <lastmod>2021-12-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -170,6 +163,13 @@
   
   <url>
     <loc>https://www.fufunote.com/tags/remix/</loc>
+    <lastmod>2021-12-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.fufunote.com/tags/solidity/</loc>
     <lastmod>2021-12-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -230,7 +230,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-12-25 02:59:14 / Modified: 03:31:16" itemprop="dateCreated datePublished" datetime="2021-12-25T02:59:14+08:00">2021-12-25</time>
+              <time title="Created: 2021-12-25 02:59:14 / Modified: 20:18:58" itemprop="dateCreated datePublished" datetime="2021-12-25T02:59:14+08:00">2021-12-25</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,7 +262,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>317</span>
+              <span>632</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -281,7 +281,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="flutter渲染原理與過程"><a href="#flutter渲染原理與過程" class="headerlink" title="flutter渲染原理與過程"></a>flutter渲染原理與過程</h1><h2 id="Flutter-UI生成過程"><a href="#Flutter-UI生成過程" class="headerlink" title="Flutter UI生成過程"></a>Flutter UI生成過程</h2><p>Flutter UI的生成與渲染:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-ui-render.png" alt="flutter ui render"></p>
+          <h1 id="flutter渲染原理與過程"><a href="#flutter渲染原理與過程" class="headerlink" title="flutter渲染原理與過程"></a>flutter渲染原理與過程</h1><h2 id="Flutter-UI生成過程"><a href="#Flutter-UI生成過程" class="headerlink" title="Flutter UI生成過程"></a>Flutter UI生成過程</h2><p>platform channel:<br><img data-src="/2021/flutter/7d9cf094f2f7/2021-12-25-20-18-11.png" alt="Platform channels"></p>
+<p>Flutter的三棵樹:<br><img data-src="/2021/flutter/7d9cf094f2f7/2021-12-25-20-16-41.png" alt="Three Tree"></p>
+<p>Flutter UI的生成與渲染:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-ui-render.png" alt="flutter ui render"></p>
 <p>我們透過flutter engine來與Native來溝通，並將接收到的VSync訊號給發送到給Framework，並開始進行UI的生成與渲染</p>
 <hr>
 <p>而UI的顯示是一幀一幀的，每繪製一次，則稱其為一幀。而flutter中的engine通過VSync信號不斷的觸發每一幀繪製</p>
@@ -290,7 +292,15 @@
 <blockquote>
 <p>透過Flutter Engine的ScheduleFrame()來註冊VSync信號回調，當VSync信號來的時候就會收到通知，然後就會開始進行渲染繪製</p>
 </blockquote>
-<h2 id="Flutter在Android上渲染過程"><a href="#Flutter在Android上渲染過程" class="headerlink" title="Flutter在Android上渲染過程"></a>Flutter在Android上渲染過程</h2><p>flutter在android上渲染一幀:<br><img data-src="/2021/flutter/7d9cf094f2f7/Flutter-render-frame.png" alt="flutter ui generator"></p>
+<h2 id="Flutter在Android上渲染過程"><a href="#Flutter在Android上渲染過程" class="headerlink" title="Flutter在Android上渲染過程"></a>Flutter在Android上渲染過程</h2><p><img data-src="/2021/flutter/7d9cf094f2f7/2021-12-25-20-14-01.png" alt="flutter arch-overview"></p>
+<p><img data-src="/2021/flutter/7d9cf094f2f7/Flutter-render-frame.png" alt="flutter ui generator"></p>
+<ol>
+<li>Flutter的Engine藉ScheduleFrame()來註冊Vsync信號；而Engine與Framework(Dart)是藉由Window來進行構通</li>
+<li>Engine收到Vsync信號，通過Window的onBeginFrame和onDrawFrame來進行回調，此時信號已經回調到Framework</li>
+<li>Framework將Widget構建出相對應的Element Tree和RenderObject Tree</li>
+<li>將RenderObject進行layout和paint，最後把繪製的結果輸出在Layer上</li>
+<li>Framework通過Window的render方法回到Engine，Engine再向GPU Thread提交繪製任務並渲染</li>
+</ol>
 
       
     </div>

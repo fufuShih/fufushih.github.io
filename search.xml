@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>在VSCode上使用Remix</title>
+    <url>/2021/solidity/0ea97b244a3e/</url>
+    <content><![CDATA[<h1 id="在VSCode上使用Remix"><a href="#在VSCode上使用Remix" class="headerlink" title="在VSCode上使用Remix"></a>在VSCode上使用Remix</h1><p>搜尋remix<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.1.png"><br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.png"><br>並安裝</p>
+<hr>
+<p>根據前面那篇我們改使用Remix來測試: <a href="/2021/solidity/bfbd39565543/" title="Solidity: Hello World">Solidity: Hello World</a><br>(我們首先要開啟本地的測試網路，ganache-cli)<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.2.png"></p>
+<p><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.4.png"></p>
+<p>我們使用ganache啟動了本地測試網路，並且監聽port是在8545<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.3.png"></p>
+<p>所以，改成8545並connect<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.5.png"><br>compile合約<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.6.png"><br>並佈署到測試網上，deploy<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.7.png"></p>
+<p>我們來測試，到run並call我們的sayHello()<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.8.png"></p>
+<p>最後，我們從output上來看<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.9.png"></p>
+<p>…</p>
+]]></content>
+      <categories>
+        <category>solidity</category>
+      </categories>
+      <tags>
+        <tag>vscode</tag>
+        <tag>remix</tag>
+        <tag>solidity</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Solidity: Hello World</title>
     <url>/2021/solidity/bfbd39565543/</url>
     <content><![CDATA[<h1 id="Solidity-Hello-World"><a href="#Solidity-Hello-World" class="headerlink" title="Solidity: Hello World"></a>Solidity: Hello World</h1><p>開發工具與環境設置</p>
@@ -205,28 +227,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在VSCode上使用Remix</title>
-    <url>/2021/solidity/0ea97b244a3e/</url>
-    <content><![CDATA[<h1 id="在VSCode上使用Remix"><a href="#在VSCode上使用Remix" class="headerlink" title="在VSCode上使用Remix"></a>在VSCode上使用Remix</h1><p>搜尋remix<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.1.png"><br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.png"><br>並安裝</p>
-<hr>
-<p>根據前面那篇我們改使用Remix來測試: <a href="/2021/solidity/bfbd39565543/" title="Solidity: Hello World">Solidity: Hello World</a><br>(我們首先要開啟本地的測試網路，ganache-cli)<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.2.png"></p>
-<p><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.4.png"></p>
-<p>我們使用ganache啟動了本地測試網路，並且監聽port是在8545<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.3.png"></p>
-<p>所以，改成8545並connect<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.5.png"><br>compile合約<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.6.png"><br>並佈署到測試網上，deploy<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.7.png"></p>
-<p>我們來測試，到run並call我們的sayHello()<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.8.png"></p>
-<p>最後，我們從output上來看<br><img data-src="/2021/solidity/0ea97b244a3e/unknown_filename.9.png"></p>
-<p>…</p>
-]]></content>
-      <categories>
-        <category>solidity</category>
-      </categories>
-      <tags>
-        <tag>solidity</tag>
-        <tag>vscode</tag>
-        <tag>remix</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Solidity:創建簡易代幣</title>
     <url>/2021/solidity/3f900b5bbcb5/</url>
     <content><![CDATA[<h1 id="Solidity-創建簡易代幣"><a href="#Solidity-創建簡易代幣" class="headerlink" title="Solidity:創建簡易代幣"></a>Solidity:創建簡易代幣</h1><p>在終端輸入</p>
@@ -427,68 +427,67 @@
       </tags>
   </entry>
   <entry>
-    <title>關於Flutter空安全</title>
-    <url>/2021/flutter/a929576e2db7/</url>
-    <content><![CDATA[<h1 id="關於Flutter空安全"><a href="#關於Flutter空安全" class="headerlink" title="關於Flutter空安全"></a>關於Flutter空安全</h1><p>從官網的解說中我們能看到，在null-safety推出前，靜態類型系統允許所有類型的表達式中每一處都有null<br>(Null類型被視作是所有類型的子類)</p>
-<p><img data-src="/2021/flutter/a929576e2db7/2021-12-14-02-10-29.png"></p>
+    <title>使用flutter來建立dapp</title>
+    <url>/2021/flutter/c2c8ee41f138/</url>
+    <content><![CDATA[<h1 id="使用flutter來建立dapp"><a href="#使用flutter來建立dapp" class="headerlink" title="使用flutter來建立dapp"></a>使用flutter來建立dapp</h1><hr>
+<h2 id="Create-the-Smart-Contract"><a href="#Create-the-Smart-Contract" class="headerlink" title="Create the Smart Contract"></a>Create the Smart Contract</h2><p>現在我們開始創建一個簡易合約:</p>
+<a href="/2021/solidity/bfbd39565543/" title="solidity hello world smart contract">solidity hello world smart contract</a>
+
+<p>啟動本地端:</p>
 <blockquote>
-<p>問題:</p>
-<p>類型會定義一些操作對象(ex. getters、setters、方法和操作符)，在表達式中使用。當你調用時，有個問題在於<strong>null值並沒有那些類型定義的任何一個方法</strong>(ex.List類型調用add()、int類型調用+…等)</p>
-<p>導致當null傳遞至其他類型的表達式時，任何操作都有可能失敗。(而這錯誤都源自於<strong>嘗試在null類型上尋找一個不存在的方法或屬性</strong>)</p>
+<p>port=&gt;8545</p>
 </blockquote>
-<p>為解決null在那邊找不存在的方法或屬性，null safety改變了類型的層級結構來解決這個問題</p>
-<p><img data-src="/2021/flutter/a929576e2db7/2021-12-14-02-19-24.png"></p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-03-15.png" alt="ganache"></p>
+<p>接下來要把合約部署在本地測試端:</p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-56-19.png" alt="Solidity"></p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-56-55.png" alt="migration"></p>
+<p>佈署到的地址:</p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-07-20.png" alt="migrate address"></p>
+<p>compile完後得到一個json檔:</p>
+<p>而在裡面有個ABI，是告訴我們如何與合約溝通的接口介面</p>
 <blockquote>
-<p>此時，Null 不再被視作所有類型的子類，也就是<strong>其他類型都默認不可空</strong>，除了<strong>特殊Null類型允許傳遞null值</strong>，其他則不允許。(ex.如果變量式string類型，就必須包含一個字符串)</p>
+<p>web3要和智能合約溝通所需要的是ABI，也就是二進制接口(Application Binary Interface)<br>而ABI是以JSON來表達合約裡的方法，告訴web3如何以合約理解的方式格式化函數去做調用</p>
 </blockquote>
-<p>如果我們<strong>想要讓他可空</strong>，也就是原有類型加Null的組合類型呢? 可以使用? (ex. String?就是String|Null的縮寫)</p>
-<p><img data-src="/2021/flutter/a929576e2db7/2021-12-14-02-29-06.png"></p>
-<p>keyword:</p>
-<ul>
-<li><p>可空?<br>在程式裡面，有一些引數變數並不一定為必傳，又或是類型不確定，可能有空，此時可以用?來標註</p>
-</li>
-<li><p>非空!<br>當使用可空變數時，當我們執行一個method，而這個方法可能是非空，導致編譯器報錯。我們可以使用!告訴編譯器，我確認這個值不會空</p>
-</li>
-<li><p>延遲初始化late</p>
-</li>
-</ul>
-<p>在程式中，我們可能需要通過method來初始化一個成員變數，我們發現變數可能會報錯，他會要求你需要對他做初始化(<strong>定義的變數沒有賦值時</strong>)。如果我們還沒想要做初始化，我們能加個?來表達他此時可空<br>但如果我們後面要用到他時，他會要求你去對Null進行判斷，這樣做有時會出問題<br>(某些情境下，我們要成員變數需要method來初始化(ex.constructor)。但我們能保證後續的使用總是在其初始化之後。那麼在這用?是不好的)<br>所以此時我們能用late來告訴編譯器，這個非空變數，稍後會去做初始化</p>
-<ul>
-<li>參數不可空required</li>
-</ul>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-59-23.png" alt="Json"></p>
+<p>把他加入到flutter的assets中</p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-00-02.png" alt="assets"></p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-00-52.png" alt="pub"></p>
 <hr>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a href="https://dart.cn/null-safety/understanding-null-safety#using-nullable-types">深入理解空安全</a></li>
-</ul>
+<h2 id="Create-DAPP"><a href="#Create-DAPP" class="headerlink" title="Create DAPP"></a>Create DAPP</h2><p>Add package:</p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-54-15.png" alt="package list"></p>
+<p>The struct of folder:</p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-54-50.png" alt="folder struct"></p>
+<p>Add contract_linking:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinking</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Now add some feature:</p>
+</blockquote>
+<p>contract_linking.dart:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:convert&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/services.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:http/http.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web3dart/web3dart.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web_socket_channel/io.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinking</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _rpcUrl = <span class="string">&quot;http://10.0.2.2:8545&quot;</span>;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _wsUrl = <span class="string">&quot;ws://10.0.2.2:8545/&quot;</span>;</span><br><span class="line">  <span class="comment">// final String _privateKey =</span></span><br><span class="line">  <span class="comment">//     &quot;0x01d3fe7ae54ef4d39facb006cab009f9ebb412d1dff171303704b43ceae49736&quot;;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> Web3Client _client;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> <span class="built_in">String</span> _abiCode;</span><br><span class="line">  <span class="keyword">late</span> EthereumAddress _contractAddress;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> DeployedContract _contract;</span><br><span class="line">  <span class="keyword">late</span> ContractFunction _text;</span><br><span class="line">  <span class="built_in">String</span> message = <span class="string">&#x27;No message&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  ContractLinking() &#123;</span><br><span class="line">    initialSetup();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initialSetup() <span class="keyword">async</span> &#123;</span><br><span class="line">    _client = Web3Client(_rpcUrl, Client(), socketConnector: () &#123;</span><br><span class="line">      <span class="keyword">return</span> IOWebSocketChannel.connect(_wsUrl).cast&lt;<span class="built_in">String</span>&gt;();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> getAbi();</span><br><span class="line">    <span class="keyword">await</span> getDeployedContract();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; getAbi() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">// Reading the contract abi</span></span><br><span class="line">    <span class="built_in">String</span> abiStringFile =</span><br><span class="line">        <span class="keyword">await</span> rootBundle.loadString(<span class="string">&quot;assets/contracts/HelloWorld.json&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> jsonAbi = jsonDecode(abiStringFile);</span><br><span class="line">    _abiCode = jsonEncode(jsonAbi[<span class="string">&quot;abi&quot;</span>]);</span><br><span class="line"></span><br><span class="line">    _contractAddress = EthereumAddress.fromHex(</span><br><span class="line">        jsonAbi[<span class="string">&quot;networks&quot;</span>][<span class="string">&quot;1638459988787&quot;</span>][<span class="string">&quot;address&quot;</span>]); <span class="comment">// See HelloWorld.json</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; getDeployedContract() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">//  Telling Web3dart where our contract is declared.</span></span><br><span class="line">    _contract = DeployedContract(</span><br><span class="line">        ContractAbi.fromJson(_abiCode, <span class="string">&quot;HelloWorld&quot;</span>), _contractAddress);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Extracting the functions, declared in contract.</span></span><br><span class="line">    _text = _contract.function(<span class="string">&#x27;sayHello&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; sayHelloWorld() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> text =</span><br><span class="line">        <span class="keyword">await</span> _client.call(contract: _contract, function: _text, params: []);</span><br><span class="line">    message = text[<span class="number">0</span>];</span><br><span class="line">    notifyListeners();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我們部署的合約地址<br><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-06-09.png" alt="addr"></p>
+<p>In UI, we add some screen:</p>
+<p>home_screen.dart:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/contract_linking.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> HomeScreen(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// Getting the value and object or contract_linking</span></span><br><span class="line">    <span class="keyword">final</span> contractLink = Provider.of&lt;ContractLinking&gt;(context);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: <span class="keyword">const</span> Text(<span class="string">&quot;Smart Contract Test!&quot;</span>),</span><br><span class="line">        centerTitle: <span class="keyword">true</span>,</span><br><span class="line">      ),</span><br><span class="line">      body: Container(</span><br><span class="line">        padding: <span class="keyword">const</span> EdgeInsets.symmetric(horizontal: <span class="number">20</span>),</span><br><span class="line">        child: Center(</span><br><span class="line">          child: SingleChildScrollView(</span><br><span class="line">            child: Form(</span><br><span class="line">              child: Column(</span><br><span class="line">                children: [</span><br><span class="line">                  Row(</span><br><span class="line">                    mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">                    children: [</span><br><span class="line">                      Text(</span><br><span class="line">                        contractLink.message,</span><br><span class="line">                        style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">                            fontWeight: FontWeight.bold,</span><br><span class="line">                            fontSize: <span class="number">52</span>,</span><br><span class="line">                            color: Colors.tealAccent),</span><br><span class="line">                      ),</span><br><span class="line">                    ],</span><br><span class="line">                  ),</span><br><span class="line">                ],</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: FloatingActionButton(</span><br><span class="line">        onPressed: contractLink.sayHelloWorld,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>screens.dart:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="string">&#x27;./home_screen.dart&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>main.dart:</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/contract_linking.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/ui/screens/screens.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(<span class="keyword">const</span> MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> MyApp(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> ChangeNotifierProvider&lt;ContractLinking&gt;(</span><br><span class="line">      create: (_) =&gt; ContractLinking(),</span><br><span class="line">      child: MaterialApp(</span><br><span class="line">        title: <span class="string">&quot;Hello World&quot;</span>,</span><br><span class="line">        theme: ThemeData(</span><br><span class="line">          brightness: Brightness.dark,</span><br><span class="line">          primaryColor: Colors.cyan[<span class="number">400</span>],</span><br><span class="line">        ),</span><br><span class="line">        home: <span class="keyword">const</span> HomeScreen(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>現在，我們啟動flutter emulator:<br><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-08-07.png" alt="emulator launch"></p>
+<p>我們按一下Button，會發現到:</p>
+<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-08-50.png" alt="click"></p>
 ]]></content>
       <categories>
         <category>flutter</category>
       </categories>
       <tags>
+        <tag>solidity</tag>
         <tag>flutter</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>flutter渲染原理與過程</title>
-    <url>/2021/flutter/7d9cf094f2f7/</url>
-    <content><![CDATA[<h1 id="flutter渲染原理與過程"><a href="#flutter渲染原理與過程" class="headerlink" title="flutter渲染原理與過程"></a>flutter渲染原理與過程</h1><h2 id="Flutter-UI生成過程"><a href="#Flutter-UI生成過程" class="headerlink" title="Flutter UI生成過程"></a>Flutter UI生成過程</h2><p>Flutter UI的生成與渲染:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-ui-render.png" alt="flutter ui render"></p>
-<p>我們透過flutter engine來與Native來溝通，並將接收到的VSync訊號給發送到給Framework，並開始進行UI的生成與渲染</p>
-<hr>
-<p>而UI的顯示是一幀一幀的，每繪製一次，則稱其為一幀。而flutter中的engine通過VSync信號不斷的觸發每一幀繪製</p>
-<p>渲染的幀數周期:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-vsync-cycle.png" alt="flutter fps cycle"></p>
-<p>如果需要進行繪製，如何監聽VSync?</p>
-<blockquote>
-<p>透過Flutter Engine的ScheduleFrame()來註冊VSync信號回調，當VSync信號來的時候就會收到通知，然後就會開始進行渲染繪製</p>
-</blockquote>
-<h2 id="Flutter在Android上渲染過程"><a href="#Flutter在Android上渲染過程" class="headerlink" title="Flutter在Android上渲染過程"></a>Flutter在Android上渲染過程</h2><p>flutter在android上渲染一幀:<br><img data-src="/2021/flutter/7d9cf094f2f7/Flutter-render-frame.png" alt="flutter ui generator"></p>
-]]></content>
-      <categories>
-        <category>flutter</category>
-      </categories>
-      <tags>
-        <tag>flutter</tag>
-        <tag>statement</tag>
-        <tag>render</tag>
+        <tag>dapp</tag>
       </tags>
   </entry>
   <entry>
@@ -594,67 +593,78 @@
       </tags>
   </entry>
   <entry>
-    <title>使用flutter來建立dapp</title>
-    <url>/2021/flutter/c2c8ee41f138/</url>
-    <content><![CDATA[<h1 id="使用flutter來建立dapp"><a href="#使用flutter來建立dapp" class="headerlink" title="使用flutter來建立dapp"></a>使用flutter來建立dapp</h1><hr>
-<h2 id="Create-the-Smart-Contract"><a href="#Create-the-Smart-Contract" class="headerlink" title="Create the Smart Contract"></a>Create the Smart Contract</h2><p>現在我們開始創建一個簡易合約:</p>
-<a href="/2021/solidity/bfbd39565543/" title="solidity hello world smart contract">solidity hello world smart contract</a>
-
-<p>啟動本地端:</p>
+    <title>關於Flutter空安全</title>
+    <url>/2021/flutter/a929576e2db7/</url>
+    <content><![CDATA[<h1 id="關於Flutter空安全"><a href="#關於Flutter空安全" class="headerlink" title="關於Flutter空安全"></a>關於Flutter空安全</h1><p>從官網的解說中我們能看到，在null-safety推出前，靜態類型系統允許所有類型的表達式中每一處都有null<br>(Null類型被視作是所有類型的子類)</p>
+<p><img data-src="/2021/flutter/a929576e2db7/2021-12-14-02-10-29.png"></p>
 <blockquote>
-<p>port=&gt;8545</p>
+<p>問題:</p>
+<p>類型會定義一些操作對象(ex. getters、setters、方法和操作符)，在表達式中使用。當你調用時，有個問題在於<strong>null值並沒有那些類型定義的任何一個方法</strong>(ex.List類型調用add()、int類型調用+…等)</p>
+<p>導致當null傳遞至其他類型的表達式時，任何操作都有可能失敗。(而這錯誤都源自於<strong>嘗試在null類型上尋找一個不存在的方法或屬性</strong>)</p>
 </blockquote>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-03-15.png" alt="ganache"></p>
-<p>接下來要把合約部署在本地測試端:</p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-56-19.png" alt="Solidity"></p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-56-55.png" alt="migration"></p>
-<p>佈署到的地址:</p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-07-20.png" alt="migrate address"></p>
-<p>compile完後得到一個json檔:</p>
-<p>而在裡面有個ABI，是告訴我們如何與合約溝通的接口介面</p>
+<p>為解決null在那邊找不存在的方法或屬性，null safety改變了類型的層級結構來解決這個問題</p>
+<p><img data-src="/2021/flutter/a929576e2db7/2021-12-14-02-19-24.png"></p>
 <blockquote>
-<p>web3要和智能合約溝通所需要的是ABI，也就是二進制接口(Application Binary Interface)<br>而ABI是以JSON來表達合約裡的方法，告訴web3如何以合約理解的方式格式化函數去做調用</p>
+<p>此時，Null 不再被視作所有類型的子類，也就是<strong>其他類型都默認不可空</strong>，除了<strong>特殊Null類型允許傳遞null值</strong>，其他則不允許。(ex.如果變量式string類型，就必須包含一個字符串)</p>
 </blockquote>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-59-23.png" alt="Json"></p>
-<p>把他加入到flutter的assets中</p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-00-02.png" alt="assets"></p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-00-52.png" alt="pub"></p>
+<p>如果我們<strong>想要讓他可空</strong>，也就是原有類型加Null的組合類型呢? 可以使用? (ex. String?就是String|Null的縮寫)</p>
+<p><img data-src="/2021/flutter/a929576e2db7/2021-12-14-02-29-06.png"></p>
+<p>keyword:</p>
+<ul>
+<li><p>可空?<br>在程式裡面，有一些引數變數並不一定為必傳，又或是類型不確定，可能有空，此時可以用?來標註</p>
+</li>
+<li><p>非空!<br>當使用可空變數時，當我們執行一個method，而這個方法可能是非空，導致編譯器報錯。我們可以使用!告訴編譯器，我確認這個值不會空</p>
+</li>
+<li><p>延遲初始化late</p>
+</li>
+</ul>
+<p>在程式中，我們可能需要通過method來初始化一個成員變數，我們發現變數可能會報錯，他會要求你需要對他做初始化(<strong>定義的變數沒有賦值時</strong>)。如果我們還沒想要做初始化，我們能加個?來表達他此時可空<br>但如果我們後面要用到他時，他會要求你去對Null進行判斷，這樣做有時會出問題<br>(某些情境下，我們要成員變數需要method來初始化(ex.constructor)。但我們能保證後續的使用總是在其初始化之後。那麼在這用?是不好的)<br>所以此時我們能用late來告訴編譯器，這個非空變數，稍後會去做初始化</p>
+<ul>
+<li>參數不可空required</li>
+</ul>
 <hr>
-<h2 id="Create-DAPP"><a href="#Create-DAPP" class="headerlink" title="Create DAPP"></a>Create DAPP</h2><p>Add package:</p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-54-15.png" alt="package list"></p>
-<p>The struct of folder:</p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-01-54-50.png" alt="folder struct"></p>
-<p>Add contract_linking:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinking</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>Now add some feature:</p>
-</blockquote>
-<p>contract_linking.dart:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:convert&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/services.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:http/http.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web3dart/web3dart.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:web_socket_channel/io.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContractLinking</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _rpcUrl = <span class="string">&quot;http://10.0.2.2:8545&quot;</span>;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> _wsUrl = <span class="string">&quot;ws://10.0.2.2:8545/&quot;</span>;</span><br><span class="line">  <span class="comment">// final String _privateKey =</span></span><br><span class="line">  <span class="comment">//     &quot;0x01d3fe7ae54ef4d39facb006cab009f9ebb412d1dff171303704b43ceae49736&quot;;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> Web3Client _client;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> <span class="built_in">String</span> _abiCode;</span><br><span class="line">  <span class="keyword">late</span> EthereumAddress _contractAddress;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">late</span> DeployedContract _contract;</span><br><span class="line">  <span class="keyword">late</span> ContractFunction _text;</span><br><span class="line">  <span class="built_in">String</span> message = <span class="string">&#x27;No message&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  ContractLinking() &#123;</span><br><span class="line">    initialSetup();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initialSetup() <span class="keyword">async</span> &#123;</span><br><span class="line">    _client = Web3Client(_rpcUrl, Client(), socketConnector: () &#123;</span><br><span class="line">      <span class="keyword">return</span> IOWebSocketChannel.connect(_wsUrl).cast&lt;<span class="built_in">String</span>&gt;();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> getAbi();</span><br><span class="line">    <span class="keyword">await</span> getDeployedContract();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; getAbi() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">// Reading the contract abi</span></span><br><span class="line">    <span class="built_in">String</span> abiStringFile =</span><br><span class="line">        <span class="keyword">await</span> rootBundle.loadString(<span class="string">&quot;assets/contracts/HelloWorld.json&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> jsonAbi = jsonDecode(abiStringFile);</span><br><span class="line">    _abiCode = jsonEncode(jsonAbi[<span class="string">&quot;abi&quot;</span>]);</span><br><span class="line"></span><br><span class="line">    _contractAddress = EthereumAddress.fromHex(</span><br><span class="line">        jsonAbi[<span class="string">&quot;networks&quot;</span>][<span class="string">&quot;1638459988787&quot;</span>][<span class="string">&quot;address&quot;</span>]); <span class="comment">// See HelloWorld.json</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; getDeployedContract() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="comment">//  Telling Web3dart where our contract is declared.</span></span><br><span class="line">    _contract = DeployedContract(</span><br><span class="line">        ContractAbi.fromJson(_abiCode, <span class="string">&quot;HelloWorld&quot;</span>), _contractAddress);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Extracting the functions, declared in contract.</span></span><br><span class="line">    _text = _contract.function(<span class="string">&#x27;sayHello&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Future&lt;<span class="keyword">void</span>&gt; sayHelloWorld() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> text =</span><br><span class="line">        <span class="keyword">await</span> _client.call(contract: _contract, function: _text, params: []);</span><br><span class="line">    message = text[<span class="number">0</span>];</span><br><span class="line">    notifyListeners();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我們部署的合約地址<br><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-06-09.png" alt="addr"></p>
-<p>In UI, we add some screen:</p>
-<p>home_screen.dart:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/contract_linking.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> HomeScreen(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// Getting the value and object or contract_linking</span></span><br><span class="line">    <span class="keyword">final</span> contractLink = Provider.of&lt;ContractLinking&gt;(context);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: <span class="keyword">const</span> Text(<span class="string">&quot;Smart Contract Test!&quot;</span>),</span><br><span class="line">        centerTitle: <span class="keyword">true</span>,</span><br><span class="line">      ),</span><br><span class="line">      body: Container(</span><br><span class="line">        padding: <span class="keyword">const</span> EdgeInsets.symmetric(horizontal: <span class="number">20</span>),</span><br><span class="line">        child: Center(</span><br><span class="line">          child: SingleChildScrollView(</span><br><span class="line">            child: Form(</span><br><span class="line">              child: Column(</span><br><span class="line">                children: [</span><br><span class="line">                  Row(</span><br><span class="line">                    mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">                    children: [</span><br><span class="line">                      Text(</span><br><span class="line">                        contractLink.message,</span><br><span class="line">                        style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">                            fontWeight: FontWeight.bold,</span><br><span class="line">                            fontSize: <span class="number">52</span>,</span><br><span class="line">                            color: Colors.tealAccent),</span><br><span class="line">                      ),</span><br><span class="line">                    ],</span><br><span class="line">                  ),</span><br><span class="line">                ],</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: FloatingActionButton(</span><br><span class="line">        onPressed: contractLink.sayHelloWorld,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>screens.dart:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="string">&#x27;./home_screen.dart&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>main.dart:</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/core/contract_linking.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter_web3_app/ui/screens/screens.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider/provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(<span class="keyword">const</span> MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> MyApp(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> ChangeNotifierProvider&lt;ContractLinking&gt;(</span><br><span class="line">      create: (_) =&gt; ContractLinking(),</span><br><span class="line">      child: MaterialApp(</span><br><span class="line">        title: <span class="string">&quot;Hello World&quot;</span>,</span><br><span class="line">        theme: ThemeData(</span><br><span class="line">          brightness: Brightness.dark,</span><br><span class="line">          primaryColor: Colors.cyan[<span class="number">400</span>],</span><br><span class="line">        ),</span><br><span class="line">        home: <span class="keyword">const</span> HomeScreen(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>現在，我們啟動flutter emulator:<br><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-08-07.png" alt="emulator launch"></p>
-<p>我們按一下Button，會發現到:</p>
-<p><img data-src="/2021/flutter/c2c8ee41f138/2021-12-03-02-08-50.png" alt="click"></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://dart.cn/null-safety/understanding-null-safety#using-nullable-types">深入理解空安全</a></li>
+</ul>
 ]]></content>
       <categories>
         <category>flutter</category>
       </categories>
       <tags>
-        <tag>solidity</tag>
         <tag>flutter</tag>
-        <tag>dapp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>flutter渲染原理與過程</title>
+    <url>/2021/flutter/7d9cf094f2f7/</url>
+    <content><![CDATA[<h1 id="flutter渲染原理與過程"><a href="#flutter渲染原理與過程" class="headerlink" title="flutter渲染原理與過程"></a>flutter渲染原理與過程</h1><h2 id="Flutter-UI生成過程"><a href="#Flutter-UI生成過程" class="headerlink" title="Flutter UI生成過程"></a>Flutter UI生成過程</h2><p>platform channel:<br><img data-src="/2021/flutter/7d9cf094f2f7/2021-12-25-20-18-11.png" alt="Platform channels"></p>
+<p>Flutter的三棵樹:<br><img data-src="/2021/flutter/7d9cf094f2f7/2021-12-25-20-16-41.png" alt="Three Tree"></p>
+<p>Flutter UI的生成與渲染:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-ui-render.png" alt="flutter ui render"></p>
+<p>我們透過flutter engine來與Native來溝通，並將接收到的VSync訊號給發送到給Framework，並開始進行UI的生成與渲染</p>
+<hr>
+<p>而UI的顯示是一幀一幀的，每繪製一次，則稱其為一幀。而flutter中的engine通過VSync信號不斷的觸發每一幀繪製</p>
+<p>渲染的幀數周期:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-vsync-cycle.png" alt="flutter fps cycle"></p>
+<p>如果需要進行繪製，如何監聽VSync?</p>
+<blockquote>
+<p>透過Flutter Engine的ScheduleFrame()來註冊VSync信號回調，當VSync信號來的時候就會收到通知，然後就會開始進行渲染繪製</p>
+</blockquote>
+<h2 id="Flutter在Android上渲染過程"><a href="#Flutter在Android上渲染過程" class="headerlink" title="Flutter在Android上渲染過程"></a>Flutter在Android上渲染過程</h2><p><img data-src="/2021/flutter/7d9cf094f2f7/2021-12-25-20-14-01.png" alt="flutter arch-overview"></p>
+<p><img data-src="/2021/flutter/7d9cf094f2f7/Flutter-render-frame.png" alt="flutter ui generator"></p>
+<ol>
+<li>Flutter的Engine藉ScheduleFrame()來註冊Vsync信號；而Engine與Framework(Dart)是藉由Window來進行構通</li>
+<li>Engine收到Vsync信號，通過Window的onBeginFrame和onDrawFrame來進行回調，此時信號已經回調到Framework</li>
+<li>Framework將Widget構建出相對應的Element Tree和RenderObject Tree</li>
+<li>將RenderObject進行layout和paint，最後把繪製的結果輸出在Layer上</li>
+<li>Framework通過Window的render方法回到Engine，Engine再向GPU Thread提交繪製任務並渲染</li>
+</ol>
+]]></content>
+      <categories>
+        <category>flutter</category>
+      </categories>
+      <tags>
+        <tag>flutter</tag>
+        <tag>statement</tag>
+        <tag>render</tag>
       </tags>
   </entry>
   <entry>
