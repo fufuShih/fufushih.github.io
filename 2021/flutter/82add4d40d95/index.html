@@ -17,13 +17,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"fufunote.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.fufunote.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="flutter的狀態管理2StatelessWidgetProvider InheritedWidget能夠與它的子孫控件建立依賴關係，並且當InheritedWidget資料發生變化時，可以自動更新有依賴它的子孫控件，而Provider利用這一點來解決跨widget 狀態共享的問題，將需要跨widget 共享的狀態存在InheritedWidget中，然後在子widget 引用Inherited">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flutter的狀態管理2">
-<meta property="og:url" content="https://fufunote.com/2021/flutter/82add4d40d95/index.html">
+<meta property="og:url" content="https://www.fufunote.com/2021/flutter/82add4d40d95/index.html">
 <meta property="og:site_name" content="阿甫筆記">
 <meta property="og:description" content="flutter的狀態管理2StatelessWidgetProvider InheritedWidget能夠與它的子孫控件建立依賴關係，並且當InheritedWidget資料發生變化時，可以自動更新有依賴它的子孫控件，而Provider利用這一點來解決跨widget 狀態共享的問題，將需要跨widget 共享的狀態存在InheritedWidget中，然後在子widget 引用Inherited">
 <meta property="og:locale" content="zh_TW">
@@ -34,7 +34,7 @@
 <meta property="article:tag" content="statement">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://fufunote.com/2021/flutter/82add4d40d95/">
+<link rel="canonical" href="https://www.fufunote.com/2021/flutter/82add4d40d95/">
 
 
 <script id="page-configurations">
@@ -144,14 +144,14 @@
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
-        <li class="menu-item menu-item-flutter">
-
-    <a href="/categories/flutter/" rel="section"><i class="fa fa-newspaper fa-fw"></i>flutter</a>
-
-  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-flutter">
+
+    <a href="/categories/flutter/" rel="section"><i class="fa fa-newspaper fa-fw"></i>flutter</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -210,7 +210,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/flutter/82add4d40d95/">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/flutter/82add4d40d95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -437,10 +437,10 @@
       <div class="popular-posts-title"><a href="\2021\flutter\2fe3b24ab0ed\" rel="bookmark">使用flutter來建立dapp-2</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2021\flutter\c2c8ee41f138\" rel="bookmark">使用flutter來建立dapp</a></div>
+      <div class="popular-posts-title"><a href="\2021\flutter\1ee6ee03be86\" rel="bookmark">使用flutter來建立dapp-3</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2021\flutter\1ee6ee03be86\" rel="bookmark">使用flutter來建立dapp-3</a></div>
+      <div class="popular-posts-title"><a href="\2021\flutter\a929576e2db7\" rel="bookmark">關於Flutter空安全</a></div>
     </li>
   </ul>
 
@@ -732,7 +732,7 @@ window.addEventListener('pjax:success', () => {
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://fufunote.com/2021/flutter/82add4d40d95/";
+    this.page.url = "https://www.fufunote.com/2021/flutter/82add4d40d95/";
     this.page.identifier = "2021/flutter/82add4d40d95/";
     this.page.title = "flutter的狀態管理2";
     };

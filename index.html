@@ -17,20 +17,20 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"fufunote.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.fufunote.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="紀錄、思考與分享">
 <meta property="og:type" content="website">
 <meta property="og:title" content="阿甫筆記">
-<meta property="og:url" content="https://fufunote.com/index.html">
+<meta property="og:url" content="https://www.fufunote.com/index.html">
 <meta property="og:site_name" content="阿甫筆記">
 <meta property="og:description" content="紀錄、思考與分享">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:author" content="FufuShih">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://fufunote.com/">
+<link rel="canonical" href="https://www.fufunote.com/">
 
 
 <script id="page-configurations">
@@ -140,14 +140,14 @@
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
-        <li class="menu-item menu-item-flutter">
-
-    <a href="/categories/flutter/" rel="section"><i class="fa fa-newspaper fa-fw"></i>flutter</a>
-
-  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-flutter">
+
+    <a href="/categories/flutter/" rel="section"><i class="fa fa-newspaper fa-fw"></i>flutter</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -205,7 +205,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/flutter/7d9cf094f2f7/">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/flutter/7d9cf094f2f7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -230,7 +230,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-12-25 02:59:14 / Modified: 03:22:28" itemprop="dateCreated datePublished" datetime="2021-12-25T02:59:14+08:00">2021-12-25</time>
+              <time title="Created: 2021-12-25 02:59:14 / Modified: 03:31:16" itemprop="dateCreated datePublished" datetime="2021-12-25T02:59:14+08:00">2021-12-25</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,7 +262,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>246</span>
+              <span>317</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -282,13 +282,15 @@
 
       
           <h1 id="flutter渲染原理與過程"><a href="#flutter渲染原理與過程" class="headerlink" title="flutter渲染原理與過程"></a>flutter渲染原理與過程</h1><h2 id="Flutter-UI生成過程"><a href="#Flutter-UI生成過程" class="headerlink" title="Flutter UI生成過程"></a>Flutter UI生成過程</h2><p>Flutter UI的生成與渲染:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-ui-render.png" alt="flutter ui render"></p>
-<p>渲染的帪數周期:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-vsync-cycle.png" alt="flutter fps cycle"></p>
-<p>UI的顯示是一帪一帪的，每繪製一次，則稱其為一帪。而flutter中的engine通過VSync信號不斷的觸發每一帪繪製</p>
+<p>我們透過flutter engine來與Native來溝通，並將接收到的VSync訊號給發送到給Framework，並開始進行UI的生成與渲染</p>
+<hr>
+<p>而UI的顯示是一幀一幀的，每繪製一次，則稱其為一幀。而flutter中的engine通過VSync信號不斷的觸發每一幀繪製</p>
+<p>渲染的幀數周期:<br><img data-src="/2021/flutter/7d9cf094f2f7/flutter-vsync-cycle.png" alt="flutter fps cycle"></p>
 <p>如果需要進行繪製，如何監聽VSync?</p>
 <blockquote>
 <p>透過Flutter Engine的ScheduleFrame()來註冊VSync信號回調，當VSync信號來的時候就會收到通知，然後就會開始進行渲染繪製</p>
 </blockquote>
-<h2 id="Flutter在Android上渲染過程"><a href="#Flutter在Android上渲染過程" class="headerlink" title="Flutter在Android上渲染過程"></a>Flutter在Android上渲染過程</h2><p>flutter在android上渲染一帪:<br><img data-src="/2021/flutter/7d9cf094f2f7/Flutter-render-frame.png" alt="flutter ui generator"></p>
+<h2 id="Flutter在Android上渲染過程"><a href="#Flutter在Android上渲染過程" class="headerlink" title="Flutter在Android上渲染過程"></a>Flutter在Android上渲染過程</h2><p>flutter在android上渲染一幀:<br><img data-src="/2021/flutter/7d9cf094f2f7/Flutter-render-frame.png" alt="flutter ui generator"></p>
 
       
     </div>
@@ -308,7 +310,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/flutter/82add4d40d95/">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/flutter/82add4d40d95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -536,7 +538,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/flutter/eb3237329b43/">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/flutter/eb3237329b43/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -749,7 +751,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/flutter/1ee6ee03be86/">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/flutter/1ee6ee03be86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -898,7 +900,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/flutter/a929576e2db7/">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/flutter/a929576e2db7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -1030,7 +1032,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/flutter/f95ae0025bf4/">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/flutter/f95ae0025bf4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -1222,7 +1224,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/flutter/951debf887fa/">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/flutter/951debf887fa/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -1331,7 +1333,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/flutter/2fe3b24ab0ed/">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/flutter/2fe3b24ab0ed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -1515,7 +1517,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/solidity/0ea97b244a3e/">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/solidity/0ea97b244a3e/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -1625,7 +1627,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://fufunote.com/2021/flutter/c2c8ee41f138/">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/flutter/c2c8ee41f138/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
