@@ -23,18 +23,20 @@
   <meta name="description" content="Flutter Widget中的KeyFlutter的Widget Tree會有結構相對應的Element Tree，若希望Widget Tree的node位置改變後，Element Tree也跟著調整對應的節點位置，就要使用key 樹的生成和刷新在Flutter應用第一次啟動的時候，attachRootWidget()生成了三棵樹(Widget Tree、Render Tree、Element">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flutter Widget中的Key">
-<meta property="og:url" content="https://www.fufunote.com/2021/uncategorized/504a7220005f/index.html">
+<meta property="og:url" content="https://www.fufunote.com/2021/flutter/504a7220005f/index.html">
 <meta property="og:site_name" content="阿甫筆記">
 <meta property="og:description" content="Flutter Widget中的KeyFlutter的Widget Tree會有結構相對應的Element Tree，若希望Widget Tree的node位置改變後，Element Tree也跟著調整對應的節點位置，就要使用key 樹的生成和刷新在Flutter應用第一次啟動的時候，attachRootWidget()生成了三棵樹(Widget Tree、Render Tree、Element">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://www.fufunote.com/2021/uncategorized/504a7220005f/2021-12-27-00-58-49.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/flutter/504a7220005f/2021-12-27-00-58-49.png">
 <meta property="article:published_time" content="2021-12-26T07:48:52.000Z">
-<meta property="article:modified_time" content="2021-12-26T17:01:08.135Z">
+<meta property="article:modified_time" content="2021-12-29T06:12:17.240Z">
 <meta property="article:author" content="FufuShih">
+<meta property="article:tag" content="flutter">
+<meta property="article:tag" content="widget">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.fufunote.com/2021/uncategorized/504a7220005f/2021-12-27-00-58-49.png">
+<meta name="twitter:image" content="https://www.fufunote.com/2021/flutter/504a7220005f/2021-12-27-00-58-49.png">
 
-<link rel="canonical" href="https://www.fufunote.com/2021/uncategorized/504a7220005f/">
+<link rel="canonical" href="https://www.fufunote.com/2021/flutter/504a7220005f/">
 
 
 <script id="page-configurations">
@@ -210,7 +212,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/uncategorized/504a7220005f/">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/flutter/504a7220005f/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -240,8 +242,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-27 01:01:08" itemprop="dateModified" datetime="2021-12-27T01:01:08+08:00">2021-12-27</time>
+                <time title="Modified: 2021-12-29 14:12:17" itemprop="dateModified" datetime="2021-12-29T14:12:17+08:00">2021-12-29</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/flutter/" itemprop="url" rel="index"><span itemprop="name">flutter</span></a>
+                </span>
+            </span>
 
           
   
@@ -252,8 +263,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2021/uncategorized/504a7220005f/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/uncategorized/504a7220005f/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2021/flutter/504a7220005f/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/flutter/504a7220005f/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -330,7 +341,7 @@
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 關鍵點在Widget.canUpdate需要返回 false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Flutter設計人員設計了這個方法：當我們給 StatefulContainer設置 Key 時，Widget.canUpdate 返回 false。 </span></span><br><span class="line"><span class="comment">// 原有的Element會被暫時deactive，在需要時重新mount到樹上。從而保證 StatefulWidget 狀態可更新，而且狀態不丟失</span></span><br><span class="line"><span class="keyword">static</span> <span class="built_in">bool</span> canUpdate(Widget oldWidget, Widget newWidget) &#123;</span><br><span class="line">    <span class="keyword">return</span> oldWidget.runtimeType == newWidget.runtimeType</span><br><span class="line">    &amp;&amp; oldWidget.key == newWidget.key;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>從圖中可以看到，Widget和State狀態對應產生了問題。Key就是為了解決圖中widget更新而state沒有更新導致的問題而出現的</p>
-<p><img data-src="/2021/uncategorized/504a7220005f/2021-12-27-00-58-49.png" alt="tree"></p>
+<p><img data-src="/2021/flutter/504a7220005f/2021-12-27-00-58-49.png" alt="tree"></p>
 <p>另一種場景是使用了key，但是導致State被重新創建從而丟失State信息。這就是Key的作用域的問題。對應的解決方案就是GloableKey</p>
 <h1 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h1><p><a target="_blank" rel="noopener" href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/741171/#outline__2_1">Flutter學習筆記：Key的作用</a><br><a target="_blank" rel="noopener" href="https://openhome.cc/Gossip/Flutter/Key2.html">Flutter學習筆記：Key的作用2</a><br><a target="_blank" rel="noopener" href="https://openhome.cc/Gossip/Flutter/Key.html">Widget 的 Key</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=kn0EOS-ZiIc">When to Use Keys</a></p>
 
@@ -340,9 +351,31 @@
     
     
       
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\flutter\2fe3b24ab0ed\" rel="bookmark">使用flutter來建立dapp-2</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\flutter\1ee6ee03be86\" rel="bookmark">使用flutter來建立dapp-3</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\flutter\c2c8ee41f138\" rel="bookmark">使用flutter來建立dapp</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\flutter\a929576e2db7\" rel="bookmark">關於Flutter空安全</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\flutter\f95ae0025bf4\" rel="bookmark">flutter lifecycle</a></div>
+    </li>
+  </ul>
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/flutter/" rel="tag"># flutter</a>
+              <a href="/tags/widget/" rel="tag"># widget</a>
+          </div>
 
         
 
@@ -353,7 +386,10 @@
     <a href="/2021/flutter/7d9cf094f2f7/" rel="prev" title="flutter渲染原理與過程">
       <i class="fa fa-chevron-left"></i> flutter渲染原理與過程
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/flutter/6e0c59bbcd74/" rel="next" title="Flutter串接restful api">
+      Flutter串接restful api <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -435,7 +471,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -448,7 +484,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -459,6 +495,9 @@
       </span>
       <span class="links-of-author-item">
         <a href="mailto:zx8714245@gmail.com" title="E-Mail → mailto:zx8714245@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.kaggle.com/fufushih" title="Kaggle → https:&#x2F;&#x2F;www.kaggle.com&#x2F;fufushih" rel="noopener" target="_blank"><i class="fab fa-kaggle fa-fw"></i>Kaggle</a>
       </span>
   </div>
 
@@ -483,7 +522,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -622,8 +661,8 @@ window.addEventListener('pjax:success', () => {
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://www.fufunote.com/2021/uncategorized/504a7220005f/";
-    this.page.identifier = "2021/uncategorized/504a7220005f/";
+    this.page.url = "https://www.fufunote.com/2021/flutter/504a7220005f/";
+    this.page.identifier = "2021/flutter/504a7220005f/";
     this.page.title = "Flutter Widget中的Key";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
