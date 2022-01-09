@@ -1047,7 +1047,7 @@
       </tags>
   </entry>
   <entry>
-    <title>flutter-crypto-data</title>
+    <title>使用cmc api來建立一個flutter app</title>
     <url>/2022/flutter/f1115703de2c/</url>
     <content><![CDATA[<h1 id="創建加密貨幣app"><a href="#創建加密貨幣app" class="headerlink" title="創建加密貨幣app"></a>創建加密貨幣app</h1><p><a href="https://coinmarketcap.com/api/">coinmarketcap</a></p>
 <p>registe and verifiy email:<br><img data-src="/2022/flutter/f1115703de2c/2022-01-07-22-05-05.png" alt="verify"></p>
