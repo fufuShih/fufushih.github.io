@@ -230,7 +230,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-03-11 00:20:19 / Modified: 00:31:52" itemprop="dateCreated datePublished" datetime="2022-03-11T00:20:19+08:00">2022-03-11</time>
+              <time title="Created: 2022-03-11 00:20:19 / Modified: 00:34:19" itemprop="dateCreated datePublished" datetime="2022-03-11T00:20:19+08:00">2022-03-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,7 +262,7 @@
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
+              <span>1 mins.</span>
             </span>
 
         </div>
@@ -274,54 +274,54 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Solana-HelloWorld-in-win10"><a href="#Solana-HelloWorld-in-win10" class="headerlink" title="Solana: HelloWorld (in win10)"></a>Solana: HelloWorld (in win10)</h1><p>![image](embedded.svg]]</p>
+          <h1 id="Solana-HelloWorld-in-win10"><a href="#Solana-HelloWorld-in-win10" class="headerlink" title="Solana: HelloWorld (in win10)"></a>Solana: HelloWorld (in win10)</h1><p><img data-src="/2022/2de4/embedded.svg" alt="image"></p>
 <hr>
 <p>首先，我們先安裝WSL<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/wsl/install">Install WSL | Microsoft Docs</a></p>
 <p>在WSL中安裝rust-lang相關套件<br>Using WSL, in wsl terminal:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt install build-essential</span><br><span class="line"></span><br><span class="line">curl --proto &#x27;=https&#x27; --tlsv1.2 -sSf https://sh.rustup.rs | sh</span><br><span class="line"></span><br><span class="line">source $HOME/.cargo/env #Import the environment config for rust </span><br><span class="line"></span><br><span class="line">rustc --version #Test it</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>接著我們在WSL中安裝<a target="_blank" rel="noopener" href="https://docs.solana.com/cli/install-solana-cli-tools">solana tool</a>:</p>
-<p>我們使用prebuilt binaries去安裝:<br>![image](unknown_filename.1.png]]<br>1.Download the file<br><strong>solana-release-x86_64-unknown-linux-msvc.tar.bz2</strong></p>
+<p>我們使用prebuilt binaries去安裝:<br><img data-src="/2022/2de4/unknown_filename.1.png" alt="image"><br>1.Download the file<br><strong>solana-release-x86_64-unknown-linux-msvc.tar.bz2</strong></p>
 <p>2. in wsl terminal, run:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar jxf solana-release-x86_64-unknown-linux-gnu.tar.bz2</span><br><span class="line">cd solana-release/</span><br><span class="line">export PATH=$PWD/bin:$PATH</span><br></pre></td></tr></table></figure>
 
 <p>Goto example-helloworld, and run :</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cargo build-bpf --manifest-path=./src/program-rust/Cargo.toml --bpf-out-dir=dist/program</span><br></pre></td></tr></table></figure>
 
-<p>我們可以看到，正在build智能合約<br>![image](unknown_filename.png]]</p>
-<p>接著我們能看到編譯完成後，出現了這些檔<br>![image](unknown_filename.2.png]]</p>
-<p>![image](unknown_filename.3.png]]</p>
+<p>我們可以看到，正在build智能合約<br><img data-src="/2022/2de4/unknown_filename.png" alt="image"></p>
+<p>接著我們能看到編譯完成後，出現了這些檔<br><img data-src="/2022/2de4/unknown_filename.2.png" alt="image"></p>
+<p><img data-src="/2022/2de4/unknown_filename.3.png" alt="image"></p>
 <hr>
 <p>我們將他deploy到我們的local網上</p>
 <p>首先先產生key</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana-keygen new -o /home/chenfu0217/.config/solana/id.json</span><br></pre></td></tr></table></figure>
 
-<p>![image](Image.png]]<br>![image](unknown_filename.4.png]]<br>接著，我們將合約deploy到local網上</p>
+<p><img data-src="/2022/2de4/Image.png" alt="image"><br><img data-src="/2022/2de4/unknown_filename.4.png" alt="image"><br>接著，我們將合約deploy到local網上</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana program deploy /mnt/f/_workspace/BlockChain/solana/example-helloworld/dist/program/helloworld.so</span><br></pre></td></tr></table></figure>
 
 <p>We see</p>
-<p>![image](unknown_filename.5.png]]</p>
-<p>![image](unknown_filename.6.png]]</p>
+<p><img data-src="/2022/2de4/unknown_filename.5.png" alt="image"></p>
+<p><img data-src="/2022/2de4/unknown_filename.6.png" alt="image"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana config set --url localhost</span><br></pre></td></tr></table></figure>
 
-<p>Set<br>![image](unknown_filename.7.png]]</p>
+<p>Set<br><img data-src="/2022/2de4/unknown_filename.7.png" alt="image"></p>
 <p>Open new wsl terminal and run</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana-test-validator</span><br></pre></td></tr></table></figure>
 
-<p>![image](unknown_filename.8.png]]</p>
-<p>Get problem(<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/68906303/solana-hello-world-problem-on-windows-10-wsl2-ubuntu-18-04">Solved</a>)<br>![image](unknown_filename.10.png]]</p>
-<p>這是因為WSL中目錄關係所造成的問題，使用”cd ~/“切換目錄<br>![image](unknown_filename.9.png]]<br>=&gt;<br>![image](unknown_filename.11.png]]</p>
+<p><img data-src="/2022/2de4/unknown_filename.8.png" alt="image"></p>
+<p>Get problem(<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/68906303/solana-hello-world-problem-on-windows-10-wsl2-ubuntu-18-04">Solved</a>)<br><img data-src="/2022/2de4/unknown_filename.10.png" alt="image"></p>
+<p>這是因為WSL中目錄關係所造成的問題，使用”cd ~/“切換目錄<br><img data-src="/2022/2de4/unknown_filename.9.png" alt="image"><br>=&gt;<br><img data-src="/2022/2de4/unknown_filename.11.png" alt="image"></p>
 <p>Now we deploy it</p>
-<p>open new terminal and run<br>![image](unknown_filename.12.png]]</p>
+<p>open new terminal and run<br><img data-src="/2022/2de4/unknown_filename.12.png" alt="image"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PWD/bin:$PATH</span><br></pre></td></tr></table></figure>
 <p>And </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana program deploy /mnt/f/_workspace/BlockChain/solana/example-helloworld/dist/program/helloworld.so</span><br></pre></td></tr></table></figure>
 
-<p>![image](unknown_filename.13.png]]</p>
+<p><img data-src="/2022/2de4/unknown_filename.13.png" alt="image"></p>
 <p>Back to the origin terminal, and use npm to run</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run start</span><br></pre></td></tr></table></figure>
-<p>we see<br>![image](unknown_filename.14.png]]</p>
-<p>If we stop WSL<br>![image](unknown_filename.15.png]]<br>And back to test, we see<br>![image](unknown_filename.16.png]]</p>
+<p>we see<br><img data-src="/2022/2de4/unknown_filename.14.png" alt="image"></p>
+<p>If we stop WSL<br><img data-src="/2022/2de4/unknown_filename.15.png" alt="image"><br>And back to test, we see<br><img data-src="/2022/2de4/unknown_filename.16.png" alt="image"></p>
 <p>Reference:</p>
 <p><a target="_blank" rel="noopener" href="https://docs.rs/solana-program/1.8.5/solana_program/">solana_program</a><br><a target="_blank" rel="noopener" href="https://docs.rs/solana-sdk/1.8.5/solana_sdk/">solana_sdk</a></p>
 <p>..</p>
