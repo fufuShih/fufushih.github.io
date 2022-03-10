@@ -27,19 +27,19 @@
 <meta property="og:site_name" content="阿甫筆記">
 <meta property="og:description" content="Solidity:創建簡易代幣在終端輸入 1truffle create contract MyToken  創建 12345678910111213141516171819202122&#x2F;&#x2F; SPDX-License-Identifier: MITpragma solidity &gt;&#x3D;0.4.22 &lt;0.9.0;contract MyToken &amp;#123;  uint INITIAL_">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://www.fufunote.com/2021/undefined/unknown_filename.png">
-<meta property="og:image" content="https://www.fufunote.com/2021/undefined/unknown_filename.1.png">
-<meta property="og:image" content="https://www.fufunote.com/2021/undefined/unknown_filename.6.png">
-<meta property="og:image" content="https://www.fufunote.com/2021/undefined/unknown_filename.2.png">
-<meta property="og:image" content="https://www.fufunote.com/2021/undefined/unknown_filename.3.png">
-<meta property="og:image" content="https://www.fufunote.com/2021/undefined/unknown_filename.4.png">
-<meta property="og:image" content="https://www.fufunote.com/2021/undefined/unknown_filename.5.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/unknown_filename.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/unknown_filename.1.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/unknown_filename.6.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/unknown_filename.2.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/unknown_filename.3.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/unknown_filename.4.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/unknown_filename.5.png">
 <meta property="article:published_time" content="2021-11-30T17:04:19.000Z">
-<meta property="article:modified_time" content="2021-12-05T06:51:51.872Z">
+<meta property="article:modified_time" content="2022-03-10T16:28:32.752Z">
 <meta property="article:author" content="FufuShih">
 <meta property="article:tag" content="solidity">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.fufunote.com/2021/undefined/unknown_filename.png">
+<meta name="twitter:image" content="https://www.fufunote.com/2021/8a44/unknown_filename.png">
 
 <link rel="canonical" href="https://www.fufunote.com/2021/8a44/">
 
@@ -247,7 +247,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-05 14:51:51" itemprop="dateModified" datetime="2021-12-05T14:51:51+08:00">2021-12-05</time>
+                <time title="Modified: 2022-03-11 00:28:32" itemprop="dateModified" datetime="2022-03-11T00:28:32+08:00">2022-03-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -294,7 +294,7 @@
         <h1 id="Solidity-創建簡易代幣"><a href="#Solidity-創建簡易代幣" class="headerlink" title="Solidity:創建簡易代幣"></a>Solidity:創建簡易代幣</h1><p>在終端輸入</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle create contract MyToken</span><br></pre></td></tr></table></figure>
 
-<p>創建<br><img data-src="/2021/undefined/unknown_filename.png"></p>
+<p>創建<br><img data-src="/2021/8a44/unknown_filename.png"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyToken &#123;</span><br><span class="line">  uint INITIAL_SUPPLY = 10000;</span><br><span class="line">  mapping(address =&gt; uint) balances;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    balances[msg.sender] = INITIAL_SUPPLY;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // transfer token for a specified address</span><br><span class="line">  function transfer(address _to, uint _amount) public &#123;</span><br><span class="line">    require(balances[msg.sender] &gt; _amount);</span><br><span class="line">    balances[msg.sender] -= _amount;</span><br><span class="line">    balances[_to] += _amount;</span><br><span class="line">  &#125;</span><br><span class="line">  // Gets the balance of the specified address</span><br><span class="line">  // Constant and Immutable State Variables. See https://docs.soliditylang.org/en/v0.8.10/contracts.html#modifiers</span><br><span class="line">  function balanceOf(address _owner) public view returns (uint) &#123;</span><br><span class="line">    return balances[_owner];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在migrations資料夾新增</p>
@@ -303,21 +303,21 @@
 <p>編譯</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="/2021/undefined/unknown_filename.1.png"></p>
+<p><img data-src="/2021/8a44/unknown_filename.1.png"></p>
 <p>開始部署，Run</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/undefined/unknown_filename.6.png"><br><img data-src="/2021/undefined/unknown_filename.2.png"></p>
+<p><img data-src="/2021/8a44/unknown_filename.6.png"><br><img data-src="/2021/8a44/unknown_filename.2.png"></p>
 <p>Test</p>
 <p>開啟console</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let contract</span><br><span class="line">MyToken.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/undefined/unknown_filename.3.png"></p>
+<p><img data-src="/2021/8a44/unknown_filename.3.png"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf(accounts[1])</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/undefined/unknown_filename.4.png"></p>
+<p><img data-src="/2021/8a44/unknown_filename.4.png"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract.transfer(accounts[1], 123)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
 
-<p><img data-src="/2021/undefined/unknown_filename.5.png"></p>
+<p><img data-src="/2021/8a44/unknown_filename.5.png"></p>
 <p>…</p>
 
     </div>

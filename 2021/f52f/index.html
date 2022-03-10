@@ -27,20 +27,20 @@
 <meta property="og:site_name" content="阿甫筆記">
 <meta property="og:description" content="flutter渲染原理與過程Flutter UI生成過程Flutter UI的生成與渲染: 我們透過flutter engine來與Native來溝通，並將接收到的VSync訊號給發送到給Framework，並開始進行UI的生成與渲染 Flutter的三棵樹:  而UI的顯示是一幀一幀的，每繪製一次，則稱其為一幀。而flutter中的engine通過VSync信號不斷的觸發每一幀繪製 渲染的幀數周">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://www.fufunote.com/2021/undefined/flutter-ui-render.png">
-<meta property="og:image" content="https://www.fufunote.com/2021/undefined/2021-12-25-20-16-41.png">
-<meta property="og:image" content="https://www.fufunote.com/2021/undefined/flutter-vsync-cycle.png">
-<meta property="og:image" content="https://www.fufunote.com/2021/undefined/Flutter-render-frame.png">
-<meta property="og:image" content="https://www.fufunote.com/2021/undefined/2021-12-25-20-18-11.png">
-<meta property="og:image" content="https://www.fufunote.com/2021/undefined/2021-12-25-20-14-01.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/f52f/flutter-ui-render.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/f52f/2021-12-25-20-16-41.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/f52f/flutter-vsync-cycle.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/f52f/Flutter-render-frame.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/f52f/2021-12-25-20-18-11.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/f52f/2021-12-25-20-14-01.png">
 <meta property="article:published_time" content="2021-12-24T18:59:14.000Z">
-<meta property="article:modified_time" content="2021-12-25T13:12:32.208Z">
+<meta property="article:modified_time" content="2022-03-10T16:28:32.776Z">
 <meta property="article:author" content="FufuShih">
 <meta property="article:tag" content="flutter">
 <meta property="article:tag" content="statement">
 <meta property="article:tag" content="render">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.fufunote.com/2021/undefined/flutter-ui-render.png">
+<meta name="twitter:image" content="https://www.fufunote.com/2021/f52f/flutter-ui-render.png">
 
 <link rel="canonical" href="https://www.fufunote.com/2021/f52f/">
 
@@ -240,10 +240,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-12-25 02:59:14 / Modified: 21:12:32" itemprop="dateCreated datePublished" datetime="2021-12-25T02:59:14+08:00">2021-12-25</time>
+              <time title="Created: 2021-12-25 02:59:14" itemprop="dateCreated datePublished" datetime="2021-12-25T02:59:14+08:00">2021-12-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-11 00:28:32" itemprop="dateModified" datetime="2022-03-11T00:28:32+08:00">2022-03-11</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -286,18 +292,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="flutter渲染原理與過程"><a href="#flutter渲染原理與過程" class="headerlink" title="flutter渲染原理與過程"></a>flutter渲染原理與過程</h1><h2 id="Flutter-UI生成過程"><a href="#Flutter-UI生成過程" class="headerlink" title="Flutter UI生成過程"></a>Flutter UI生成過程</h2><p>Flutter UI的生成與渲染:<br><img data-src="/2021/undefined/flutter-ui-render.png" alt="flutter ui render"></p>
+        <h1 id="flutter渲染原理與過程"><a href="#flutter渲染原理與過程" class="headerlink" title="flutter渲染原理與過程"></a>flutter渲染原理與過程</h1><h2 id="Flutter-UI生成過程"><a href="#Flutter-UI生成過程" class="headerlink" title="Flutter UI生成過程"></a>Flutter UI生成過程</h2><p>Flutter UI的生成與渲染:<br><img data-src="/2021/f52f/flutter-ui-render.png" alt="flutter ui render"></p>
 <p>我們透過flutter engine來與Native來溝通，並將接收到的VSync訊號給發送到給Framework，並開始進行UI的生成與渲染</p>
-<p>Flutter的三棵樹:<br><img data-src="/2021/undefined/2021-12-25-20-16-41.png" alt="Three Tree"></p>
+<p>Flutter的三棵樹:<br><img data-src="/2021/f52f/2021-12-25-20-16-41.png" alt="Three Tree"></p>
 <hr>
 <p>而UI的顯示是一幀一幀的，每繪製一次，則稱其為一幀。而flutter中的engine通過VSync信號不斷的觸發每一幀繪製</p>
-<p>渲染的幀數周期:<br><img data-src="/2021/undefined/flutter-vsync-cycle.png" alt="flutter fps cycle"></p>
+<p>渲染的幀數周期:<br><img data-src="/2021/f52f/flutter-vsync-cycle.png" alt="flutter fps cycle"></p>
 <p>如果需要進行繪製，如何監聽VSync?</p>
 <blockquote>
 <p>透過Flutter Engine的ScheduleFrame()來註冊VSync信號回調，當VSync信號來的時候就會收到通知，然後就會開始進行渲染繪製</p>
 </blockquote>
-<h2 id="Flutter在Android上渲染過程"><a href="#Flutter在Android上渲染過程" class="headerlink" title="Flutter在Android上渲染過程"></a>Flutter在Android上渲染過程</h2><p><img data-src="/2021/undefined/Flutter-render-frame.png" alt="flutter ui generator"></p>
-<p>Platform channel:<br><img data-src="/2021/undefined/2021-12-25-20-18-11.png" alt="Platform channels"></p>
+<h2 id="Flutter在Android上渲染過程"><a href="#Flutter在Android上渲染過程" class="headerlink" title="Flutter在Android上渲染過程"></a>Flutter在Android上渲染過程</h2><p><img data-src="/2021/f52f/Flutter-render-frame.png" alt="flutter ui generator"></p>
+<p>Platform channel:<br><img data-src="/2021/f52f/2021-12-25-20-18-11.png" alt="Platform channels"></p>
 <ol>
 <li>Flutter的Engine藉ScheduleFrame()來註冊Vsync信號，而Engine與Framework(Dart)是藉由Window來進行構通</li>
 <li>Engine收到Vsync信號，通過Window的onBeginFrame和onDrawFrame來進行回調，此時信號已經回調到Framework</li>
@@ -305,7 +311,7 @@
 <li>將RenderObject進行layout和paint，最後把繪製的結果輸出在Layer上</li>
 <li>Framework通過Window的render方法回到Engine，Engine再向GPU Thread提交繪製任務並渲染</li>
 </ol>
-<h1 id="Flutter架構"><a href="#Flutter架構" class="headerlink" title="Flutter架構"></a>Flutter架構</h1><p>Flutter架構:<br><img data-src="/2021/undefined/2021-12-25-20-14-01.png" alt="flutter arch-overview"></p>
+<h1 id="Flutter架構"><a href="#Flutter架構" class="headerlink" title="Flutter架構"></a>Flutter架構</h1><p>Flutter架構:<br><img data-src="/2021/f52f/2021-12-25-20-14-01.png" alt="flutter arch-overview"></p>
 <p>Flutter Engine本身不串建管理Thread，Flutter Engine Thread的建立和管理是由embedder負責。(Embeder指的是將Engine移植到平台的middleware)</p>
 <p>並且Engine要求Embeder提供四個Task Runner:<br>1.Platform Task Runner<br>2.UI Task Runner Thread(Dart Runner)<br>3.GPU Task Runner<br>4.IO Task Runner</p>
 <h2 id="Platform-Task-Runner"><a href="#Platform-Task-Runner" class="headerlink" title="Platform Task Runner"></a>Platform Task Runner</h2><p>當一個Flutter應用啟動時會創建一個Engine實例，Engine創建的時候會創建一個Thread來供Platform Runner使用。(一個Engine對應一個Platform Runner，而我們能同時啟動多個Engine實例，每個Runner跑在各自的Thread。)</p>
