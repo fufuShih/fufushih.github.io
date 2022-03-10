@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="zh-tw,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.fufunote.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="關於flutter的lifecycle最近在學習有關於flutter widget中的state內交互以及生命週期。整理了一下資料並把他做成筆記。  Flutter的三種tree:  1.Widget：UI 的不可變描述，並還描述了Element的配置 2.Element：在特定位置的小部件樹中的小部件實例化，並進行狀態管理 3.Render：處理大小、繪畫和其他低級的東西 Widget樹只是一個">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flutter lifecycle">
+<meta property="og:url" content="https://www.fufunote.com/2021/384e/index.html">
+<meta property="og:site_name" content="阿甫筆記">
+<meta property="og:description" content="關於flutter的lifecycle最近在學習有關於flutter widget中的state內交互以及生命週期。整理了一下資料並把他做成筆記。  Flutter的三種tree:  1.Widget：UI 的不可變描述，並還描述了Element的配置 2.Element：在特定位置的小部件樹中的小部件實例化，並進行狀態管理 3.Render：處理大小、繪畫和其他低級的東西 Widget樹只是一個">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://www.fufunote.com/2021/undefined/life-cycle.drawio.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/undefined/2021-12-13-10-08-39.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/undefined/2021-12-18-17-07-45.png">
+<meta property="article:published_time" content="2021-12-12T10:44:48.000Z">
+<meta property="article:modified_time" content="2021-12-18T13:05:25.753Z">
+<meta property="article:author" content="FufuShih">
+<meta property="article:tag" content="flutter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.fufunote.com/2021/undefined/life-cycle.drawio.png">
+
+<link rel="canonical" href="https://www.fufunote.com/2021/384e/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>flutter lifecycle | 阿甫筆記</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWS053782Y"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-LWS053782Y');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">阿甫筆記</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-flutter">
+
+    <a href="/categories/flutter/" rel="section"><i class="fa fa-newspaper fa-fw"></i>flutter</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/384e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="FufuShih">
+      <meta itemprop="description" content="紀錄、思考與分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿甫筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          flutter lifecycle
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-12 18:44:48" itemprop="dateCreated datePublished" datetime="2021-12-12T18:44:48+08:00">2021-12-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-18 21:05:25" itemprop="dateModified" datetime="2021-12-18T21:05:25+08:00">2021-12-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/flutter/" itemprop="url" rel="index"><span itemprop="name">flutter</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2021/384e/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/384e/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="關於flutter的lifecycle"><a href="#關於flutter的lifecycle" class="headerlink" title="關於flutter的lifecycle"></a>關於flutter的lifecycle</h1><p>最近在學習有關於flutter widget中的state內交互以及生命週期。整理了一下資料並把他做成筆記。</p>
+<p><img data-src="/2021/undefined/life-cycle.drawio.png"><br><img data-src="/2021/undefined/2021-12-13-10-08-39.png"></p>
+<p>Flutter的三種tree:</p>
+<blockquote>
+<p>1.Widget：UI 的不可變描述，並還描述了Element的配置</p>
+<p>2.Element：在特定位置的小部件樹中的小部件實例化，並進行狀態管理</p>
+<p>3.Render：處理大小、繪畫和其他低級的東西</p>
+<p>Widget樹只是一個藍圖；元素樹進行比較；渲染樹​​進行實際渲染</p>
+</blockquote>
+<p>三大類Widget:</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6886361064330493960#heading-3">Flutter Provider 原理解析</a><br><img data-src="/2021/undefined/2021-12-18-17-07-45.png" alt="Flutter Provider 原理解析"></p>
+<ul>
+<li><p>Component Widget: 組合類Widget，大都直接或間接繼承自StatelessWidget或StatefulWidget。</p>
+</li>
+<li><p>Proxy Widget:本身不涉及Widget內部邏輯，只為”子Widget”提供一些附加的中間功能。(InheritedWidget用在Descendant Widgets間傳遞共享訊息；ParentDataWidget用在配置Descendant Renderer Widget的布局信息)</p>
+</li>
+<li><p>Renderer Widget: 直接參與後面的Layout、Paint流程。而只有Renderer Widget有與之一一對應的Render Object</p>
+</li>
+</ul>
+<hr>
+<p>Flutter Widget生命周期：</p>
+<blockquote>
+<p>1、組件實例化後添加到render tree，即Navigator.push</p>
+<p>(構造函數-&gt;initState-&gt;didChangeDependencies-&gt; Widget build，此時頁面加載完成)</p>
+<p>2、狀態State改變，也就是開新的widget或其依賴的上級widget發生改變</p>
+<p>(didUpdateWidget-&gt;Widget build，頁面刷新)</p>
+<p>3、從render tree移除，即Navigator.pop</p>
+<p>(deactivate-&gt;dispose，組件移除並銷毀)</p>
+</blockquote>
+<p>Flutter打開和關閉widget時，都是先處理即將顯示的介面。</p>
+<hr>
+<h2 id="Stateful"><a href="#Stateful" class="headerlink" title="Stateful"></a>Stateful</h2><p>當我們開始渲染時，最先呼叫構造函數constructor(當呼叫這個widget時就會自動調用並做初始化)</p>
+<p>createState()</p>
+<blockquote>
+<p>建立StatefulWidget時，被呼叫。</p>
+</blockquote>
+<p>initState():</p>
+<blockquote>
+<p>將我們的widget插入到我們的渲染樹中</p>
+</blockquote>
+<p>didChangeDependencies()-&gt;void</p>
+<blockquote>
+<p>在初始化initState後，會被呼叫</p>
+<p>顯示/關閉其他widget</p>
+<p>InheritedWidget發生變化時，會被呼叫。</p>
+</blockquote>
+<p>didUpdateWidget()-&gt;void</p>
+<blockquote>
+<p>上級結點rebuild widget時，即上級widget state發生變化時會觸發子widget執行此函數</p>
+<p>build後、hot reload後被呼叫</p>
+<p>parent widget呼叫setState，child widget的didUpdateWidget被呼叫。</p>
+</blockquote>
+<p>deactivate()-&gt;void</p>
+<blockquote>
+<p>在打開新的widget或回到這個widget時會執行。在Element Tree中，State Widget的位置發生了變化，此時需暫時移除State Widget時，才會被呼叫。例如: 頁面切換時</p>
+<p>在某些情況下，框架會將 State 對象重新插入到樹的另一部分（例如，如果包含此 State 對象的子樹由於使用 GlobalKey 而從樹中的一個位置移植到另一個位置）。並調用 activate 以讓 State 對像有機會重新獲取它在停用時釋放的任何資源。然後它還會調用 build 來讓 State 對像有機會適應它在樹中的新位置。</p>
+<p>如果框架確實重新插入了這個子樹，它會在從樹中刪除子樹的動畫幀結束之前這樣做。</p>
+</blockquote>
+<p>dispose()-&gt;void</p>
+<blockquote>
+<p>在執行Navigator.pop後會調用該方法，表示組建已銷毀</p>
+<p>State Widget永遠銷毀時，才會被呼叫</p>
+</blockquote>
+<p>activate() → void</p>
+<blockquote>
+<p>在通過deactivate 刪除此對像後重新插入到樹中時調用</p>
+</blockquote>
+<p>reassemble()-&gt;void</p>
+<blockquote>
+<p>在調試期間重新組裝應用程序時調用，例如hor reload。release版本不会执行该函数。</p>
+</blockquote>
+<p>setState(VoidCallback fn) → void</p>
+<blockquote>
+<p>通知框架這個對象的內部狀態發生了變化。並且觸發build來重繪Widget</p>
+</blockquote>
+<h2 id="Stateless"><a href="#Stateless" class="headerlink" title="Stateless"></a>Stateless</h2><p>不與Widget互動，Lifecycle:</p>
+<p>1.createElement() → StatelessElement</p>
+<blockquote>
+<p>創建一個StatelessElement來管理這個widget在樹中的位置。</p>
+</blockquote>
+<p>2.build(BuildContext context) → Widget</p>
+<blockquote>
+<p>描述此widget代表的用戶界面部分</p>
+</blockquote>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/widgets/State-class.html">Flutter State Class</a></li>
+<li><a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">Flutter Navigator Class</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.duicode.com/3108.html?fbclid=IwAR3yvdv5o3Nd2_3YRvBAqZVF4mN1Aef36WL1cE1LIfmC_SW26KZI8GWWNNU">Flutter中的生命周期</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ssjf/p/11759366.html">Flutter的生命週期</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=996ZgFRENMs">How Flutter renders Widgets</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\6fc5\" rel="bookmark">使用flutter來建立dapp-3</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\a621\" rel="bookmark">使用flutter來建立dapp</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\fbbd\" rel="bookmark">關於Flutter空安全</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\af04\" rel="bookmark">使用flutter來建立dapp-2</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\f52f\" rel="bookmark">flutter渲染原理與過程</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/flutter/" rel="tag"># flutter</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/4261/" rel="prev" title="使用flutter來製作過渡頁">
+      <i class="fa fa-chevron-left"></i> 使用flutter來製作過渡頁
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/fbbd/" rel="next" title="關於Flutter空安全">
+      關於Flutter空安全 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%9C%E6%96%BCflutter%E7%9A%84lifecycle"><span class="nav-number">1.</span> <span class="nav-text">關於flutter的lifecycle</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stateful"><span class="nav-number">1.1.</span> <span class="nav-text">Stateful</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stateless"><span class="nav-number">1.2.</span> <span class="nav-text">Stateless</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.3.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="FufuShih"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">FufuShih</p>
+  <div class="site-description" itemprop="description">紀錄、思考與分享</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fufuShih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fufuShih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zx8714245@gmail.com" title="E-Mail → mailto:zx8714245@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.kaggle.com/fufushih" title="Kaggle → https:&#x2F;&#x2F;www.kaggle.com&#x2F;fufushih" rel="noopener" target="_blank"><i class="fab fa-kaggle fa-fw"></i>Kaggle</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/chen-fu-shih-a04537161/" title="Linkin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;chen-fu-shih-a04537161&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin-in fa-fw"></i>Linkin</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FufuShih</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://fufu.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://www.fufunote.com/2021/384e/";
+    this.page.identifier = "2021/384e/";
+    this.page.title = "flutter lifecycle";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://fufu.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>
