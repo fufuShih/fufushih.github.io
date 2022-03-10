@@ -1133,4 +1133,67 @@
         <tag>restful</tag>
       </tags>
   </entry>
+  <entry>
+    <title>在windows裡嘗試Solana</title>
+    <url>/2022/solana/0b845aa6a481/</url>
+    <content><![CDATA[<h1 id="Solana-HelloWorld-in-win10"><a href="#Solana-HelloWorld-in-win10" class="headerlink" title="Solana: HelloWorld (in win10)"></a>Solana: HelloWorld (in win10)</h1><p>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/embedded.svg]]</p>
+<hr>
+<p>首先，我們先安裝WSL<br><a href="https://docs.microsoft.com/en-us/windows/wsl/install">Install WSL | Microsoft Docs</a></p>
+<p>在WSL中安裝rust-lang相關套件<br>Using WSL, in wsl terminal:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt install build-essential</span><br><span class="line"></span><br><span class="line">curl --proto &#x27;=https&#x27; --tlsv1.2 -sSf https://sh.rustup.rs | sh</span><br><span class="line"></span><br><span class="line">source $HOME/.cargo/env #Import the environment config for rust </span><br><span class="line"></span><br><span class="line">rustc --version #Test it</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>接著我們在WSL中安裝<a href="https://docs.solana.com/cli/install-solana-cli-tools">solana tool</a>:</p>
+<p>我們使用prebuilt binaries去安裝:<br>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.1.png]]<br>1.Download the file<br><strong>solana-release-x86_64-unknown-linux-msvc.tar.bz2</strong></p>
+<p>2. in wsl terminal, run:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar jxf solana-release-x86_64-unknown-linux-gnu.tar.bz2</span><br><span class="line">cd solana-release/</span><br><span class="line">export PATH=$PWD/bin:$PATH</span><br></pre></td></tr></table></figure>
+
+<p>Goto example-helloworld, and run :</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cargo build-bpf --manifest-path=./src/program-rust/Cargo.toml --bpf-out-dir=dist/program</span><br></pre></td></tr></table></figure>
+
+<p>我們可以看到，正在build智能合約<br>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.png]]</p>
+<p>接著我們能看到編譯完成後，出現了這些檔<br>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.2.png]]</p>
+<p>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.3.png]]</p>
+<hr>
+<p>我們將他deploy到我們的local網上</p>
+<p>首先先產生key</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">solana-keygen new -o /home/chenfu0217/.config/solana/id.json</span><br></pre></td></tr></table></figure>
+
+<p>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/Image.png]]<br>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.4.png]]<br>接著，我們將合約deploy到local網上</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">solana program deploy /mnt/f/_workspace/BlockChain/solana/example-helloworld/dist/program/helloworld.so</span><br></pre></td></tr></table></figure>
+
+<p>We see</p>
+<p>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.5.png]]</p>
+<p>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.6.png]]</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">solana config set --url localhost</span><br></pre></td></tr></table></figure>
+
+<p>Set<br>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.7.png]]</p>
+<p>Open new wsl terminal and run</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">solana-test-validator</span><br></pre></td></tr></table></figure>
+
+<p>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.8.png]]</p>
+<p>Get problem(<a href="https://stackoverflow.com/questions/68906303/solana-hello-world-problem-on-windows-10-wsl2-ubuntu-18-04">Solved</a>)<br>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.10.png]]</p>
+<p>這是因為WSL中目錄關係所造成的問題，使用”cd ~/“切換目錄<br>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.9.png]]<br>=&gt;<br>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.11.png]]</p>
+<p>Now we deploy it</p>
+<p>open new terminal and run<br>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.12.png]]</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export PATH=$PWD/bin:$PATH</span><br></pre></td></tr></table></figure>
+<p>And </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">solana program deploy /mnt/f/_workspace/BlockChain/solana/example-helloworld/dist/program/helloworld.so</span><br></pre></td></tr></table></figure>
+
+<p>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.13.png]]</p>
+<p>Back to the origin terminal, and use npm to run</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run start</span><br></pre></td></tr></table></figure>
+<p>we see<br>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.14.png]]</p>
+<p>If we stop WSL<br>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.15.png]]<br>And back to test, we see<br>![[./<em>resources/Solana__HelloWorld</em>(in_win10).resources/unknown_filename.16.png]]</p>
+<p>Reference:</p>
+<p><a href="https://docs.rs/solana-program/1.8.5/solana_program/">solana_program</a><br><a href="https://docs.rs/solana-sdk/1.8.5/solana_sdk/">solana_sdk</a></p>
+<p>..</p>
+]]></content>
+      <categories>
+        <category>solana</category>
+      </categories>
+      <tags>
+        <tag>blockchain</tag>
+        <tag>solana</tag>
+      </tags>
+  </entry>
 </search>
