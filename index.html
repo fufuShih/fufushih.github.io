@@ -230,7 +230,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-04-14 19:45:39 / Modified: 19:47:39" itemprop="dateCreated datePublished" datetime="2022-04-14T19:45:39+08:00">2022-04-14</time>
+              <time title="Created: 2022-04-14 19:45:39 / Modified: 19:52:07" itemprop="dateCreated datePublished" datetime="2022-04-14T19:45:39+08:00">2022-04-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -274,8 +274,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Implement-Picture-zoom-when-hover-the-image"><a href="#Implement-Picture-zoom-when-hover-the-image" class="headerlink" title="Implement Picture zoom when hover the image."></a>Implement Picture zoom when hover the image.</h2><p><img data-src="/2022/undefined/app-test.gif" alt="app-test.gif"></p>
-<h2 id="How-to-implement-it"><a href="#How-to-implement-it" class="headerlink" title="How to implement it?"></a>How to implement it?</h2><p>Using <a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html"><strong>AnimatedContainer</strong></a> to do animation and using <a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/material/InkWell-class.html"><strong>InkWell</strong></a> to detect hover.</p>
+          <h2 id="實現當懸停時，圖片縮放"><a href="#實現當懸停時，圖片縮放" class="headerlink" title="實現當懸停時，圖片縮放"></a>實現當懸停時，圖片縮放</h2><p><img data-src="/2022/3ea/app-test.gif" alt="app-test.gif"></p>
+<h2 id="如何實現"><a href="#如何實現" class="headerlink" title="如何實現?"></a>如何實現?</h2><p>使用 <a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html"><strong>AnimatedContainer</strong></a> 來實現動畫效果並使用 <a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/material/InkWell-class.html"><strong>InkWell</strong></a> 來偵測懸停。</p>
 <p>In InkWell:</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">InkWell(</span><br><span class="line">        onTap: () &#123;</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&#x27;Tap&#x27;</span>);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// Detect hover here</span></span><br><span class="line">        onHover: (val) &#123;</span><br><span class="line">          setState(() &#123;</span><br><span class="line">            isHover = val;</span><br><span class="line">            <span class="built_in">print</span>(val);</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        child: <span class="comment">//Child</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 

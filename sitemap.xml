@@ -200,7 +200,21 @@
 
   
   <url>
-    <loc>https://www.fufunote.com/tags/flutter/</loc>
+    <loc>https://www.fufunote.com/tags/vscode/</loc>
+    <lastmod>2022-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.fufunote.com/tags/remix/</loc>
+    <lastmod>2022-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.fufunote.com/tags/solidity/</loc>
     <lastmod>2022-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -221,21 +235,7 @@
   </url>
   
   <url>
-    <loc>https://www.fufunote.com/tags/solidity/</loc>
-    <lastmod>2022-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.fufunote.com/tags/vscode/</loc>
-    <lastmod>2022-04-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.fufunote.com/tags/remix/</loc>
+    <loc>https://www.fufunote.com/tags/flutter/</loc>
     <lastmod>2022-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -300,7 +300,7 @@
 
   
   <url>
-    <loc>https://www.fufunote.com/categories/flutter/</loc>
+    <loc>https://www.fufunote.com/categories/solidity/</loc>
     <lastmod>2022-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -314,7 +314,7 @@
   </url>
   
   <url>
-    <loc>https://www.fufunote.com/categories/solidity/</loc>
+    <loc>https://www.fufunote.com/categories/flutter/</loc>
     <lastmod>2022-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"www.fufunote.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Implement Picture zoom when hover the image. How to implement it?Using AnimatedContainer to do animation and using InkWell to detect hover. In InkWell: 12345678910111213InkWell(        onTap: () &amp;#123">
+  <meta name="description" content="實現當懸停時，圖片縮放 如何實現?使用 AnimatedContainer 來實現動畫效果並使用 InkWell 來偵測懸停。 In InkWell: 12345678910111213InkWell(        onTap: () &amp;#123;          print(&amp;#x27;Tap&amp;#x27;);        &amp;#125;,        &#x2F;&#x2F; Detect hover her">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flutter-feature-zoom">
 <meta property="og:url" content="https://www.fufunote.com/2022/3ea/index.html">
 <meta property="og:site_name" content="阿甫筆記">
-<meta property="og:description" content="Implement Picture zoom when hover the image. How to implement it?Using AnimatedContainer to do animation and using InkWell to detect hover. In InkWell: 12345678910111213InkWell(        onTap: () &amp;#123">
+<meta property="og:description" content="實現當懸停時，圖片縮放 如何實現?使用 AnimatedContainer 來實現動畫效果並使用 InkWell 來偵測懸停。 In InkWell: 12345678910111213InkWell(        onTap: () &amp;#123;          print(&amp;#x27;Tap&amp;#x27;);        &amp;#125;,        &#x2F;&#x2F; Detect hover her">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://www.fufunote.com/2022/undefined/app-test.gif">
+<meta property="og:image" content="https://www.fufunote.com/2022/3ea/app-test.gif">
 <meta property="article:published_time" content="2022-04-14T11:45:39.000Z">
-<meta property="article:modified_time" content="2022-04-14T11:47:39.683Z">
+<meta property="article:modified_time" content="2022-04-14T11:52:07.878Z">
 <meta property="article:author" content="FufuShih">
 <meta property="article:tag" content="flutter">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.fufunote.com/2022/undefined/app-test.gif">
+<meta name="twitter:image" content="https://www.fufunote.com/2022/3ea/app-test.gif">
 
 <link rel="canonical" href="https://www.fufunote.com/2022/3ea/">
 
@@ -235,7 +235,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-04-14 19:45:39 / Modified: 19:47:39" itemprop="dateCreated datePublished" datetime="2022-04-14T19:45:39+08:00">2022-04-14</time>
+              <time title="Created: 2022-04-14 19:45:39 / Modified: 19:52:07" itemprop="dateCreated datePublished" datetime="2022-04-14T19:45:39+08:00">2022-04-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -279,8 +279,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Implement-Picture-zoom-when-hover-the-image"><a href="#Implement-Picture-zoom-when-hover-the-image" class="headerlink" title="Implement Picture zoom when hover the image."></a>Implement Picture zoom when hover the image.</h2><p><img data-src="/2022/undefined/app-test.gif" alt="app-test.gif"></p>
-<h2 id="How-to-implement-it"><a href="#How-to-implement-it" class="headerlink" title="How to implement it?"></a>How to implement it?</h2><p>Using <a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html"><strong>AnimatedContainer</strong></a> to do animation and using <a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/material/InkWell-class.html"><strong>InkWell</strong></a> to detect hover.</p>
+        <h2 id="實現當懸停時，圖片縮放"><a href="#實現當懸停時，圖片縮放" class="headerlink" title="實現當懸停時，圖片縮放"></a>實現當懸停時，圖片縮放</h2><p><img data-src="/2022/3ea/app-test.gif" alt="app-test.gif"></p>
+<h2 id="如何實現"><a href="#如何實現" class="headerlink" title="如何實現?"></a>如何實現?</h2><p>使用 <a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html"><strong>AnimatedContainer</strong></a> 來實現動畫效果並使用 <a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/material/InkWell-class.html"><strong>InkWell</strong></a> 來偵測懸停。</p>
 <p>In InkWell:</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">InkWell(</span><br><span class="line">        onTap: () &#123;</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&#x27;Tap&#x27;</span>);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// Detect hover here</span></span><br><span class="line">        onHover: (val) &#123;</span><br><span class="line">          setState(() &#123;</span><br><span class="line">            isHover = val;</span><br><span class="line">            <span class="built_in">print</span>(val);</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        child: <span class="comment">//Child</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
@@ -298,19 +298,19 @@
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2021\6fc5\" rel="bookmark">使用flutter來建立dapp-3</a></div>
+      <div class="popular-posts-title"><a href="\2021\af04\" rel="bookmark">使用flutter來建立dapp-2</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2021\a621\" rel="bookmark">使用flutter來建立dapp</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\6fc5\" rel="bookmark">使用flutter來建立dapp-3</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2021\384e\" rel="bookmark">flutter lifecycle</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2021\fbbd\" rel="bookmark">關於Flutter空安全</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2021\af04\" rel="bookmark">使用flutter來建立dapp-2</a></div>
     </li>
   </ul>
 
@@ -395,7 +395,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Implement-Picture-zoom-when-hover-the-image"><span class="nav-number">1.</span> <span class="nav-text">Implement Picture zoom when hover the image.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-implement-it"><span class="nav-number">2.</span> <span class="nav-text">How to implement it?</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%A6%E7%8F%BE%E7%95%B6%E6%87%B8%E5%81%9C%E6%99%82%EF%BC%8C%E5%9C%96%E7%89%87%E7%B8%AE%E6%94%BE"><span class="nav-number">1.</span> <span class="nav-text">實現當懸停時，圖片縮放</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AF%A6%E7%8F%BE"><span class="nav-number">2.</span> <span class="nav-text">如何實現?</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
