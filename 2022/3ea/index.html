@@ -20,41 +20,22 @@
     var CONFIG = {"hostname":"www.fufunote.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Solana: HelloWorld (in win10)  首先，我們先安裝WSLInstall WSL | Microsoft Docs 在WSL中安裝rust-lang相關套件Using WSL, in wsl terminal: 12345678910sudo apt-get updatesudo apt install build-essentialcurl --proto &amp;#x27;">
+  <meta name="description" content="Implement Picture zoom when hover the image. How to implement it?Using AnimatedContainer to do animation and using InkWell to detect hover. In InkWell: 12345678910111213InkWell(        onTap: () &amp;#123">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在windows裡嘗試Solana">
-<meta property="og:url" content="https://www.fufunote.com/2022/2de4/index.html">
+<meta property="og:title" content="flutter-feature-zoom">
+<meta property="og:url" content="https://www.fufunote.com/2022/3ea/index.html">
 <meta property="og:site_name" content="阿甫筆記">
-<meta property="og:description" content="Solana: HelloWorld (in win10)  首先，我們先安裝WSLInstall WSL | Microsoft Docs 在WSL中安裝rust-lang相關套件Using WSL, in wsl terminal: 12345678910sudo apt-get updatesudo apt install build-essentialcurl --proto &amp;#x27;">
+<meta property="og:description" content="Implement Picture zoom when hover the image. How to implement it?Using AnimatedContainer to do animation and using InkWell to detect hover. In InkWell: 12345678910111213InkWell(        onTap: () &amp;#123">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/embedded.svg">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.1.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.2.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.3.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/Image.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.4.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.5.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.6.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.7.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.8.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.10.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.9.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.11.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.12.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.13.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.14.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.15.png">
-<meta property="og:image" content="https://www.fufunote.com/2022/2de4/unknown_filename.16.png">
-<meta property="article:published_time" content="2022-03-10T16:20:19.000Z">
-<meta property="article:modified_time" content="2022-03-10T16:34:19.592Z">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/app-test.gif">
+<meta property="article:published_time" content="2022-04-14T11:45:39.000Z">
+<meta property="article:modified_time" content="2022-04-14T11:47:39.683Z">
 <meta property="article:author" content="FufuShih">
-<meta property="article:tag" content="blockchain">
-<meta property="article:tag" content="solana">
+<meta property="article:tag" content="flutter">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.fufunote.com/2022/2de4/embedded.svg">
+<meta name="twitter:image" content="https://www.fufunote.com/2022/undefined/app-test.gif">
 
-<link rel="canonical" href="https://www.fufunote.com/2022/2de4/">
+<link rel="canonical" href="https://www.fufunote.com/2022/3ea/">
 
 
 <script id="page-configurations">
@@ -67,7 +48,7 @@
   };
 </script>
 
-  <title>在windows裡嘗試Solana | 阿甫筆記</title>
+  <title>flutter-feature-zoom | 阿甫筆記</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWS053782Y"></script>
     <script data-pjax>
@@ -230,7 +211,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2022/2de4/">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2022/3ea/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -243,7 +224,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          在windows裡嘗試Solana
+          flutter-feature-zoom
         </h1>
 
         <div class="post-meta">
@@ -254,7 +235,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-03-11 00:20:19 / Modified: 00:34:19" itemprop="dateCreated datePublished" datetime="2022-03-11T00:20:19+08:00">2022-03-11</time>
+              <time title="Created: 2022-04-14 19:45:39 / Modified: 19:47:39" itemprop="dateCreated datePublished" datetime="2022-04-14T19:45:39+08:00">2022-04-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,7 +243,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/solana/" itemprop="url" rel="index"><span itemprop="name">solana</span></a>
+                  <a href="/categories/flutter/" itemprop="url" rel="index"><span itemprop="name">flutter</span></a>
                 </span>
             </span>
 
@@ -275,8 +256,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2022/2de4/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/2de4/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2022/3ea/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/3ea/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -286,7 +267,7 @@
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -298,70 +279,45 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Solana-HelloWorld-in-win10"><a href="#Solana-HelloWorld-in-win10" class="headerlink" title="Solana: HelloWorld (in win10)"></a>Solana: HelloWorld (in win10)</h1><p><img data-src="/2022/2de4/embedded.svg" alt="image"></p>
-<hr>
-<p>首先，我們先安裝WSL<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/wsl/install">Install WSL | Microsoft Docs</a></p>
-<p>在WSL中安裝rust-lang相關套件<br>Using WSL, in wsl terminal:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt install build-essential</span><br><span class="line"></span><br><span class="line">curl --proto &#x27;=https&#x27; --tlsv1.2 -sSf https://sh.rustup.rs | sh</span><br><span class="line"></span><br><span class="line">source $HOME/.cargo/env #Import the environment config for rust </span><br><span class="line"></span><br><span class="line">rustc --version #Test it</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h2 id="Implement-Picture-zoom-when-hover-the-image"><a href="#Implement-Picture-zoom-when-hover-the-image" class="headerlink" title="Implement Picture zoom when hover the image."></a>Implement Picture zoom when hover the image.</h2><p><img data-src="/2022/undefined/app-test.gif" alt="app-test.gif"></p>
+<h2 id="How-to-implement-it"><a href="#How-to-implement-it" class="headerlink" title="How to implement it?"></a>How to implement it?</h2><p>Using <a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html"><strong>AnimatedContainer</strong></a> to do animation and using <a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/material/InkWell-class.html"><strong>InkWell</strong></a> to detect hover.</p>
+<p>In InkWell:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">InkWell(</span><br><span class="line">        onTap: () &#123;</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&#x27;Tap&#x27;</span>);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// Detect hover here</span></span><br><span class="line">        onHover: (val) &#123;</span><br><span class="line">          setState(() &#123;</span><br><span class="line">            isHover = val;</span><br><span class="line">            <span class="built_in">print</span>(val);</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        child: <span class="comment">//Child</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
-<p>接著我們在WSL中安裝<a target="_blank" rel="noopener" href="https://docs.solana.com/cli/install-solana-cli-tools">solana tool</a>:</p>
-<p>我們使用prebuilt binaries去安裝:<br><img data-src="/2022/2de4/unknown_filename.1.png" alt="image"><br>1.Download the file<br><strong>solana-release-x86_64-unknown-linux-msvc.tar.bz2</strong></p>
-<p>2. in wsl terminal, run:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar jxf solana-release-x86_64-unknown-linux-gnu.tar.bz2</span><br><span class="line">cd solana-release/</span><br><span class="line">export PATH=$PWD/bin:$PATH</span><br></pre></td></tr></table></figure>
+<p>In AnimatedContainer:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">AnimatedContainer(</span><br><span class="line">            transform: isHover ? hoverdTransform : unhoverdTransform,</span><br><span class="line">            <span class="comment">// duraction time</span></span><br><span class="line">            duration: <span class="keyword">const</span> <span class="built_in">Duration</span>(seconds: <span class="number">10</span>),</span><br><span class="line">            curve: Curves.ease,</span><br><span class="line">            child: Image.network(</span><br><span class="line">              imageUrl,</span><br><span class="line">              fit: BoxFit.cover,</span><br><span class="line">              height: <span class="number">200</span>,</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br></pre></td></tr></table></figure>
 
-<p>Goto example-helloworld, and run :</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cargo build-bpf --manifest-path=./src/program-rust/Cargo.toml --bpf-out-dir=dist/program</span><br></pre></td></tr></table></figure>
-
-<p>我們可以看到，正在build智能合約<br><img data-src="/2022/2de4/unknown_filename.png" alt="image"></p>
-<p>接著我們能看到編譯完成後，出現了這些檔<br><img data-src="/2022/2de4/unknown_filename.2.png" alt="image"></p>
-<p><img data-src="/2022/2de4/unknown_filename.3.png" alt="image"></p>
-<hr>
-<p>我們將他deploy到我們的local網上</p>
-<p>首先先產生key</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana-keygen new -o /home/chenfu0217/.config/solana/id.json</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2022/2de4/Image.png" alt="image"><br><img data-src="/2022/2de4/unknown_filename.4.png" alt="image"><br>接著，我們將合約deploy到local網上</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana program deploy /mnt/f/_workspace/BlockChain/solana/example-helloworld/dist/program/helloworld.so</span><br></pre></td></tr></table></figure>
-
-<p>We see</p>
-<p><img data-src="/2022/2de4/unknown_filename.5.png" alt="image"></p>
-<p><img data-src="/2022/2de4/unknown_filename.6.png" alt="image"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana config set --url localhost</span><br></pre></td></tr></table></figure>
-
-<p>Set<br><img data-src="/2022/2de4/unknown_filename.7.png" alt="image"></p>
-<p>Open new wsl terminal and run</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana-test-validator</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2022/2de4/unknown_filename.8.png" alt="image"></p>
-<p>Get problem(<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/68906303/solana-hello-world-problem-on-windows-10-wsl2-ubuntu-18-04">Solved</a>)<br><img data-src="/2022/2de4/unknown_filename.10.png" alt="image"></p>
-<p>這是因為WSL中目錄關係所造成的問題，使用”cd ~/“切換目錄<br><img data-src="/2022/2de4/unknown_filename.9.png" alt="image"><br>=&gt;<br><img data-src="/2022/2de4/unknown_filename.11.png" alt="image"></p>
-<p>Now we deploy it</p>
-<p>open new terminal and run<br><img data-src="/2022/2de4/unknown_filename.12.png" alt="image"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PWD/bin:$PATH</span><br></pre></td></tr></table></figure>
-<p>And </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana program deploy /mnt/f/_workspace/BlockChain/solana/example-helloworld/dist/program/helloworld.so</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2022/2de4/unknown_filename.13.png" alt="image"></p>
-<p>Back to the origin terminal, and use npm to run</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run start</span><br></pre></td></tr></table></figure>
-<p>we see<br><img data-src="/2022/2de4/unknown_filename.14.png" alt="image"></p>
-<p>If we stop WSL<br><img data-src="/2022/2de4/unknown_filename.15.png" alt="image"><br>And back to test, we see<br><img data-src="/2022/2de4/unknown_filename.16.png" alt="image"></p>
-<p>Reference:</p>
-<p><a target="_blank" rel="noopener" href="https://docs.rs/solana-program/1.8.5/solana_program/">solana_program</a><br><a target="_blank" rel="noopener" href="https://docs.rs/solana-sdk/1.8.5/solana_sdk/">solana_sdk</a></p>
-<p>..</p>
-
+<p>Full Code:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:convert&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:io&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(</span><br><span class="line">    MaterialApp(</span><br><span class="line">      home: Home(),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Home</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _HomeState createState() =&gt; _HomeState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_HomeState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">Home</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: ZoomAnimate(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZoomAnimate</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> ZoomAnimate(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  State&lt;ZoomAnimate&gt; createState() =&gt; _ZoomAnimateState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_ZoomAnimateState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">ZoomAnimate</span>&gt; </span>&#123;</span><br><span class="line">  <span class="built_in">bool</span> isHover = <span class="keyword">false</span>;</span><br><span class="line">  <span class="built_in">String</span> imageUrl =</span><br><span class="line">      <span class="string">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg/220px-Ash_Tree_-_geograph.org.uk_-_590710.jpg&quot;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> hoverdTransform = Matrix4.identity()..scale(<span class="number">1.2</span>);</span><br><span class="line">    <span class="keyword">final</span> unhoverdTransform = Matrix4.identity()..scale(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> Padding(</span><br><span class="line">      padding: <span class="keyword">const</span> EdgeInsets.all(<span class="number">8.0</span>),</span><br><span class="line">      child: InkWell(</span><br><span class="line">        onTap: () &#123;</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&#x27;Tap&#x27;</span>);</span><br><span class="line">        &#125;,</span><br><span class="line">        onHover: (val) &#123;</span><br><span class="line">          setState(() &#123;</span><br><span class="line">            isHover = val;</span><br><span class="line">            <span class="built_in">print</span>(val);</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        child: ClipRRect(</span><br><span class="line">          borderRadius: BorderRadius.circular(<span class="number">8.0</span>),</span><br><span class="line">          child: AnimatedContainer(</span><br><span class="line">            transform: isHover ? hoverdTransform : unhoverdTransform,</span><br><span class="line">            duration: <span class="keyword">const</span> <span class="built_in">Duration</span>(seconds: <span class="number">10</span>),</span><br><span class="line">            curve: Curves.ease,</span><br><span class="line">            child: Image.network(</span><br><span class="line">              imageUrl,</span><br><span class="line">              fit: BoxFit.cover,</span><br><span class="line">              height: <span class="number">200</span>,</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
     
     
       
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\6fc5\" rel="bookmark">使用flutter來建立dapp-3</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\a621\" rel="bookmark">使用flutter來建立dapp</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\384e\" rel="bookmark">flutter lifecycle</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\fbbd\" rel="bookmark">關於Flutter空安全</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\af04\" rel="bookmark">使用flutter來建立dapp-2</a></div>
+    </li>
+  </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/blockchain/" rel="tag"># blockchain</a>
-              <a href="/tags/solana/" rel="tag"># solana</a>
+              <a href="/tags/flutter/" rel="tag"># flutter</a>
           </div>
 
         
@@ -370,13 +326,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/f345/" rel="prev" title="使用cmc api來建立一個flutter app">
-      <i class="fa fa-chevron-left"></i> 使用cmc api來建立一個flutter app
+    <a href="/2022/2de4/" rel="prev" title="在windows裡嘗試Solana">
+      <i class="fa fa-chevron-left"></i> 在windows裡嘗試Solana
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/3ea/" rel="next" title="flutter-feature-zoom">
-      flutter-feature-zoom <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -442,7 +395,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Solana-HelloWorld-in-win10"><span class="nav-number">1.</span> <span class="nav-text">Solana: HelloWorld (in win10)</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Implement-Picture-zoom-when-hover-the-image"><span class="nav-number">1.</span> <span class="nav-text">Implement Picture zoom when hover the image.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-implement-it"><span class="nav-number">2.</span> <span class="nav-text">How to implement it?</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -651,9 +604,9 @@ window.addEventListener('pjax:success', () => {
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://www.fufunote.com/2022/2de4/";
-    this.page.identifier = "2022/2de4/";
-    this.page.title = "在windows裡嘗試Solana";
+    this.page.url = "https://www.fufunote.com/2022/3ea/";
+    this.page.identifier = "2022/3ea/";
+    this.page.title = "flutter-feature-zoom";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
