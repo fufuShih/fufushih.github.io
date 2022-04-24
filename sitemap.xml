@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.fufunote.com/2021/8a44/</loc>
+    
+    <lastmod>2022-04-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.fufunote.com/2021/cc9f/</loc>
     
     <lastmod>2022-04-24</lastmod>
@@ -137,15 +146,6 @@
   </url>
   
   <url>
-    <loc>https://www.fufunote.com/2021/8a44/</loc>
-    
-    <lastmod>2022-03-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.fufunote.com/2021/ad49/</loc>
     
     <lastmod>2022-03-10</lastmod>
@@ -263,13 +263,6 @@
   </url>
   
   <url>
-    <loc>https://www.fufunote.com/tags/splash/</loc>
-    <lastmod>2022-04-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.fufunote.com/tags/statement/</loc>
     <lastmod>2022-04-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -278,6 +271,13 @@
   
   <url>
     <loc>https://www.fufunote.com/tags/render/</loc>
+    <lastmod>2022-04-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.fufunote.com/tags/splash/</loc>
     <lastmod>2022-04-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

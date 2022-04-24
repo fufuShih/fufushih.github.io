@@ -34,8 +34,17 @@
 <meta property="og:image" content="https://www.fufunote.com/2021/8a44/unknown_filename.3.png">
 <meta property="og:image" content="https://www.fufunote.com/2021/8a44/unknown_filename.4.png">
 <meta property="og:image" content="https://www.fufunote.com/2021/8a44/unknown_filename.5.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/2022-04-24-22-19-29.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/2022-04-24-22-20-02.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/2022-04-24-22-21-31.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/2022-04-24-22-23-17.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/2022-04-24-22-26-00.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/2022-04-24-22-27-09.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/2022-04-24-22-27-47.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/2022-04-24-22-28-09.png">
+<meta property="og:image" content="https://www.fufunote.com/2021/8a44/2022-04-24-22-28-43.png">
 <meta property="article:published_time" content="2021-11-30T17:04:19.000Z">
-<meta property="article:modified_time" content="2022-03-10T16:28:32.752Z">
+<meta property="article:modified_time" content="2022-04-24T14:31:09.088Z">
 <meta property="article:author" content="FufuShih">
 <meta property="article:tag" content="solidity">
 <meta name="twitter:card" content="summary">
@@ -247,7 +256,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-11 00:28:32" itemprop="dateModified" datetime="2022-03-11T00:28:32+08:00">2022-03-11</time>
+                <time title="Modified: 2022-04-24 22:31:09" itemprop="dateModified" datetime="2022-04-24T22:31:09+08:00">2022-04-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -318,7 +327,21 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract.transfer(accounts[1], 123)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
 
 <p><img data-src="/2021/8a44/unknown_filename.5.png"></p>
-<p>…</p>
+<hr>
+<p>使用Remix測試:<br>(可以參考前面: <a href="/2021/cc9f/" title="在VSCode上使用Remix">在VSCode上使用Remix</a>)</p>
+<p>1.啟動ganache-cli<br><img data-src="/2021/8a44/2022-04-24-22-19-29.png"></p>
+<p>2.使用remix連接local測試網<br><img data-src="/2021/8a44/2022-04-24-22-20-02.png"></p>
+<p>3.編譯並部屬<br><img data-src="/2021/8a44/2022-04-24-22-21-31.png"></p>
+<p>4.測試</p>
+<p>先呼叫部屬者，並從output中觀察結果<br><img data-src="/2021/8a44/2022-04-24-22-23-17.png"></p>
+<p>接著轉5000，測試轉帳功能<br><img data-src="/2021/8a44/2022-04-24-22-26-00.png"></p>
+<p><img data-src="/2021/8a44/2022-04-24-22-27-09.png"></p>
+<p>再看一次部屬者的Balance<br><img data-src="/2021/8a44/2022-04-24-22-27-47.png"></p>
+<p><img data-src="/2021/8a44/2022-04-24-22-28-09.png"></p>
+<p>最後看轉Token過去的account<br><img data-src="/2021/8a44/2022-04-24-22-28-43.png"></p>
+<blockquote>
+<p>完成，簡單的token生成與轉移token已經實現，但一般的Token我們會使用<strong>ERC20</strong>，而不會像這樣實現陽春的功能，會使用更嚴謹的方式來防止漏洞。</p>
+</blockquote>
 
     </div>
 
@@ -332,16 +355,16 @@
       <div class="popular-posts-title"><a href="\2021\cc9f\" rel="bookmark">在VSCode上使用Remix</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2021\af04\" rel="bookmark">使用flutter來建立dapp-2</a></div>
+      <div class="popular-posts-title"><a href="\2021\911b\" rel="bookmark">Solidity:創建ERC20標準代幣</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2021\ad49\" rel="bookmark">Solidity: Hello World</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2021\911b\" rel="bookmark">Solidity:創建ERC20標準代幣</a></div>
+      <div class="popular-posts-title"><a href="\2021\6fc5\" rel="bookmark">使用flutter來建立dapp-3</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2021\6fc5\" rel="bookmark">使用flutter來建立dapp-3</a></div>
+      <div class="popular-posts-title"><a href="\2021\af04\" rel="bookmark">使用flutter來建立dapp-2</a></div>
     </li>
   </ul>
 
