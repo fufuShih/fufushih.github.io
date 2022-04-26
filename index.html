@@ -205,6 +205,140 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2022/6d7c/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="FufuShih">
+      <meta itemprop="description" content="紀錄、思考與分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿甫筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/6d7c/" class="post-title-link" itemprop="url">solidity-voting</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-26 16:35:13 / Modified: 16:37:11" itemprop="dateCreated datePublished" datetime="2022-04-26T16:35:13+08:00">2022-04-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solidity/" itemprop="url" rel="index"><span itemprop="name">solidity</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/6d7c/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/6d7c/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>5 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img data-src="/2022/6d7c/91caf40d4e8da50b0fa1284cbfad3b09.png"></p>
+<p><a target="_blank" rel="noopener" href="https://docs.soliditylang.org/en/v0.8.10/solidity-by-example.html">Solidity by Example — Solidity 0.8.10 documentation (soliditylang.org)</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.7.0 &lt;0.9.0;</span><br><span class="line">/// @title Voting with delegation.</span><br><span class="line">contract Voting &#123;</span><br><span class="line"></span><br><span class="line">    // 選民</span><br><span class="line">    struct Voter &#123;</span><br><span class="line">        uint weight; // weight is accumulated by delegation</span><br><span class="line">        bool voted;  // if true, that person already voted</span><br><span class="line">        address delegate; // 被委託人 person delegated to</span><br><span class="line">        uint vote;   // 投票提案的索引 index of the voted proposal</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // This is a type for a single proposal.</span><br><span class="line">    struct Proposal &#123;</span><br><span class="line">        bytes32 name;   // short name (up to 32 bytes)</span><br><span class="line">        uint voteCount; // number of accumulated votes</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    address public chairperson;</span><br><span class="line"></span><br><span class="line">    // This declares a state variable that</span><br><span class="line">    // stores a `Voter` struct for each possible address.</span><br><span class="line">    mapping(address =&gt; Voter) public voters;</span><br><span class="line"></span><br><span class="line">    // A dynamically-sized array of `Proposal` structs.</span><br><span class="line">    Proposal[] public proposals;</span><br><span class="line"></span><br><span class="line">    // 為`proposalNames` 中的每個提案，創建一個新投票表決 Create a new ballot to choose one of `proposalNames`.</span><br><span class="line"></span><br><span class="line">    constructor(bytes32[] memory proposalNames) &#123;</span><br><span class="line">        chairperson = msg.sender;</span><br><span class="line">        voters[chairperson].weight = 1;</span><br><span class="line"></span><br><span class="line">        // 對每一提案名稱，創建一個新的Proposal並添加到array</span><br><span class="line">        for (uint i = 0; i &lt; proposalNames.length; i++) &#123;</span><br><span class="line">            // `Proposal(&#123;...&#125;)` creates a temporary</span><br><span class="line">            // Proposal object and `proposals.push(...)`</span><br><span class="line">            // appends it to the end of `proposals`.</span><br><span class="line">            proposals.push(Proposal(&#123;</span><br><span class="line">                name: proposalNames[i],</span><br><span class="line">                voteCount: 0</span><br><span class="line">            &#125;));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 授權voter對這個表決進行投票，只有chairperson能調用此函數</span><br><span class="line">    function giveRightToVote(address voter) external &#123;</span><br><span class="line">        // If the first argument of `require` evaluates</span><br><span class="line">        // to `false`, execution terminates and all</span><br><span class="line">        // changes to the state and to Ether balances</span><br><span class="line">        // are reverted.</span><br><span class="line">        // This used to consume all gas in old EVM versions, but</span><br><span class="line">        // not anymore.</span><br><span class="line">        // It is often a good idea to use `require` to check if</span><br><span class="line">        // functions are called correctly.</span><br><span class="line">        // As a second argument, you can also provide an</span><br><span class="line">        // explanation about what went wrong.</span><br><span class="line">        require(</span><br><span class="line">            msg.sender == chairperson,</span><br><span class="line">            &quot;Only chairperson can give right to vote.&quot;</span><br><span class="line">        );</span><br><span class="line">        require(</span><br><span class="line">            !voters[voter].voted,</span><br><span class="line">            &quot;The voter already voted.&quot;</span><br><span class="line">        );</span><br><span class="line">        require(voters[voter].weight == 0);</span><br><span class="line">        voters[voter].weight = 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /// Delegate your vote to the voter `to`.</span><br><span class="line">    function delegate(address to) external &#123;</span><br><span class="line">        // assigns reference</span><br><span class="line">        Voter storage sender = voters[msg.sender];</span><br><span class="line">        require(!sender.voted, &quot;You already voted.&quot;);</span><br><span class="line"></span><br><span class="line">        require(to != msg.sender, &quot;Self-delegation is disallowed.&quot;);</span><br><span class="line"></span><br><span class="line">        // Forward the delegation as long as</span><br><span class="line">        // `to` also delegated.</span><br><span class="line">        // In general, such loops are very dangerous,</span><br><span class="line">        // because if they run too long, they might</span><br><span class="line">        // need more gas than is available in a block.</span><br><span class="line">        // In this case, the delegation will not be executed,</span><br><span class="line">        // but in other situations, such loops might</span><br><span class="line">        // cause a contract to get &quot;stuck&quot; completely.</span><br><span class="line">        while (voters[to].delegate != address(0)) &#123;</span><br><span class="line">            to = voters[to].delegate;</span><br><span class="line"></span><br><span class="line">            // We found a loop in the delegation, not allowed.</span><br><span class="line">            require(to != msg.sender, &quot;Found loop in delegation.&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Since `sender` is a reference, this modifies `voters[msg.sender].voted`</span><br><span class="line"></span><br><span class="line">        sender.voted = true;</span><br><span class="line">        sender.delegate = to;</span><br><span class="line">        Voter storage delegate_ = voters[to];</span><br><span class="line">        if (delegate_.voted) &#123;</span><br><span class="line">            // If the delegate already voted,</span><br><span class="line">            // directly add to the number of votes</span><br><span class="line">            proposals[delegate_.vote].voteCount += sender.weight;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // If the delegate did not vote yet,</span><br><span class="line">            // add to her weight.</span><br><span class="line">            delegate_.weight += sender.weight;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /// 把你的票(包括委託給你的票)，投給提案`proposals[proposal].name`.</span><br><span class="line">    function vote(uint proposal) external &#123;</span><br><span class="line">        Voter storage sender = voters[msg.sender];</span><br><span class="line">        require(sender.weight != 0, &quot;Has no right to vote&quot;);</span><br><span class="line">        require(!sender.voted, &quot;Already voted.&quot;);</span><br><span class="line">        sender.voted = true;</span><br><span class="line">        sender.vote = proposal;</span><br><span class="line"></span><br><span class="line">        // If `proposal` is out of the range of the array,</span><br><span class="line">        // this will throw automatically and revert all</span><br><span class="line">        // changes.</span><br><span class="line">        proposals[proposal].voteCount += sender.weight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /// @dev Computes the winning proposal taking all</span><br><span class="line">    /// previous votes into account.</span><br><span class="line">    function winningProposal() public view</span><br><span class="line">            returns (uint winningProposal_)</span><br><span class="line">    &#123;</span><br><span class="line">        uint winningVoteCount = 0;</span><br><span class="line">        for (uint p = 0; p &lt; proposals.length; p++) &#123;</span><br><span class="line">            if (proposals[p].voteCount &gt; winningVoteCount) &#123;</span><br><span class="line">                winningVoteCount = proposals[p].voteCount;</span><br><span class="line">                winningProposal_ = p;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Calls winningProposal() function to get the index</span><br><span class="line">    // of the winner contained in the proposals array and then</span><br><span class="line">    // returns the name of the winner</span><br><span class="line">    function winnerName() external view</span><br><span class="line">            returns (bytes32 winnerName_)</span><br><span class="line">    &#123;</span><br><span class="line">        winnerName_ = proposals[winningProposal()].name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>in migrations</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const Voting = artifacts.require(&quot;Voting&quot;);</span><br><span class="line"></span><br><span class="line">// arr = [&quot;apple&quot;, &quot;banana&quot;, &quot;cat&quot;]</span><br><span class="line">byte32_para_1 = web3.utils.asciiToHex(&quot;apple&quot;)</span><br><span class="line">byte32_para_2 = web3.utils.asciiToHex(&quot;banana&quot;)</span><br><span class="line"></span><br><span class="line">module.exports = function (deployer) &#123;</span><br><span class="line">  deployer.deploy(Voting, [byte32_para_1, byte32_para_2]);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>啟動節點模擬<br><img data-src="/2022/6d7c/f44ae482e4cd4475f60f8e66eee19aa2.png"></p>
+<p>compile合約<br><img data-src="/2022/6d7c/70761938c897d4678f2eb085b9683e83.png"><br>佈署(如果失敗，執行npm i web3)<br><img data-src="/2022/6d7c/ef05d8606b70e09ff02744963eaf322f.png"></p>
+<p><img data-src="/2022/6d7c/e96f7b3a7d7598a372498ef1087668c3.png"></p>
+<p>啟動console去測試:<br><code>truffle console</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let contract</span><br><span class="line">Voting.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2022/6d7c/2ad3d08a0694ab2fec94db4cf72b1a57.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">contract.winnerName.call()</span><br><span class="line">contract.winningProposal.call()</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2022/6d7c/8b3e98a98f58c70692f813e8b53ac755.png"></p>
+<p>我們使用 <a target="_blank" rel="noopener" href="https://web3-type-converter.onbrn.com/">Web3 Type Converter - Convert from bytes32 to string (onbrn.com)</a> 去看</p>
+<p><img data-src="/2022/6d7c/782a4a35aae7a084e5d8982e1b5c5a95.png"></p>
+<p>..</p>
+<p><img data-src="/2022/6d7c/87940cec86a4c4d2d85e7dcf25893b00.png"></p>
+<p><code>contract.giveRightToVote.call(&#39;0x0F3A1e5cAB244F921f1e554d6054468C38a17B93&#39;)</code></p>
+<p><img data-src="/2022/6d7c/e7b89c4417e31c2194225fe83fa78077.png"></p>
+<hr>
+<h2 id="使用Remix"><a href="#使用Remix" class="headerlink" title="使用Remix"></a>使用Remix</h2><p>(創建一個js來幫助我們將字串轉換為bytes32格式</p>
+<p>首先，創立一個資料夾並先安裝package:<br><code>npm i ethers</code><br>創立createBytes.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const eth = require(&#x27;ethers&#x27;);</span><br><span class="line"></span><br><span class="line">async function createBytes(args) &#123;</span><br><span class="line">    const name = args[0];</span><br><span class="line">    const bytes = eth.utils.formatBytes32String(name);</span><br><span class="line">    console.log(&quot;Byte is &quot;, bytes);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">createBytes(process.argv.slice(2));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node createBytes.js apple</span><br><span class="line">node createBytes.js banana</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2022/6d7c/9b6ed2db9b8362be51470902ce4568a2.png"></p>
+<ol>
+<li>將轉換後的Bytes置入</li>
+</ol>
+<p>[“0x6170706c65000000000000000000000000000000000000000000000000000000”, “0x62616e616e610000000000000000000000000000000000000000000000000000”]</p>
+<p><img data-src="/2022/6d7c/39523c9442598b6e3c4af160eb762edb.png"></p>
+<p>按下deploy後，產生合約<br><img data-src="/2022/6d7c/fc80676f21c02f3cad3035628fc6803a.png"></p>
+<p>測試:<br>按下winnername和winningproposal來call函數<br><img data-src="/2022/6d7c/59b5e1cc5ee085f8823d0f6c7b1487de.png"><br>在output那能看到<br><img data-src="/2022/6d7c/8a4df815897f478113c546c35d606757.png"></p>
+<p>接著測試投票</p>
+<p>我們是使用<br><img data-src="/2022/6d7c/ff1513290915ecee987cba13d42070b3.png"><br>來創建合約，所以chairperson目前是此帳戶</p>
+<p>chairperson執行give right to vote給另一個帳戶<br><img data-src="/2022/6d7c/fd223ff5819c1b815dcc16e392613ef1.png"><br>output<br><img data-src="/2022/6d7c/a4c97cfa13b18866b7d42f3e9bf75a43.png"></p>
+<p>接著，切換帳戶<br><img data-src="/2022/6d7c/b6a93ec1f700717ed890cef51a31ce93.png"><br>投票給banana<br><img data-src="/2022/6d7c/c97ddf8cc4512f18e7b0dc5d7835bf18.png"><br>output<br><img data-src="/2022/6d7c/d7d3ae7a0f12e7156b1fc1d5a4b847ed.png"></p>
+<p>先下來，來看winnername和winningproposal的結果<br><img data-src="/2022/6d7c/26ddfff4fa07311751334b34daca38d0.png"><br><img data-src="/2022/6d7c/726905122ced78f6753d363c445f0068.png"></p>
+<hr>
+<p>Reference:</p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=GB3hiiNNDjk">Solidity by Example</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
     <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2022/3ea/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1543,131 +1677,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/fbbd/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="紀錄、思考與分享">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/fbbd/" class="post-title-link" itemprop="url">關於Flutter空安全</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-12-14 02:06:20" itemprop="dateCreated datePublished" datetime="2021-12-14T02:06:20+08:00">2021-12-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-11 00:28:32" itemprop="dateModified" datetime="2022-03-11T00:28:32+08:00">2022-03-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/flutter/" itemprop="url" rel="index"><span itemprop="name">flutter</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2021/fbbd/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/fbbd/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="關於Flutter空安全"><a href="#關於Flutter空安全" class="headerlink" title="關於Flutter空安全"></a>關於Flutter空安全</h1><p>從官網的解說中我們能看到，在null-safety推出前，靜態類型系統允許所有類型的表達式中每一處都有null<br>(Null類型被視作是所有類型的子類)</p>
-<p><img data-src="/2021/fbbd/2021-12-14-02-10-29.png"></p>
-<blockquote>
-<p>問題:</p>
-<p>類型會定義一些操作對象(ex. getters、setters、方法和操作符)，在表達式中使用。當你調用時，有個問題在於<strong>null值並沒有那些類型定義的任何一個方法</strong>(ex.List類型調用add()、int類型調用+…等)</p>
-<p>導致當null傳遞至其他類型的表達式時，任何操作都有可能失敗。(而這錯誤都源自於<strong>嘗試在null類型上尋找一個不存在的方法或屬性</strong>)</p>
-</blockquote>
-<p>為解決null在那邊找不存在的方法或屬性，null safety改變了類型的層級結構來解決這個問題</p>
-<p><img data-src="/2021/fbbd/2021-12-14-02-19-24.png"></p>
-<blockquote>
-<p>此時，Null 不再被視作所有類型的子類，也就是<strong>其他類型都默認不可空</strong>，除了<strong>特殊Null類型允許傳遞null值</strong>，其他則不允許。(ex.如果變量式string類型，就必須包含一個字符串)</p>
-</blockquote>
-<p>如果我們<strong>想要讓他可空</strong>，也就是原有類型加Null的組合類型呢? 可以使用? (ex. String?就是String|Null的縮寫)</p>
-<p><img data-src="/2021/fbbd/2021-12-14-02-29-06.png"></p>
-<p>keyword:</p>
-<ul>
-<li><p>可空?<br>在程式裡面，有一些引數變數並不一定為必傳，又或是類型不確定，可能有空，此時可以用?來標註</p>
-</li>
-<li><p>非空!<br>當使用可空變數時，當我們執行一個method，而這個方法可能是非空，導致編譯器報錯。我們可以使用!告訴編譯器，我確認這個值不會空</p>
-</li>
-<li><p>延遲初始化late</p>
-</li>
-</ul>
-<p>在程式中，我們可能需要通過method來初始化一個成員變數，我們發現變數可能會報錯，他會要求你需要對他做初始化(<strong>定義的變數沒有賦值時</strong>)。如果我們還沒想要做初始化，我們能加個?來表達他此時可空<br>但如果我們後面要用到他時，他會要求你去對Null進行判斷，這樣做有時會出問題<br>(某些情境下，我們要成員變數需要method來初始化(ex.constructor)。但我們能保證後續的使用總是在其初始化之後。那麼在這用?是不好的)<br>所以此時我們能用late來告訴編譯器，這個非空變數，稍後會去做初始化</p>
-<ul>
-<li>參數不可空required</li>
-</ul>
-<hr>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://dart.cn/null-safety/understanding-null-safety#using-nullable-types">深入理解空安全</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1739,7 +1748,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

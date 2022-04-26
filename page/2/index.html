@@ -205,6 +205,131 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/fbbd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="FufuShih">
+      <meta itemprop="description" content="紀錄、思考與分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿甫筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/fbbd/" class="post-title-link" itemprop="url">關於Flutter空安全</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-14 02:06:20" itemprop="dateCreated datePublished" datetime="2021-12-14T02:06:20+08:00">2021-12-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-11 00:28:32" itemprop="dateModified" datetime="2022-03-11T00:28:32+08:00">2022-03-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/flutter/" itemprop="url" rel="index"><span itemprop="name">flutter</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2021/fbbd/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/fbbd/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="關於Flutter空安全"><a href="#關於Flutter空安全" class="headerlink" title="關於Flutter空安全"></a>關於Flutter空安全</h1><p>從官網的解說中我們能看到，在null-safety推出前，靜態類型系統允許所有類型的表達式中每一處都有null<br>(Null類型被視作是所有類型的子類)</p>
+<p><img data-src="/2021/fbbd/2021-12-14-02-10-29.png"></p>
+<blockquote>
+<p>問題:</p>
+<p>類型會定義一些操作對象(ex. getters、setters、方法和操作符)，在表達式中使用。當你調用時，有個問題在於<strong>null值並沒有那些類型定義的任何一個方法</strong>(ex.List類型調用add()、int類型調用+…等)</p>
+<p>導致當null傳遞至其他類型的表達式時，任何操作都有可能失敗。(而這錯誤都源自於<strong>嘗試在null類型上尋找一個不存在的方法或屬性</strong>)</p>
+</blockquote>
+<p>為解決null在那邊找不存在的方法或屬性，null safety改變了類型的層級結構來解決這個問題</p>
+<p><img data-src="/2021/fbbd/2021-12-14-02-19-24.png"></p>
+<blockquote>
+<p>此時，Null 不再被視作所有類型的子類，也就是<strong>其他類型都默認不可空</strong>，除了<strong>特殊Null類型允許傳遞null值</strong>，其他則不允許。(ex.如果變量式string類型，就必須包含一個字符串)</p>
+</blockquote>
+<p>如果我們<strong>想要讓他可空</strong>，也就是原有類型加Null的組合類型呢? 可以使用? (ex. String?就是String|Null的縮寫)</p>
+<p><img data-src="/2021/fbbd/2021-12-14-02-29-06.png"></p>
+<p>keyword:</p>
+<ul>
+<li><p>可空?<br>在程式裡面，有一些引數變數並不一定為必傳，又或是類型不確定，可能有空，此時可以用?來標註</p>
+</li>
+<li><p>非空!<br>當使用可空變數時，當我們執行一個method，而這個方法可能是非空，導致編譯器報錯。我們可以使用!告訴編譯器，我確認這個值不會空</p>
+</li>
+<li><p>延遲初始化late</p>
+</li>
+</ul>
+<p>在程式中，我們可能需要通過method來初始化一個成員變數，我們發現變數可能會報錯，他會要求你需要對他做初始化(<strong>定義的變數沒有賦值時</strong>)。如果我們還沒想要做初始化，我們能加個?來表達他此時可空<br>但如果我們後面要用到他時，他會要求你去對Null進行判斷，這樣做有時會出問題<br>(某些情境下，我們要成員變數需要method來初始化(ex.constructor)。但我們能保證後續的使用總是在其初始化之後。那麼在這用?是不好的)<br>所以此時我們能用late來告訴編譯器，這個非空變數，稍後會去做初始化</p>
+<ul>
+<li>參數不可空required</li>
+</ul>
+<hr>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://dart.cn/null-safety/understanding-null-safety#using-nullable-types">深入理解空安全</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
     <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/384e/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1501,7 +1626,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
