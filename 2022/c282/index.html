@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-tw,en,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.fufunote.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="測試  1.config啟動local節點測試 設定truffle的network port&#x3D;&gt; 2.compile1truffle compile   3.test1truffle test   3.1.Test with solidity12345678910111213141516171819202122232425pragma solidity &gt;&#x3D;0.4.25 &lt;0.7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用truffle來與合約互動">
+<meta property="og:url" content="https://www.fufunote.com/2022/c282/index.html">
+<meta property="og:site_name" content="阿甫筆記">
+<meta property="og:description" content="測試  1.config啟動local節點測試 設定truffle的network port&#x3D;&gt; 2.compile1truffle compile   3.test1truffle test   3.1.Test with solidity12345678910111213141516171819202122232425pragma solidity &gt;&#x3D;0.4.25 &lt;0.7">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/1a5d7ba5727df069f8e2e1eb598e73f0.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/195b14f1a5013ba216066469cacc2ffc.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/9e3f3eb019b370d34eb65a0ea7c643ac.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/8c732e72f4710f05dddc703ea509576c.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/917c6ab62e7f9bd4afbb304b2b5d2f63.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/29c8315af3eba43ef696db1afb372351.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/f87eda9ea5a4589ce14d2faa2aa8f77d.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/6874be0cd1b050871159e25e382aa63c.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/21f5f6186e054a70644f9400422d9943.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/f3b492916308b150e051745a82b11dfc.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/4893cd37e948ff7f3caa637cd53f7936.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/0dd119a5de020fee7ba5e554dd4bcda7.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/b69f10faac8ca563c5397ad5af51aa60.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/68f6068da5c926c7eff0e938acb2a63f.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/f7d96545a8580d81340cd7eea3fccc62.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/97c657cf41f436c2fa1613cb0444b7eb.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/641b7ec27ff4a26fed8293a12baad332.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/0eab6caf17035fc673cd3c461daa0a24.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/ac7a6749a8e1d9b2edd9846b7e18d722.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/c9883fdbf32537d74bf4af129f559207.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/60727b4aeb518515fe27110d94f3d997.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/08ca6b7956403165bce69d540a50babb.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/b66661bff8bdd038788a7846b2813252.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/33df343338de671265ff51bd2281e223.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/594a685630db07c482abfceda06d0cf5.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/8259918f1abd93145db652ccfeacbcd1.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/b9216dc79c637a53792cd251e13c8595.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/57b3b3db1455f6f36cde4923d8559d2c.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/35e5ac2e10bea60f37211fc2e640040a.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/69d45a055d0d784fe2f87f1a2fab644e.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/fa825a40d8da8b8d44fd6090509ca26d.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/4c42db2c1365b0e3e50271f5c9024232.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/1652a6da0854b7ec0305fd189010f90f.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/5f14b940e617ac9d07df7bb9e303b183.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/ce5fe6408af952d447c22a2163741a11.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/06cfedf9f8e9d381443bb116b554ecfe.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/11d560db470730d3d72d7adb414c353c.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/7ae726df41750c5d3a370faf95f9c3f0.png">
+<meta property="og:image" content="https://www.fufunote.com/2022/undefined/22010fd61a9daeca626d0c316ccda719.png">
+<meta property="article:published_time" content="2022-05-04T16:06:27.000Z">
+<meta property="article:modified_time" content="2022-05-04T16:08:42.155Z">
+<meta property="article:author" content="FufuShih">
+<meta property="article:tag" content="solidity">
+<meta property="article:tag" content="web3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.fufunote.com/2022/undefined/1a5d7ba5727df069f8e2e1eb598e73f0.png">
+
+<link rel="canonical" href="https://www.fufunote.com/2022/c282/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-tw'
+  };
+</script>
+
+  <title>使用truffle來與合約互動 | 阿甫筆記</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWS053782Y"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-LWS053782Y');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">阿甫筆記</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-flutter">
+
+    <a href="/categories/flutter/" rel="section"><i class="fa fa-newspaper fa-fw"></i>flutter</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2022/c282/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="FufuShih">
+      <meta itemprop="description" content="紀錄、思考與分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿甫筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用truffle來與合約互動
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-05-05 00:06:27 / Modified: 00:08:42" itemprop="dateCreated datePublished" datetime="2022-05-05T00:06:27+08:00">2022-05-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solidity/" itemprop="url" rel="index"><span itemprop="name">solidity</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/c282/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/c282/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>10 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>測試<br><img data-src="/2022/undefined/1a5d7ba5727df069f8e2e1eb598e73f0.png" alt="1a5d7ba5727df069f8e2e1eb598e73f0.png"></p>
+<p><img data-src="/2022/undefined/195b14f1a5013ba216066469cacc2ffc.png" alt="195b14f1a5013ba216066469cacc2ffc.png"></p>
+<h3 id="1-config"><a href="#1-config" class="headerlink" title="1.config"></a>1.config</h3><p>啟動local節點測試<br><img data-src="/2022/undefined/9e3f3eb019b370d34eb65a0ea7c643ac.png" alt="9e3f3eb019b370d34eb65a0ea7c643ac.png"><br><img data-src="/2022/undefined/8c732e72f4710f05dddc703ea509576c.png" alt="8c732e72f4710f05dddc703ea509576c.png"></p>
+<p>設定truffle的network port<br><img data-src="/2022/undefined/917c6ab62e7f9bd4afbb304b2b5d2f63.png" alt="917c6ab62e7f9bd4afbb304b2b5d2f63.png"><br><img data-src="/2022/undefined/29c8315af3eba43ef696db1afb372351.png" alt="29c8315af3eba43ef696db1afb372351.png"><br>=&gt;<br><img data-src="/2022/undefined/f87eda9ea5a4589ce14d2faa2aa8f77d.png" alt="f87eda9ea5a4589ce14d2faa2aa8f77d.png"></p>
+<h3 id="2-compile"><a href="#2-compile" class="headerlink" title="2.compile"></a>2.compile</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2022/undefined/6874be0cd1b050871159e25e382aa63c.png" alt="6874be0cd1b050871159e25e382aa63c.png"><br><img data-src="/2022/undefined/21f5f6186e054a70644f9400422d9943.png" alt="21f5f6186e054a70644f9400422d9943.png"></p>
+<h3 id="3-test"><a href="#3-test" class="headerlink" title="3.test"></a>3.test</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle test</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2022/undefined/f3b492916308b150e051745a82b11dfc.png" alt="f3b492916308b150e051745a82b11dfc.png"><br><img data-src="/2022/undefined/4893cd37e948ff7f3caa637cd53f7936.png" alt="4893cd37e948ff7f3caa637cd53f7936.png"><br><img data-src="/2022/undefined/0dd119a5de020fee7ba5e554dd4bcda7.png" alt="0dd119a5de020fee7ba5e554dd4bcda7.png"></p>
+<h4 id="3-1-Test-with-solidity"><a href="#3-1-Test-with-solidity" class="headerlink" title="3.1.Test with solidity"></a>3.1.Test with solidity</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity &gt;=0.4.25 &lt;0.7.0;</span><br><span class="line"></span><br><span class="line">import &quot;truffle/Assert.sol&quot;;</span><br><span class="line">import &quot;truffle/DeployedAddresses.sol&quot;;</span><br><span class="line">import &quot;../contracts/MetaCoin.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract TestMetaCoin &#123;</span><br><span class="line"></span><br><span class="line">  function testInitialBalanceUsingDeployedContract() public &#123;</span><br><span class="line">    MetaCoin meta = MetaCoin(DeployedAddresses.MetaCoin());</span><br><span class="line"></span><br><span class="line">    uint expected = 10000;</span><br><span class="line"></span><br><span class="line">    Assert.equal(meta.getBalance(tx.origin), expected, &quot;Owner should have 10000 MetaCoin initially&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function testInitialBalanceWithNewMetaCoin() public &#123;</span><br><span class="line">    MetaCoin meta = new MetaCoin();</span><br><span class="line"></span><br><span class="line">    uint expected = 10000;</span><br><span class="line"></span><br><span class="line">    Assert.equal(meta.getBalance(tx.origin), expected, &quot;Owner should have 10000 MetaCoin initially&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-Test-with-js"><a href="#3-2-Test-with-js" class="headerlink" title="3.2.Test with js"></a>3.2.Test with js</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">const MetaCoin = artifacts.require(&quot;MetaCoin&quot;);</span><br><span class="line"></span><br><span class="line">contract(&#x27;MetaCoin&#x27;, (accounts) =&gt; &#123;</span><br><span class="line">  it(&#x27;should put 10000 MetaCoin in the first account&#x27;, async () =&gt; &#123;</span><br><span class="line">    const metaCoinInstance = await MetaCoin.deployed();</span><br><span class="line">    const balance = await metaCoinInstance.getBalance.call(accounts[0]);</span><br><span class="line"></span><br><span class="line">    assert.equal(balance.valueOf(), 10000, &quot;10000 wasn&#x27;t in the first account&quot;);</span><br><span class="line">  &#125;);</span><br><span class="line">  it(&#x27;should call a function that depends on a linked library&#x27;, async () =&gt; &#123;</span><br><span class="line">    const metaCoinInstance = await MetaCoin.deployed();</span><br><span class="line">    const metaCoinBalance = (await metaCoinInstance.getBalance.call(accounts[0])).toNumber();</span><br><span class="line">    const metaCoinEthBalance = (await metaCoinInstance.getBalanceInEth.call(accounts[0])).toNumber();</span><br><span class="line"></span><br><span class="line">    assert.equal(metaCoinEthBalance, 2 * metaCoinBalance, &#x27;Library function returned unexpected function, linkage may be broken&#x27;);</span><br><span class="line">  &#125;);</span><br><span class="line">  it(&#x27;should send coin correctly&#x27;, async () =&gt; &#123;</span><br><span class="line">    const metaCoinInstance = await MetaCoin.deployed();</span><br><span class="line"></span><br><span class="line">    // Setup 2 accounts.</span><br><span class="line">    const accountOne = accounts[0];</span><br><span class="line">    const accountTwo = accounts[1];</span><br><span class="line"></span><br><span class="line">    // Get initial balances of first and second account.</span><br><span class="line">    const accountOneStartingBalance = (await metaCoinInstance.getBalance.call(accountOne)).toNumber();</span><br><span class="line">    const accountTwoStartingBalance = (await metaCoinInstance.getBalance.call(accountTwo)).toNumber();</span><br><span class="line"></span><br><span class="line">    // Make transaction from first account to second.</span><br><span class="line">    const amount = 10;</span><br><span class="line">    await metaCoinInstance.sendCoin(accountTwo, amount, &#123; from: accountOne &#125;);</span><br><span class="line"></span><br><span class="line">    // Get balances of first and second account after the transactions.</span><br><span class="line">    const accountOneEndingBalance = (await metaCoinInstance.getBalance.call(accountOne)).toNumber();</span><br><span class="line">    const accountTwoEndingBalance = (await metaCoinInstance.getBalance.call(accountTwo)).toNumber();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    assert.equal(accountOneEndingBalance, accountOneStartingBalance - amount, &quot;Amount wasn&#x27;t correctly taken from the sender&quot;);</span><br><span class="line">    assert.equal(accountTwoEndingBalance, accountTwoStartingBalance + amount, &quot;Amount wasn&#x27;t correctly sent to the receiver&quot;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-migrate"><a href="#4-migrate" class="headerlink" title="4.migrate"></a>4.migrate</h3><p><img data-src="/2022/undefined/b69f10faac8ca563c5397ad5af51aa60.png" alt="b69f10faac8ca563c5397ad5af51aa60.png"><br>1_initial_migration.js:<br><img data-src="/2022/undefined/68f6068da5c926c7eff0e938acb2a63f.png" alt="68f6068da5c926c7eff0e938acb2a63f.png"><br>2_deploy_contracts.js:<br><img data-src="/2022/undefined/f7d96545a8580d81340cd7eea3fccc62.png" alt="f7d96545a8580d81340cd7eea3fccc62.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
+
+<p>output:<br><img data-src="/2022/undefined/97c657cf41f436c2fa1613cb0444b7eb.png" alt="97c657cf41f436c2fa1613cb0444b7eb.png"><br><img data-src="/2022/undefined/641b7ec27ff4a26fed8293a12baad332.png" alt="641b7ec27ff4a26fed8293a12baad332.png"><br><img data-src="/2022/undefined/0eab6caf17035fc673cd3c461daa0a24.png" alt="0eab6caf17035fc673cd3c461daa0a24.png"><br>local節點output<br><img data-src="/2022/undefined/ac7a6749a8e1d9b2edd9846b7e18d722.png" alt="ac7a6749a8e1d9b2edd9846b7e18d722.png"></p>
+<hr>
+<h3 id="5-與合約互動"><a href="#5-與合約互動" class="headerlink" title="5.與合約互動"></a>5.與合約互動</h3><p>開啟console<br><img data-src="/2022/undefined/c9883fdbf32537d74bf4af129f559207.png" alt="c9883fdbf32537d74bf4af129f559207.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; let instance = await MetaCoin.deployed()</span><br><span class="line">&gt; instance</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2022/undefined/60727b4aeb518515fe27110d94f3d997.png" alt="60727b4aeb518515fe27110d94f3d997.png"><br>…<br><img data-src="/2022/undefined/08ca6b7956403165bce69d540a50babb.png" alt="08ca6b7956403165bce69d540a50babb.png"></p>
+<h4 id="5-1-進行合約交易Making-a-transaction"><a href="#5-1-進行合約交易Making-a-transaction" class="headerlink" title="5.1.進行合約交易Making a transaction"></a>5.1.進行合約交易Making a transaction</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; let accounts = await web3.eth.getAccounts()</span><br><span class="line">&gt; instance.sendCoin(accounts[1], 10, &#123;from: accounts[0]&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2022/undefined/b66661bff8bdd038788a7846b2813252.png" alt="b66661bff8bdd038788a7846b2813252.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  tx: &#x27;0x0f56c4b1cef3532f89b1e8e5262ba44a8eac712d0cb0fc3ca6aa1995edd4cdbb&#x27;,</span><br><span class="line">  receipt: &#123;</span><br><span class="line">    transactionHash: &#x27;0x0f56c4b1cef3532f89b1e8e5262ba44a8eac712d0cb0fc3ca6aa1995edd4cdbb&#x27;,</span><br><span class="line">    transactionIndex: 0,</span><br><span class="line">    blockHash: &#x27;0x5ec6ae6b5d382e0380d59b972fbb28feda806e37b436c77fe231d39e4e6120c5&#x27;,</span><br><span class="line">    blockNumber: 12,</span><br><span class="line">    from: &#x27;0xeede7f1261c872e2e72ae5a5d1cf94c961ea37d9&#x27;,</span><br><span class="line">    to: &#x27;0x78164c8d2c823d7a755f9a7a6b52af78fa8245ad&#x27;,</span><br><span class="line">    gasUsed: 51508,</span><br><span class="line">    cumulativeGasUsed: 51508,</span><br><span class="line">    contractAddress: null,</span><br><span class="line">    logs: [ [Object] ],</span><br><span class="line">    status: true,</span><br><span class="line">    logsBloom: &#x27;0x00000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000011000000000000000000000000008000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000001000000000000000000000000002000000000000000000000000000000000000000000000000000000000010000000000000001000000000000000000000000020000000000000000000&#x27;,</span><br><span class="line">    rawLogs: [ [Object] ]</span><br><span class="line">  &#125;,</span><br><span class="line">  logs: [</span><br><span class="line">    &#123;</span><br><span class="line">      logIndex: 0,</span><br><span class="line">      transactionIndex: 0,</span><br><span class="line">      transactionHash: &#x27;0x0f56c4b1cef3532f89b1e8e5262ba44a8eac712d0cb0fc3ca6aa1995edd4cdbb&#x27;,</span><br><span class="line">      blockHash: &#x27;0x5ec6ae6b5d382e0380d59b972fbb28feda806e37b436c77fe231d39e4e6120c5&#x27;,</span><br><span class="line">      blockNumber: 12,</span><br><span class="line">      address: &#x27;0x78164C8d2c823D7a755f9A7a6B52Af78fA8245ad&#x27;,</span><br><span class="line">      type: &#x27;mined&#x27;,</span><br><span class="line">      removed: false,</span><br><span class="line">      id: &#x27;log_a17f2f00&#x27;,</span><br><span class="line">      event: &#x27;Transfer&#x27;,</span><br><span class="line">      args: [Result]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>We called the abstraction’s <code>sendCoin</code> function directly. This will result in a transaction by default (i.e, writing data) instead of call.</p>
+<p>We passed an object as the third parameter to <code>sendCoin</code>. Note that the <code>sendCoin</code> function in our Solidity contract doesn’t have a third parameter. What you see above is a special object that can always be passed as the last parameter to a function that lets you edit specific details about the transaction (“transaction params”).<br>Here, we set the <code>from</code> address ensuring this transaction came from <code>accounts[0]</code>. The transaction params that you can set correspond to the fields in an Ethereum transaction: <code>from, to, gas, gasPrice, value, data, nonce</code></p>
+</blockquote>
+<h4 id="5-2-進行合約呼叫Making-a-call"><a href="#5-2-進行合約呼叫Making-a-call" class="headerlink" title="5.2.進行合約呼叫Making a call"></a>5.2.進行合約呼叫Making a call</h4><p>Continuing with MetaCoin, notice the <code>getBalance</code> function is a great candidate for reading data from the network. It doesn’t need to make any changes, as it just returns the MetaCoin balance of the address passed to it. Let’s give it a shot:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; let balance = await instance.getBalance(accounts[0])</span><br><span class="line">&gt; balance.toNumber()</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2022/undefined/33df343338de671265ff51bd2281e223.png" alt="33df343338de671265ff51bd2281e223.png"></p>
+<p>What’s interesting here:</p>
+<blockquote>
+<p>We received a return value. Note that since the Ethereum network can handle very large numbers, we’re given a <strong>BN</strong> object which we then convert to a number.</p>
+</blockquote>
+<h4 id="5-3-處理交易結果Processing-transaction-results"><a href="#5-3-處理交易結果Processing-transaction-results" class="headerlink" title="5.3.處理交易結果Processing transaction results"></a>5.3.處理交易結果Processing transaction results</h4><p>When you make a transaction, you’re given a result object that gives you a wealth of information about the transaction.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; let result = await instance.sendCoin(accounts[1], 10, &#123;from: accounts[0]&#125;)</span><br><span class="line">&gt; result</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2022/undefined/594a685630db07c482abfceda06d0cf5.png" alt="594a685630db07c482abfceda06d0cf5.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; result.tx</span><br><span class="line">&gt; result.receipt</span><br><span class="line">&gt; result.logs</span><br></pre></td></tr></table></figure>
+
+<p>tx:<br><img data-src="/2022/undefined/8259918f1abd93145db652ccfeacbcd1.png" alt="8259918f1abd93145db652ccfeacbcd1.png"><br>receipt:<br><img data-src="/2022/undefined/b9216dc79c637a53792cd251e13c8595.png" alt="b9216dc79c637a53792cd251e13c8595.png"></p>
+<p>logs:<br><img data-src="/2022/undefined/57b3b3db1455f6f36cde4923d8559d2c.png" alt="57b3b3db1455f6f36cde4923d8559d2c.png"><br><img data-src="/2022/undefined/35e5ac2e10bea60f37211fc2e640040a.png" alt="35e5ac2e10bea60f37211fc2e640040a.png"></p>
+<h4 id="5-4-捕捉事件Catching-events"><a href="#5-4-捕捉事件Catching-events" class="headerlink" title="5.4.捕捉事件Catching events"></a>5.4.捕捉事件Catching events</h4><p>Your contracts can fire events that you can catch to gain more insight into what your contracts are doing. The easiest way to handle events is by processing the logs array contained within <code>result</code> object of the transaction that triggered the event.</p>
+<p>If we explicitly output the first log entry we can see the details of the event that was emitted as part of the <code>sendCoin</code> call (<code>Transfer(msg.sender, receiver, amount);</code>).</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; result.logs[0]</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2022/undefined/69d45a055d0d784fe2f87f1a2fab644e.png" alt="69d45a055d0d784fe2f87f1a2fab644e.png"></p>
+<h4 id="5-5-向網絡添加新合約Add-a-new-contract-to-the-network"><a href="#5-5-向網絡添加新合約Add-a-new-contract-to-the-network" class="headerlink" title="5.5.向網絡添加新合約Add a new contract to the network"></a>5.5.向網絡添加新合約Add a new contract to the network</h4><p>In all of the above cases, we’ve been using a contract abstraction that has already been deployed. We can deploy our own version to the network using the <code>.new()</code> function:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; let newInstance = await MetaCoin.new()</span><br><span class="line">&gt; newInstance.address</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2022/undefined/fa825a40d8da8b8d44fd6090509ca26d.png" alt="fa825a40d8da8b8d44fd6090509ca26d.png"></p>
+<p>與先前的比較:<br><img data-src="/2022/undefined/4c42db2c1365b0e3e50271f5c9024232.png" alt="4c42db2c1365b0e3e50271f5c9024232.png"></p>
+<h4 id="5-6-在特定地址使用合約Use-a-contract-at-a-specific-address"><a href="#5-6-在特定地址使用合約Use-a-contract-at-a-specific-address" class="headerlink" title="5.6.在特定地址使用合約Use a contract at a specific address"></a>5.6.在特定地址使用合約Use a contract at a specific address</h4><p>If you already have an address for a contract, you can create a new abstraction to represent the contract at that address</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; let specificInstance = await MetaCoin.at(&quot;0x78164C8d2c823D7a755f9A7a6B52Af78fA8245ad&quot;); // put address</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/2022/undefined/1652a6da0854b7ec0305fd189010f90f.png" alt="1652a6da0854b7ec0305fd189010f90f.png"></p>
+<p><img data-src="/2022/undefined/5f14b940e617ac9d07df7bb9e303b183.png" alt="5f14b940e617ac9d07df7bb9e303b183.png"></p>
+<h4 id="5-7-向合約發送以太幣Sending-ether-to-a-contract"><a href="#5-7-向合約發送以太幣Sending-ether-to-a-contract" class="headerlink" title="5.7.向合約發送以太幣Sending ether to a contract"></a>5.7.向合約發送以太幣Sending ether to a contract</h4><p>You may simply want to send Ether directly to a contract, or trigger a contract’s <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/en/develop/contracts.html#fallback-function">fallback function</a>. You can do so using one of the following two options.</p>
+<p>Option 1: Send a transaction directly to a contract via <code>instance.sendTransaction()</code>. This is promisified like all available contract instance functions, and has the same API as <code>web3.eth.sendTransaction</code> but without the callback. The to value will be automatically filled in for you if not specified.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">instance.sendTransaction(&#123;...&#125;).then(function(result) &#123;</span><br><span class="line">  // Same transaction result object as above.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Option 2: There’s also shorthand for just sending Ether directly:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">instance.send(web3.utils.toWei(1, &quot;ether&quot;)).then(function(result) &#123;</span><br><span class="line">  // Same result object as above.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-8-Truffle-合約對象的特殊方法Special-methods-on-Truffle-contract-objects"><a href="#5-8-Truffle-合約對象的特殊方法Special-methods-on-Truffle-contract-objects" class="headerlink" title="5.8.Truffle 合約對象的特殊方法Special methods on Truffle contract objects"></a>5.8.Truffle 合約對象的特殊方法Special methods on Truffle contract objects</h4><p>There are a couple of special functions that you can find on the actual contract methods of your contract abstractions:</p>
+<ul>
+<li>estimateGas</li>
+<li>sendTransaction</li>
+<li>call</li>
+<li>request</li>
+</ul>
+<p>The <strong>first special method</strong> mentioned above is the <code>estimateGas</code> method. This, as you probably can guess, estimates the amount of gas that a transaction will require. If we wanted to estimate the gas for a transaction, we would call it on the contract method itself. It would look something like the following:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const instance = await MyContract.deployed();</span><br><span class="line">const amountOfGas = await instance.sendTokens.estimateGas(4, myAccount);</span><br></pre></td></tr></table></figure>
+
+<p>This will give us an estimate of how much gas it will take to run the transaction specified.</p>
+<p>Note that the arguments above (<code>4</code> and <code>myAccount</code>) correspond to whatever the signature of the contract method happens to be.</p>
+<p>Another useful thing to note is that you can also call this on a contract’s new method to see how much gas it will take to deploy. So you would do <code>Contract.new.estimateGas()</code> to get the gas estimate for the contract’s deployment.</p>
+<h5 id="ex"><a href="#ex" class="headerlink" title="ex."></a>ex.</h5><p><img data-src="/2022/undefined/ce5fe6408af952d447c22a2163741a11.png" alt="ce5fe6408af952d447c22a2163741a11.png"><br><img data-src="/2022/undefined/06cfedf9f8e9d381443bb116b554ecfe.png" alt="06cfedf9f8e9d381443bb116b554ecfe.png"></p>
+<p>The <strong>next mentioned method</strong> is <code>sendTransaction</code>. In general, if you execute a contract method, Truffle will intelligently figure out whether it needs to make a transaction or a call. If your function can be executed as a call, then Truffle will do so and you will be able to avoid gas costs.</p>
+<p>There may be some scenarios, however, where you want to force Truffle to make a transaction. In these cases, you can use the sendTransaction method found on the method itself. This would look something like <code>instance.myMethod.sendTransaction()</code>.</p>
+<p>For example, suppose I have a contract instance with the method <code>getTokenBalance</code>. I could do the following to force a transaction to take place while executing <code>getTokenBalance</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const instance = await MyContract.deployed();</span><br><span class="line">const result = await instance.getTokenBalance.sendTransaction(myAccount);</span><br></pre></td></tr></table></figure>
+
+<p>The <code>result</code> variable above will be the same kind of result you would get from executing any normal transaction in Truffle. It will contain the transaction hash, the logs, etc.</p>
+<h5 id="ex-1"><a href="#ex-1" class="headerlink" title="ex."></a>ex.</h5><p><img data-src="/2022/undefined/11d560db470730d3d72d7adb414c353c.png" alt="11d560db470730d3d72d7adb414c353c.png"><br>sendTransaction<br><img data-src="/2022/undefined/7ae726df41750c5d3a370faf95f9c3f0.png" alt="7ae726df41750c5d3a370faf95f9c3f0.png"><br><img data-src="/2022/undefined/22010fd61a9daeca626d0c316ccda719.png" alt="22010fd61a9daeca626d0c316ccda719.png"></p>
+<p>The <strong>next method</strong> is call and the syntax is exactly the same as for <code>sendTransaction</code>. If you want to explicitly make a call, you can use the <code>call</code> method found on your contract abstraction’s method. So you would write something that looks like <code>const result = await instance.myMethod.call()</code>.</p>
+<p>The last method is request. This method does not perform a transaction or call, but rather returns an object that can be passed to <code>web3.eth.sendTransaction</code> or <code>web3.eth.call</code> if you want to perform the transaction or call yourself. It has the same syntax as the others, and like with <code>estimateGas</code>, you can also do <code>Contract.new.request()</code> if you want to perform a manual deployment.</p>
+<h4 id="5-9-調用重載方法Invoking-overloaded-methods"><a href="#5-9-調用重載方法Invoking-overloaded-methods" class="headerlink" title="5.9.調用重載方法Invoking overloaded methods"></a>5.9.調用重載方法Invoking overloaded methods</h4><p>The current implementation of Truffle’s contract abstraction can mistakenly infer the signature of an overloaded method even though it exists in the contract ABI.</p>
+<p>Therefore, some methods may not be accessible through the contract’s instance, but their accessors can be invoked explicitly via the <strong>.methods</strong> property of the contract.</p>
+<h4 id="5-10-使用枚舉Using-enumerations"><a href="#5-10-使用枚舉Using-enumerations" class="headerlink" title="5.10.使用枚舉Using enumerations"></a>5.10.使用枚舉Using enumerations</h4><p>Contract abstractions can also be used to access Solidity enumerations defined within that contract. For instance, suppose we have the following Solidity contract:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">contract ExampleContract &#123;</span><br><span class="line">  enum ExampleEnum &#123;</span><br><span class="line">    ExampleOption0,</span><br><span class="line">    ExampleOption1,</span><br><span class="line">    ExampleOption2</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>One could then use <strong>ExampleContract.ExampleEnum.ExampleOption0</strong> to access that enum value; in this case, that is equal to 0, but using this allows one to pass in enums to contract methods without having to worry about their numerical value.</p>
+<p>A contract’s enums are also available under <strong>.enums</strong>, so in this case, one could also write <strong>ExampleContract.enums.ExampleEnum.ExampleOption0</strong>.</p>
+<hr>
+<p>Ref:<br><a target="_blank" rel="noopener" href="https://github.com/trufflesuite/truffle/tree/master/packages/contract">truffle/contract</a><br><a target="_blank" rel="noopener" href="https://trufflesuite.com/docs/truffle/getting-started/interacting-with-your-contracts/">Interacting with your contracts</a></p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\cc9f\" rel="bookmark">在VSCode上使用Remix</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\ad49\" rel="bookmark">Solidity (1): Hello World</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\911b\" rel="bookmark">Solidity (3):創建ERC20標準代幣</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\8a44\" rel="bookmark">Solidity (2):創建簡易代幣</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\af04\" rel="bookmark">使用flutter來建立dapp-2</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/solidity/" rel="tag"># solidity</a>
+              <a href="/tags/web3/" rel="tag"># web3</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/6d7c/" rel="prev" title="solidity實現voting">
+      <i class="fa fa-chevron-left"></i> solidity實現voting
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-config"><span class="nav-number">1.</span> <span class="nav-text">1.config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-compile"><span class="nav-number">2.</span> <span class="nav-text">2.compile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-test"><span class="nav-number">3.</span> <span class="nav-text">3.test</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-Test-with-solidity"><span class="nav-number">3.1.</span> <span class="nav-text">3.1.Test with solidity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-Test-with-js"><span class="nav-number">3.2.</span> <span class="nav-text">3.2.Test with js</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-migrate"><span class="nav-number">4.</span> <span class="nav-text">4.migrate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%88%87%E5%90%88%E7%B4%84%E4%BA%92%E5%8B%95"><span class="nav-number">5.</span> <span class="nav-text">5.與合約互動</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E9%80%B2%E8%A1%8C%E5%90%88%E7%B4%84%E4%BA%A4%E6%98%93Making-a-transaction"><span class="nav-number">5.1.</span> <span class="nav-text">5.1.進行合約交易Making a transaction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-%E9%80%B2%E8%A1%8C%E5%90%88%E7%B4%84%E5%91%BC%E5%8F%ABMaking-a-call"><span class="nav-number">5.2.</span> <span class="nav-text">5.2.進行合約呼叫Making a call</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-%E8%99%95%E7%90%86%E4%BA%A4%E6%98%93%E7%B5%90%E6%9E%9CProcessing-transaction-results"><span class="nav-number">5.3.</span> <span class="nav-text">5.3.處理交易結果Processing transaction results</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-4-%E6%8D%95%E6%8D%89%E4%BA%8B%E4%BB%B6Catching-events"><span class="nav-number">5.4.</span> <span class="nav-text">5.4.捕捉事件Catching events</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-5-%E5%90%91%E7%B6%B2%E7%B5%A1%E6%B7%BB%E5%8A%A0%E6%96%B0%E5%90%88%E7%B4%84Add-a-new-contract-to-the-network"><span class="nav-number">5.5.</span> <span class="nav-text">5.5.向網絡添加新合約Add a new contract to the network</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-6-%E5%9C%A8%E7%89%B9%E5%AE%9A%E5%9C%B0%E5%9D%80%E4%BD%BF%E7%94%A8%E5%90%88%E7%B4%84Use-a-contract-at-a-specific-address"><span class="nav-number">5.6.</span> <span class="nav-text">5.6.在特定地址使用合約Use a contract at a specific address</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-7-%E5%90%91%E5%90%88%E7%B4%84%E7%99%BC%E9%80%81%E4%BB%A5%E5%A4%AA%E5%B9%A3Sending-ether-to-a-contract"><span class="nav-number">5.7.</span> <span class="nav-text">5.7.向合約發送以太幣Sending ether to a contract</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-8-Truffle-%E5%90%88%E7%B4%84%E5%B0%8D%E8%B1%A1%E7%9A%84%E7%89%B9%E6%AE%8A%E6%96%B9%E6%B3%95Special-methods-on-Truffle-contract-objects"><span class="nav-number">5.8.</span> <span class="nav-text">5.8.Truffle 合約對象的特殊方法Special methods on Truffle contract objects</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ex"><span class="nav-number">5.8.1.</span> <span class="nav-text">ex.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ex-1"><span class="nav-number">5.8.2.</span> <span class="nav-text">ex.</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-9-%E8%AA%BF%E7%94%A8%E9%87%8D%E8%BC%89%E6%96%B9%E6%B3%95Invoking-overloaded-methods"><span class="nav-number">5.9.</span> <span class="nav-text">5.9.調用重載方法Invoking overloaded methods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-10-%E4%BD%BF%E7%94%A8%E6%9E%9A%E8%88%89Using-enumerations"><span class="nav-number">5.10.</span> <span class="nav-text">5.10.使用枚舉Using enumerations</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="FufuShih"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">FufuShih</p>
+  <div class="site-description" itemprop="description">紀錄、思考與分享</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fufuShih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fufuShih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zx8714245@gmail.com" title="E-Mail → mailto:zx8714245@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.kaggle.com/fufushih" title="Kaggle → https:&#x2F;&#x2F;www.kaggle.com&#x2F;fufushih" rel="noopener" target="_blank"><i class="fab fa-kaggle fa-fw"></i>Kaggle</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/chen-fu-shih-a04537161/" title="Linkin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;chen-fu-shih-a04537161&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin-in fa-fw"></i>Linkin</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FufuShih</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://fufu.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://www.fufunote.com/2022/c282/";
+    this.page.identifier = "2022/c282/";
+    this.page.title = "使用truffle來與合約互動";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://fufu.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>
