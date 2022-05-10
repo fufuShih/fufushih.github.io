@@ -20,14 +20,15 @@
     var CONFIG = {"hostname":"www.fufunote.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="紀錄、思考與分享">
+  <meta name="description" content="裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。">
 <meta property="og:type" content="website">
-<meta property="og:title" content="阿甫筆記">
+<meta property="og:title" content="阿甫筆記——紀錄、思考與分享">
 <meta property="og:url" content="https://www.fufunote.com/page/2/index.html">
-<meta property="og:site_name" content="阿甫筆記">
-<meta property="og:description" content="紀錄、思考與分享">
+<meta property="og:site_name" content="阿甫筆記——紀錄、思考與分享">
+<meta property="og:description" content="裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:author" content="FufuShih">
+<meta property="article:tag" content="web3,developer,solidity,flutter,react,web,node.js,express.js,frontend,backend">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://www.fufunote.com/page/2/">
@@ -43,7 +44,7 @@
   };
 </script>
 
-  <title>阿甫筆記</title>
+  <title>阿甫筆記——紀錄、思考與分享</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWS053782Y"></script>
     <script data-pjax>
@@ -103,7 +104,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">阿甫筆記</h1>
+      <h1 class="site-title">阿甫筆記——紀錄、思考與分享</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -205,16 +206,227 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/206c/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="FufuShih">
+      <meta itemprop="description" content="裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿甫筆記——紀錄、思考與分享">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/206c/" class="post-title-link" itemprop="url">flutter的狀態管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-16 23:57:13" itemprop="dateCreated datePublished" datetime="2021-12-16T23:57:13+08:00">2021-12-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-11 00:28:32" itemprop="dateModified" datetime="2022-03-11T00:28:32+08:00">2022-03-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/flutter/" itemprop="url" rel="index"><span itemprop="name">flutter</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2021/206c/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/206c/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>10 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="flutter的狀態管理"><a href="#flutter的狀態管理" class="headerlink" title="flutter的狀態管理"></a>flutter的狀態管理</h1><a href="/2021/384e/" title="關於flutter的lifecycle">關於flutter的lifecycle</a>
+
+<blockquote>
+<p>StatelessWidget在App初始化之後就不能改變，它是immutable。如果想要改變就得new一個新的StatelessWidget去做更換</p>
+<p>StatefulWidget可以在App內無限次的被重繪集及更新狀態，它是mutable，需要重繪時可以調用setState()，去標記自己為dirty狀態，為下次更新做準備</p>
+</blockquote>
+<p>使用Stateful與Stateless:</p>
+<ul>
+<li>盡可能用Stateless。</li>
+<li>Stateful Wigets盡量在越低層級的節點使用，避免過多不必要的重build。</li>
+<li>setState((){})會觸發State.build，如果你的觸發是在根節點，會造成所有Widgets被重build，會是個效能問題。</li>
+<li>需要重build的Widget，盡量節點數越少越好。</li>
+</ul>
+<h2 id="StatefulWidget-and-State"><a href="#StatefulWidget-and-State" class="headerlink" title="StatefulWidget and State"></a>StatefulWidget and State</h2><p>在其life cycle中可以多次構建不同的widgets</p>
+<p>setState</p>
+<blockquote>
+<p>如果需要跨組件傳遞，需要把傳遞的任務放到parent的widget上。由於每次setState需要rebuild widgets，如果是隔很多層的傳遞，需要被rebuild的widgets會越多，相對效能會比較差，僅適合小規模的更新</p>
+</blockquote>
+<p>setState調用後</p>
+<ol>
+<li>調用當前element的markNeedsBuild方法，將當前element標記為 dirty</li>
+<li>接著調用 scheduleBuildFor，將當前element添加到piplineOwner的dirtyElements列表</li>
+<li>最後請求一個新的frame，隨後會繪製新的frame：onBuildScheduled-&gt;ensureVisualUpdate-&gt;scheduleFrame()。當新的frame到來時執行渲染管線</li>
+</ol>
+<p>1.重新構建 widget 樹</p>
+<blockquote>
+<p>如果 dirtyElements 列表不為空，則遍歷該列表，調用每一個element的rebuild方法重新構建新的widget（樹）</p>
+</blockquote>
+<p>由於新的widget(樹)使用新的狀態構建，所以可能導致widget佈局信息（佔用的空間和位置）發生變化，如果發生變化，則會調用其renderObject的markNeedsLayout方法，該方法會從當前節點向父級查找，直到找到一個relayoutBoundary的節點，然後會將它添加到一個全局的nodesNeedingLayout列表中；如果直到根節點也沒有找到relayoutBoundary，則將根節點添加到nodesNeedingLayout列表中。</p>
+<p>2.更新layout</p>
+<blockquote>
+<p>遍歷nodesNeedingLayout數組，對每一個renderObject重新佈局（調用其layout方法），確定新的大小和偏移。</p>
+</blockquote>
+<p>layout方法中會調用markNeedsPaint()，該方法和 markNeedsLayout 方法功能類似，也會從當前節點向父級查找，直到找到一個isRepaintBoundary屬性為true的父節點，然後將它添加到一個全局的nodesNeedingPaint列表中；由於根節點（RenderView）的 isRepaintBoundary 為 true，所以必會找到一個。查找過程結束後會調用 buildOwner.requestVisualUpdate 方法，該方法最終會調用scheduleFrame()，該方法中會先判斷是否已經請求過新的frame，如果沒有則請求一個新的frame。</p>
+<p>3.更新composition信息</p>
+<p>4.更新繪製</p>
+<blockquote>
+<p>遍歷nodesNeedingPaint列表，調用每一個節點的paint方法進行重繪，繪製過程會生成Layer</p>
+</blockquote>
+<p>(flutter中繪製結果是保存在Layer中的，也就是說只要Layer不釋放，那麼繪製的結果就會被緩存，因此，Layer可以跨frame來緩存繪製結果，避免不必要的重繪開銷。)</p>
+<p>Flutter框架繪製過程中，遇到isRepaintBoundary為true的節點時，才會生成一個新的Layer。可見Layer和 renderObject 不是一一對應關係，父子節點可以共享，這個我們會在隨後的一個試驗中來驗證。當然，如果是自定義組件，我們可以在renderObject中手動添加任意多個 Layer，這通常用於只需一次繪製而隨後不會發生變化的繪製元素的緩存場景</p>
+<p>5.上屏</p>
+<blockquote>
+<p>繪製完成後，得到一棵Layer樹，最後我們需要將Layer樹中的繪製信息在屏幕上顯示。將繪製信息提交給Flutter engine，而renderView.compositeFrame正是完成了這個使命。</p>
+</blockquote>
+<h2 id="InheritedWidget"><a href="#InheritedWidget" class="headerlink" title="InheritedWidget"></a>InheritedWidget</h2><blockquote>
+<p>一種讓數據在widget tree中<strong>從上到下</strong>傳遞、共享的方式(被後代Widget讀取的環境狀態)。</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// (1)建立一個subclass InheritedWiget</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FrogColor</span> <span class="keyword">extends</span> <span class="title">InheritedWidget</span> </span>&#123;</span><br><span class="line">  <span class="comment">// (2)建立Data</span></span><br><span class="line">  <span class="keyword">const</span> FrogColor(&#123;</span><br><span class="line">    Key? key,</span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">this</span>.color,</span><br><span class="line">    <span class="keyword">required</span> Widget child,</span><br><span class="line">  &#125;) : <span class="keyword">super</span>(key: key, child: child);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">final</span> Color color;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// (3)加入of方法</span></span><br><span class="line">  <span class="keyword">static</span> FrogColor of(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">final</span> FrogColor? result = context.dependOnInheritedWidgetOfExactType&lt;FrogColor&gt;();</span><br><span class="line">    <span class="keyword">assert</span>(result != <span class="keyword">null</span>, <span class="string">&#x27;No FrogColor found in context&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> result!;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// (4)加入updateShouldNotify方法 </span></span><br><span class="line">  <span class="comment">// (5)並控制當接收到更新</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">bool</span> updateShouldNotify(FrogColor old) =&gt; color != old.color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 of 方法時，上下文必須是 InheritedWidget 的後代，這意味著它必須在樹中“低於”InheritedWidget。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在這個例子中，使用的上下文是來自Builder的上下文，它是FrogColor小部件的子級，所以這是有效的。</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> MyPage(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: FrogColor(</span><br><span class="line">        color: Colors.green,</span><br><span class="line">        child: Builder(</span><br><span class="line">          builder: (BuildContext innerContext) &#123;</span><br><span class="line">            <span class="keyword">return</span> Text(</span><br><span class="line">              <span class="string">&#x27;Hello Frog&#x27;</span>,</span><br><span class="line">              style: TextStyle(color: FrogColor.of(innerContext).color),</span><br><span class="line">            );</span><br><span class="line">          &#125;,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在此示例中，使用的上下文是來自 MyOtherPage 小部件的上下文，它是 FrogColor 小部件的父級，因此這不起作用</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyOtherPage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> MyOtherPage(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      body: FrogColor(</span><br><span class="line">        color: Colors.green,</span><br><span class="line">        child: Text(</span><br><span class="line">          <span class="string">&#x27;Hello Frog&#x27;</span>,</span><br><span class="line">          style: TextStyle(color: FrogColor.of(context).color),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>無法定向通知。(從上到下傳遞)</p>
+<p>容易造成不必要的刷新，不支持跨頁面的資料傳遞 (如果不在同一個widget 樹，即無法共享資料)</p>
+<p>它共享的資料是不可改變的，如果想讓它監聽資料的變化並且重新構建InheritedWidget，必須透過結合StatefulWidget、ChangeNotifier或Stream來使用</p>
+</blockquote>
+<p>1.createElement()</p>
+<blockquote>
+<p>創立對應的Element</p>
+</blockquote>
+<p>2.updateShouldNotify(covariant InheritedWidget oldWidget)</p>
+<blockquote>
+<p>framework是否應通知從該widgets繼承的widgets</p>
+</blockquote>
+<hr>
+<p>ChangeNotifier()</p>
+<p>用於向監聽器發送通知。換言之，如果被定義為ChangeNotifier，你可以訂閱它的狀態變化 (即觀察者模式)</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChangeNotifier</span> <span class="keyword">implements</span> <span class="title">Listenable</span> </span>&#123;</span><br><span class="line">  <span class="built_in">List</span> listeners=[];</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//添加監聽器</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> addListener(VoidCallback listener) &#123;</span><br><span class="line">     listeners.add(listener);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//移除監聽器</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> removeListener(VoidCallback listener) &#123;</span><br><span class="line">    listeners.remove(listener);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//通知所有監聽器，觸發監聽器回調</span></span><br><span class="line">  <span class="keyword">void</span> notifyListeners() &#123;</span><br><span class="line">    listeners.forEach((item)=&gt;item());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>將要共享的狀態設計為一個Model類，然後讓它繼承ChangeNotifier。當共享狀態改變時，只需調用notifyListeners()來通知訂閱者，由訂閱者來重新構建InheritedProvider</p>
+<p>change_notifier_provider.dart:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;inherited_provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 將要共享的狀態設計為一個 Model 類，然後讓它繼承ChangeNotifier，透過泛型指定共享資料型別</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChangeNotifierProvider</span>&lt;<span class="title">T</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span>&gt; <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  ChangeNotifierProvider(&#123;</span><br><span class="line">    Key key,</span><br><span class="line">    <span class="keyword">this</span>.data,</span><br><span class="line">    <span class="keyword">this</span>.child,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">final</span> Widget child;</span><br><span class="line">  <span class="keyword">final</span> T data;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//提供了靜態方法of，給子widget獲取InheritedProvider所保存的共享資料model</span></span><br><span class="line">  <span class="keyword">static</span> T of&lt;T&gt;(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">//透過dependOnInheritedWidgetOfExactType取得InheritedProvider，並指定設計的Model當作InheritedProvider的共享狀態型別</span></span><br><span class="line">    <span class="keyword">final</span> provider = context.dependOnInheritedWidgetOfExactType&lt;InheritedProvider&lt;T&gt;&gt;();</span><br><span class="line">    <span class="keyword">return</span> provider.data;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _ChangeNotifierProviderState&lt;T&gt; createState() =&gt;</span><br><span class="line">      _ChangeNotifierProviderState&lt;T&gt;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//監聽到共享狀態改變時重新構建Widget Tree</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_ChangeNotifierProviderState</span>&lt;<span class="title">T</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">ChangeNotifierProvider</span>&lt;<span class="title">T</span>&gt;&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">void</span> update() &#123;</span><br><span class="line">    <span class="comment">//如果共享資料發生變化(model調用了notifyListeners)，重新構建InheritedProvider</span></span><br><span class="line">    setState(() =&gt; &#123;&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> didUpdateWidget(ChangeNotifierProvider&lt;T&gt; oldWidget) &#123;</span><br><span class="line">    <span class="comment">//當Provider更新資料，將舊資料解除監聽，同時監聽新的資料</span></span><br><span class="line">    <span class="keyword">if</span> (widget.data != oldWidget.data) &#123;</span><br><span class="line">      oldWidget.data.removeListener(update);</span><br><span class="line">      widget.data.addListener(update);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">super</span>.didUpdateWidget(oldWidget);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> initState() &#123;</span><br><span class="line">    <span class="comment">// 新增監聽器</span></span><br><span class="line">    widget.data.addListener(update);</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> dispose() &#123;</span><br><span class="line">    <span class="comment">// 移除監聽器</span></span><br><span class="line">    widget.data.removeListener(update);</span><br><span class="line">    <span class="keyword">super</span>.dispose();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> InheritedProvider&lt;T&gt;(</span><br><span class="line">      data: widget.data,</span><br><span class="line">      child: widget.child,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>現在，讓Model通過ChangeNotifierProvider讓我們能在widget上建立監聽、訂閱。</p>
+<p>使用Builder模式來建立Consumer，當<strong>收到更新通知就會通過 builder 重新構建</strong>。<br>(把Consumer放在widget Tree盡量低的位置上，避免一點小變化就重新構建widget)</p>
+<p>consumer.dart:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;change_notifier_provider.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ChangeNotifier發生變化的時候會調用builder</span></span><br><span class="line"><span class="comment">// 當model調用notifyListeners()時，所有和Consumer相關的builder方法都會被調用</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Consumer</span>&lt;<span class="title">T</span>&gt; <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  Consumer(&#123;</span><br><span class="line">    Key key,</span><br><span class="line">    <span class="meta">@required</span> <span class="keyword">this</span>.builder,</span><br><span class="line">    <span class="keyword">this</span>.child,</span><br><span class="line">  &#125;)  : <span class="keyword">assert</span>(builder != <span class="keyword">null</span>),</span><br><span class="line">        <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">final</span> Widget child;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">final</span> Widget <span class="built_in">Function</span>(BuildContext context, T value) builder;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> builder(</span><br><span class="line">      context,</span><br><span class="line">      ChangeNotifierProvider.of&lt;T&gt;(context), <span class="comment">//取得共享資料</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>Example:用購物車來使用我們創建的Provider：</p>
+<blockquote>
+<p>實現一個顯示購物車中所有商品總價的功能：向購物車中添加新商品時總價更新</p>
+</blockquote>
+<p>定義一個Item，用於表示商品信息</p>
+<p>cart_item.dart：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> </span>&#123;</span><br><span class="line">  Item(<span class="keyword">this</span>.price, <span class="keyword">this</span>.count);</span><br><span class="line">  <span class="built_in">double</span> price; </span><br><span class="line">  <span class="built_in">int</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定義一個保存購物車內商品資料的CartModel</p>
+<p>cart_model.dart：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;dart:collection&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;cart_item.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CartModel</span> <span class="keyword">extends</span> <span class="title">ChangeNotifier</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">List</span>&lt;Item&gt; _items = [];</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 禁止改變購物車裡的商品資訊</span></span><br><span class="line">  UnmodifiableListView&lt;Item&gt; <span class="keyword">get</span> items =&gt; UnmodifiableListView(_items);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">double</span> <span class="keyword">get</span> totalPrice =&gt;</span><br><span class="line">      _items.fold(<span class="number">0</span>, (value, item) =&gt; value + item.count * item.price);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> add(Item item) &#123;</span><br><span class="line">    _items.add(item);</span><br><span class="line">    <span class="comment">// 當購物車新增商品時，通知監聽器 (訂閱者)，重新構建InheritedProvider，更新狀態</span></span><br><span class="line">    notifyListeners();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每當按下按鈕，即會增加一筆商品，總價也會改變</p>
+<p>main.dart</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:flutter/material.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:provider_tutorial/cart_model.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;cart_item.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;change_notifier_provider.dart&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;consumer.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  runApp(ChangeNotifierProvider&lt;CartModel&gt;(</span><br><span class="line">    data: CartModel(),</span><br><span class="line">    child: MyApp(),</span><br><span class="line">  ));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">&#x27;Flutter Demo&#x27;</span>,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">      ),</span><br><span class="line">      home: MyHomePage(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">&#x27;Flutter Provider Demo&#x27;</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Column(</span><br><span class="line">          mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            Column(</span><br><span class="line">              children: &lt;Widget&gt;[</span><br><span class="line">                Consumer&lt;CartModel&gt;(</span><br><span class="line">                  builder: (context, cart) =&gt; Text(</span><br><span class="line">                    <span class="string">&quot;購物車總價: <span class="subst">$&#123;cart.totalPrice&#125;</span>&quot;</span>,</span><br><span class="line">                    style: Theme.of(context).textTheme.headline5,</span><br><span class="line">                  ),</span><br><span class="line">                ),</span><br><span class="line">                Consumer&lt;CartModel&gt;(</span><br><span class="line">                  builder: (context, cart) =&gt; RaisedButton(</span><br><span class="line">                    child: Text(<span class="string">&quot;添加商品&quot;</span>),</span><br><span class="line">                    onPressed: () &#123;</span><br><span class="line">                      <span class="comment">//添加商品至購物車，添加後總價會更新</span></span><br><span class="line">                      ChangeNotifierProvider.of&lt;CartModel&gt;(context)</span><br><span class="line">                          .add(Item(<span class="number">10.0</span>, <span class="number">1</span>));</span><br><span class="line">                    &#125;,</span><br><span class="line">                  ),</span><br><span class="line">                ),</span><br><span class="line">              ],</span><br><span class="line">            ),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在構建”添加按鈕”的代碼有個性能問題:<br>點擊按鈕後，我們只想要購物車商品總價變化(也就是只更新總價的Text)，但按鈕本身沒變化，是不應該重新build的。</p>
+<blockquote>
+<p>因為構建Button的builder調用了ChangeNotifierProvider.of(也就是依賴widget樹上的InheritedWidget Widget，即是IngeritedProvider)</p>
+<p>所以，當天加完商品後，CartModel發生變化，會通知ChangeNotifierProvider，而ChangeNotifierProvider會重新構建子樹，所以IngeritedProvider將會更新，而依賴它的後代Widget會重新被構建</p>
+</blockquote>
+<p>改進: 打破解除Button和IngeritedWidget間的依賴關係</p>
+<p>InheritedWidget調用dependOnInheritedWidgetOfExactType()和getElementForInheritedWidgetOfExactType()的區別就是前者會註冊依賴關係，而後者不會。<br>所以我們只需要將ChangeNotifierProvider.of的實現給改成:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Before</span></span><br><span class="line">  <span class="keyword">static</span> T of&lt;T&gt;(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">//透過dependOnInheritedWidgetOfExactType 取得InheritedProvider，並指定設計的Model 當作InheritedProvider 的共享狀態型別</span></span><br><span class="line">    <span class="keyword">final</span> provider =</span><br><span class="line">        context.dependOnInheritedWidgetOfExactType&lt;InheritedProvider&lt;T&gt;&gt;();</span><br><span class="line">    <span class="keyword">return</span> provider.data;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// After，增加一個listen的參數，來表示是否建立依賴關係</span></span><br><span class="line">  <span class="keyword">static</span> T of&lt;T&gt;(BuildContext context, &#123;<span class="built_in">bool</span> listen = <span class="keyword">true</span>&#125;) &#123;</span><br><span class="line">    <span class="keyword">final</span> type = _typeOf&lt;InheritedProvider&lt;T&gt;&gt;();</span><br><span class="line">    <span class="keyword">final</span> provider = listen</span><br><span class="line">        ? context.dependOnInheritedWidgetOfExactType&lt;InheritedProvider&lt;T&gt;&gt;()</span><br><span class="line">        : context.getElementForInheritedWidgetOfExactType&lt;InheritedProvider&lt;T&gt;&gt;()?.widget</span><br><span class="line">            <span class="keyword">as</span> InheritedProvider&lt;T&gt;;</span><br><span class="line">    <span class="keyword">return</span> provider.data;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>將button修改成</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Column(</span><br><span class="line">    children: &lt;Widget&gt;[</span><br><span class="line">    Consumer&lt;CartModel&gt;(</span><br><span class="line">        builder: (context, cart) =&gt; Text(</span><br><span class="line">        <span class="string">&quot;購物車總價: <span class="subst">$&#123;cart.totalPrice&#125;</span>&quot;</span>,</span><br><span class="line">        style: Theme.of(context).textTheme.headline5,</span><br><span class="line">        ),</span><br><span class="line">    ),</span><br><span class="line">    Consumer&lt;CartModel&gt;(</span><br><span class="line">        builder: (context, cart) =&gt; RaisedButton(</span><br><span class="line">        child: Text(<span class="string">&quot;添加商品&quot;</span>),</span><br><span class="line">        onPressed: () &#123;</span><br><span class="line">            <span class="comment">//添加商品至購物車，添加後總價會更新，先固定用商品為 Item(10.0, 1)當範例</span></span><br><span class="line">            <span class="comment">// ChangeNotifierProvider.of&lt;CartModel&gt;(context).add(Item(10.0, 1));</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// listen 設為false，不建立依賴關係</span></span><br><span class="line">            ChangeNotifierProvider.of&lt;CartModel&gt;(context, listen: <span class="keyword">false</span>)</span><br><span class="line">            .add(Item(<span class="number">20.0</span>, <span class="number">1</span>));</span><br><span class="line">        &#125;,</span><br><span class="line">        ),</span><br><span class="line">    ),</span><br><span class="line">    ],</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我們能發現點擊按鈕後，按鈕不會被重新構建，而總價仍會更新 (因為Consumer中調用ChangeNotifierProvider.of時listen值為true，所以還是會建立依賴關係)</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
     <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/6fc5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="紀錄、思考與分享">
+      <meta itemprop="description" content="裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記">
+      <meta itemprop="name" content="阿甫筆記——紀錄、思考與分享">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -352,11 +564,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="紀錄、思考與分享">
+      <meta itemprop="description" content="裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記">
+      <meta itemprop="name" content="阿甫筆記——紀錄、思考與分享">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -477,11 +689,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="紀錄、思考與分享">
+      <meta itemprop="description" content="裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記">
+      <meta itemprop="name" content="阿甫筆記——紀錄、思考與分享">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -662,11 +874,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="紀錄、思考與分享">
+      <meta itemprop="description" content="裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記">
+      <meta itemprop="name" content="阿甫筆記——紀錄、思考與分享">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -770,11 +982,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="紀錄、思考與分享">
+      <meta itemprop="description" content="裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記">
+      <meta itemprop="name" content="阿甫筆記——紀錄、思考與分享">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -947,11 +1159,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="紀錄、思考與分享">
+      <meta itemprop="description" content="裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記">
+      <meta itemprop="name" content="阿甫筆記——紀錄、思考與分享">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -1055,11 +1267,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="紀錄、思考與分享">
+      <meta itemprop="description" content="裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記">
+      <meta itemprop="name" content="阿甫筆記——紀錄、思考與分享">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -1200,11 +1412,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="紀錄、思考與分享">
+      <meta itemprop="description" content="裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記">
+      <meta itemprop="name" content="阿甫筆記——紀錄、思考與分享">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -1423,11 +1635,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="紀錄、思考與分享">
+      <meta itemprop="description" content="裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記">
+      <meta itemprop="name" content="阿甫筆記——紀錄、思考與分享">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -1550,157 +1762,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/ad49/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="紀錄、思考與分享">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/ad49/" class="post-title-link" itemprop="url">Solidity (1): Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-11-30 14:32:16" itemprop="dateCreated datePublished" datetime="2021-11-30T14:32:16+08:00">2021-11-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-25 18:46:46" itemprop="dateModified" datetime="2022-04-25T18:46:46+08:00">2022-04-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/solidity/" itemprop="url" rel="index"><span itemprop="name">solidity</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2021/ad49/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/ad49/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Solidity-Hello-World"><a href="#Solidity-Hello-World" class="headerlink" title="Solidity: Hello World"></a>Solidity: Hello World</h1><p>開發工具與環境設置</p>
-<p>安裝所需要工具</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g truffle ganache-cli</span><br></pre></td></tr></table></figure>
-
-<p>啟動 ganache-cli來啟動乙太坊測試環境</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ganache-cli</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/ad49/unknown_filename.png"><br><img data-src="/2021/ad49/unknown_filename.1.png"></p>
-<p>建立智能合約</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir hello</span><br><span class="line">cd hello</span><br><span class="line">truffle init</span><br><span class="line"></span><br><span class="line">truffle create contract HelloWorld #建立合約</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/ad49/unknown_filename.2.png"></p>
-<p><img data-src="/2021/ad49/unknown_filename.3.png"><br>HelloWorld.sol:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract HelloWorld &#123;</span><br><span class="line">  // constructor() public &#123;</span><br><span class="line">  // &#125;</span><br><span class="line"></span><br><span class="line">  function sayHello() public pure returns (string memory)&#123;</span><br><span class="line">    return (&quot;Hello World&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>編譯</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
-
-<p>編譯成功的話，在build/contracts/目錄下會多出HelloWorld.json這個檔案<br><img data-src="/2021/ad49/unknown_filename.4.png"></p>
-<p>部署</p>
-<p>在migrate中新增2_deploy_contracts.js<br>(migration檔案會依照檔案的編號來執行。例如2_就會在1_之後執行。檔案後面的文字只為協助開發者理解之用)<br><img data-src="/2021/ad49/unknown_filename.5.png"><br>2_deploy_contracts.js:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>區塊網路設定<br>在truffle-config檔案裡L<br><img data-src="/2021/ad49/unknown_filename.6.png"><br>加入設定<br><img data-src="/2021/ad49/unknown_filename.7.png"></p>
-<p>開始部署:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/ad49/unknown_filename.8.png"></p>
-<p>測試</p>
-<p>使用truffle提供的命令行工具，執行:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
-<p>輸入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; let contract</span><br><span class="line">&gt; HelloWorld.deployed().then(instance =&gt; contract = instance)</span><br><span class="line">&gt; contract.sayHello.call()</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/ad49/unknown_filename.9.png"><br><img data-src="/2021/ad49/unknown_filename.10.png"><br>..</p>
-<h2 id="我的名子合約"><a href="#我的名子合約" class="headerlink" title="我的名子合約"></a>我的名子合約</h2><blockquote>
-<p>輸入名子，並藉由呼叫函數來顯示</p>
-</blockquote>
-<p>MyName.sol:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract MyName &#123;</span><br><span class="line">  string public _name;</span><br><span class="line"></span><br><span class="line">  constructor() &#123;</span><br><span class="line">    _name=&quot;Please Type Your Name&quot;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function setName(string memory name) public&#123;</span><br><span class="line">    _name = name ;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function getName() public view returns (string memory)&#123;</span><br><span class="line">    return _name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>編譯並佈署後</p>
-<p>我們開始測試</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">truffle console</span><br><span class="line"></span><br><span class="line">let contract</span><br><span class="line">MyName.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/ad49/2021-12-03-19-11-46.png"></p>
-<p>call function:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">contract.getName.call()</span><br><span class="line">contract.setName(&quot;Test Name&quot;)</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/ad49/2021-12-03-19-14-18.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">contract.getName.call()</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/ad49/2021-12-03-19-14-46.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1761,27 +1826,27 @@
     <img class="site-author-image" itemprop="image" alt="FufuShih"
       src="/images/avatar.png">
   <p class="site-author-name" itemprop="name">FufuShih</p>
-  <div class="site-description" itemprop="description">紀錄、思考與分享</div>
+  <div class="site-description" itemprop="description">裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
