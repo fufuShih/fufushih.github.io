@@ -206,6 +206,141 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
+    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/f52f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="FufuShih">
+      <meta itemprop="description" content="裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阿甫筆記——紀錄、思考與分享">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/f52f/" class="post-title-link" itemprop="url">flutter渲染原理與過程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-25 02:59:14" itemprop="dateCreated datePublished" datetime="2021-12-25T02:59:14+08:00">2021-12-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-11 00:28:32" itemprop="dateModified" datetime="2022-03-11T00:28:32+08:00">2022-03-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/flutter/" itemprop="url" rel="index"><span itemprop="name">flutter</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2021/f52f/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/f52f/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="flutter渲染原理與過程"><a href="#flutter渲染原理與過程" class="headerlink" title="flutter渲染原理與過程"></a>flutter渲染原理與過程</h1><h2 id="Flutter-UI生成過程"><a href="#Flutter-UI生成過程" class="headerlink" title="Flutter UI生成過程"></a>Flutter UI生成過程</h2><p>Flutter UI的生成與渲染:<br><img data-src="/2021/f52f/flutter-ui-render.png" alt="flutter ui render"></p>
+<p>我們透過flutter engine來與Native來溝通，並將接收到的VSync訊號給發送到給Framework，並開始進行UI的生成與渲染</p>
+<p>Flutter的三棵樹:<br><img data-src="/2021/f52f/2021-12-25-20-16-41.png" alt="Three Tree"></p>
+<hr>
+<p>而UI的顯示是一幀一幀的，每繪製一次，則稱其為一幀。而flutter中的engine通過VSync信號不斷的觸發每一幀繪製</p>
+<p>渲染的幀數周期:<br><img data-src="/2021/f52f/flutter-vsync-cycle.png" alt="flutter fps cycle"></p>
+<p>如果需要進行繪製，如何監聽VSync?</p>
+<blockquote>
+<p>透過Flutter Engine的ScheduleFrame()來註冊VSync信號回調，當VSync信號來的時候就會收到通知，然後就會開始進行渲染繪製</p>
+</blockquote>
+<h2 id="Flutter在Android上渲染過程"><a href="#Flutter在Android上渲染過程" class="headerlink" title="Flutter在Android上渲染過程"></a>Flutter在Android上渲染過程</h2><p><img data-src="/2021/f52f/Flutter-render-frame.png" alt="flutter ui generator"></p>
+<p>Platform channel:<br><img data-src="/2021/f52f/2021-12-25-20-18-11.png" alt="Platform channels"></p>
+<ol>
+<li>Flutter的Engine藉ScheduleFrame()來註冊Vsync信號，而Engine與Framework(Dart)是藉由Window來進行構通</li>
+<li>Engine收到Vsync信號，通過Window的onBeginFrame和onDrawFrame來進行回調，此時信號已經回調到Framework</li>
+<li>Framework將Widget構建出相對應的Element Tree和RenderObject Tree</li>
+<li>將RenderObject進行layout和paint，最後把繪製的結果輸出在Layer上</li>
+<li>Framework通過Window的render方法回到Engine，Engine再向GPU Thread提交繪製任務並渲染</li>
+</ol>
+<h1 id="Flutter架構"><a href="#Flutter架構" class="headerlink" title="Flutter架構"></a>Flutter架構</h1><p>Flutter架構:<br><img data-src="/2021/f52f/2021-12-25-20-14-01.png" alt="flutter arch-overview"></p>
+<p>Flutter Engine本身不串建管理Thread，Flutter Engine Thread的建立和管理是由embedder負責。(Embeder指的是將Engine移植到平台的middleware)</p>
+<p>並且Engine要求Embeder提供四個Task Runner:<br>1.Platform Task Runner<br>2.UI Task Runner Thread(Dart Runner)<br>3.GPU Task Runner<br>4.IO Task Runner</p>
+<h2 id="Platform-Task-Runner"><a href="#Platform-Task-Runner" class="headerlink" title="Platform Task Runner"></a>Platform Task Runner</h2><p>當一個Flutter應用啟動時會創建一個Engine實例，Engine創建的時候會創建一個Thread來供Platform Runner使用。(一個Engine對應一個Platform Runner，而我們能同時啟動多個Engine實例，每個Runner跑在各自的Thread。)</p>
+<p>Platform Runner所在的Thread進行主要的操作:<br>1.與Engine的交互(接口调用)<br>2.處理來自平台的消息</p>
+<h2 id="UI-Task-Runner"><a href="#UI-Task-Runner" class="headerlink" title="UI Task Runner"></a>UI Task Runner</h2><p>被Flutter Engine用來執行Dart root isolate (Root isolate運行應用的main code)</p>
+<p>Engine做的事情:</p>
+<ul>
+<li>Root isolate通知Flutter Engine有幀需要渲染</li>
+<li>Flutter Engine通知平台，需要在下個Vsync的時候得到通知</li>
+<li>平台等待下一個Vsync</li>
+<li>對創建的對象和Widgets進行Layout並產生一個Layer Tree，並且將Tree傳給Engine(沒進行任何光柵化，僅生成需要繪製內容的描述)</li>
+<li>創建或更新Tree</li>
+</ul>
+<h2 id="GPU-Task-Runner"><a href="#GPU-Task-Runner" class="headerlink" title="GPU Task Runner"></a>GPU Task Runner</h2><p>用來執行設備GPU的相關調用，負責將Layer Tree提供的信息轉化為實際的GPU指令，並且配置所需的GPU資源</p>
+<h2 id="IO-Task-Runner"><a href="#IO-Task-Runner" class="headerlink" title="IO Task Runner"></a>IO Task Runner</h2><p>有一些Thread的必要操作是比較耗時間的，比如IO，而這些操作我們使用IO Runner處理。</p>
+<blockquote>
+<p>從圖片存儲（比如磁盤）中讀取壓縮的圖片格式，並將圖片數據進行處理為GPU Runner的渲染做好準備</p>
+<p>Texture準備過程中，IO Runner首先讀取壓縮的圖片二進制數據（比如PNG，JPEG），將其解壓轉換成GPU能夠處理的格式然後將數據上傳到GPU</p>
+</blockquote>
+<hr>
+<h1 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h1><p><a target="_blank" rel="noopener" href="https://docs.flutter.dev/resources/architectural-overview">Flutter architectural overview</a><br><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903620064837645#heading-1">深入理解Flutter引擎线程模式</a><br><a target="_blank" rel="noopener" href="https://book.flutterchina.club/chapter14/flutter_app_startup.html#_14-3-1-%E5%90%AF%E5%8A%A8">Flutter启动流程和渲染管线</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
     <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/f8a1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1625,229 +1760,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-tw,en,default">
-    <link itemprop="mainEntityOfPage" href="https://www.fufunote.com/2021/911b/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="FufuShih">
-      <meta itemprop="description" content="裡是我紀錄、思考與分享的Blog，我會將一些在日常上的應用以及一些日常上常會遇到的問題給記錄下來。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阿甫筆記——紀錄、思考與分享">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/911b/" class="post-title-link" itemprop="url">Solidity (3):創建ERC20標準代幣</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-12-01 01:04:19" itemprop="dateCreated datePublished" datetime="2021-12-01T01:04:19+08:00">2021-12-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-25 18:46:54" itemprop="dateModified" datetime="2022-04-25T18:46:54+08:00">2022-04-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/solidity/" itemprop="url" rel="index"><span itemprop="name">solidity</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2021/911b/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/911b/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Solidity-創建ERC20標準代幣"><a href="#Solidity-創建ERC20標準代幣" class="headerlink" title="Solidity:創建ERC20標準代幣"></a>Solidity:創建ERC20標準代幣</h1><p>關於ERC20 Token</p>
-<ul>
-<li>具備完整貨幣交易功能的代幣。</li>
-<li>所有ERC20 Token由ETH錢包地址來進行管理 (智能合約上面記載著某個以太坊地址有多少該Token的存在)</li>
-</ul>
-<p>關於ERC20:<br><a target="_blank" rel="noopener" href="https://theethereum.wiki/erc20_token_standard/">ERC20</a><br><a target="_blank" rel="noopener" href="https://eips.ethereum.org/EIPS/eip-20">EIP20</a></p>
-<h2 id="ERC20-簡述"><a href="#ERC20-簡述" class="headerlink" title="ERC20 簡述"></a>ERC20 簡述</h2><p>1.name: Token的名子</p>
-<blockquote>
-<p>function name() public view returns (string)</p>
-</blockquote>
-<p>2.symbol: Token的符號</p>
-<blockquote>
-<p>function symbol() public view returns (string)</p>
-</blockquote>
-<p>3.decimals: token使用的number of decimal(ex. 8, 代表將token數量除以100000000，讓用戶去表示)</p>
-<blockquote>
-<p>function decimals() public view returns (uint8)</p>
-</blockquote>
-<p>4.totalSupply: token的總供應</p>
-<blockquote>
-<p>function totalSupply() public view returns (uint256)</p>
-</blockquote>
-<p>5.balanceOf: 返回_owner的賬戶餘額</p>
-<blockquote>
-<p>function balanceOf(address _owner) public view returns (uint256 balance)</p>
-</blockquote>
-<p>6.transfer: 將_value數量的代幣轉移到地址_to，並且必須觸發Transfer事件。</p>
-<blockquote>
-<p>function transfer(address _to, uint256 _value) public returns (bool success)</p>
-</blockquote>
-<p>7.transferFrom: 將代幣從地址_from 轉移到地址 _to，並且必須觸發 Transfer 事件。</p>
-<blockquote>
-<p>function transferFrom(address _from, address _to, uint256 _value) public returns (bool success)</p>
-</blockquote>
-<p>8.approve: 允許_spender多次從您的賬戶中提款，最多可達_value 金額。</p>
-<blockquote>
-<p>function approve(address _spender, uint256 _value) public returns (bool success)</p>
-</blockquote>
-<p>9.allowance:  返回_spender仍可從_owner提取的金額。</p>
-<blockquote>
-<p>function allowance(address _owner, address _spender) public view returns (uint256 remaining)</p>
-</blockquote>
-<p>Token Contract運作方式</p>
-<p><strong>查詢Token Balance</strong>:</p>
-<blockquote>
-<p>0x1111111111111111111111111111111111111111 with a balance of 100 units</p>
-<p>0x2222222222222222222222222222222222222222 with a balance of 200 units</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">balances[0x1111111111111111111111111111111111111111] = 100</span><br><span class="line">balances[0x2222222222222222222222222222222222222222] = 200</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>tokenContract.balanceOf(0x1111111111111111111111111111111111111111) will return 100</p>
-<p>tokenContract.balanceOf(0x2222222222222222222222222222222222222222) will return 200</p>
-</blockquote>
-<p><strong>轉移Token Balance</strong>:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tokenContract.transfer(0x2222222222222222222222222222222222222222, 10) // 1...1想轉10 token給2...2</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>tokenContract.balanceOf(0x1111111111111111111111111111111111111111) will return 90</p>
-<p>tokenContract.balanceOf(0x2222222222222222222222222222222222222222) will return 210</p>
-</blockquote>
-<p><strong>批准和從他處轉移Token Balance</strong>:</p>
-<p>如果0x1…1要授權0x2…2，並傳遞到0x2…2，0x1…1執行的函數：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tokenContract.approve(0x2222222222222222222222222222222222222222, 30)</span><br></pre></td></tr></table></figure>
-
-<p>如果0x2…2希望以後從0x1…1傳遞一些token，0x2…2執行transferFrom（…）函數：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tokenContract.transferFrom(0x1111111111111111111111111111111111111111, 0x2222222222222222222222222222222222222222, 20)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>tokenContract.balances[0x1111111111111111111111111111111111111111] = 70</p>
-<p>tokenContract.balances[0x2222222222222222222222222222222222222222] = 230</p>
-</blockquote>
-<p>0x2…2 仍然可以花費 0x1…1的 10 個代幣。(30 - 20)</p>
-<h2 id="Practice練習"><a href="#Practice練習" class="headerlink" title="Practice練習"></a>Practice練習</h2><p>現在我們使用OpenZeppelin</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @openzeppelin/contracts</span><br></pre></td></tr></table></figure>
-
-<p>建立合約:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle create contract MyTokenEnhance</span><br></pre></td></tr></table></figure>
-
-<p>MyTokenEnhance.sol:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract MyTokenEnhance is ERC20 &#123;</span><br><span class="line">  constructor() ERC20(&quot;MyToken&quot;, &quot;MTE&quot;) &#123;</span><br><span class="line">    // Mint 100 tokens to msg.sender</span><br><span class="line">    // Similar to how</span><br><span class="line">    // 1 dollar = 100 cents</span><br><span class="line">    // 1 token = 1 * (10 ** decimals)</span><br><span class="line">    _mint(msg.sender, 100 * 10**uint(decimals()));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>add</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var HelloWorld = artifacts.require(&quot;HelloWorld&quot;);</span><br><span class="line">// var MyToken = artifacts.require(&quot;MyToken&quot;);</span><br><span class="line">var MyTokenEnhance = artifacts.require(&quot;MyTokenEnhance&quot;)</span><br><span class="line"></span><br><span class="line">module.exports = function(deployer) &#123;</span><br><span class="line">  deployer.deploy(HelloWorld);</span><br><span class="line">//   deployer.deploy(MyToken);</span><br><span class="line">  deployer.deploy(MyTokenEnhance);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2021/911b/unknown_filename.2.png"></p>
-<p>run</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle compile</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/911b/unknown_filename.png"></p>
-<p>and then, run</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle migrate</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/911b/unknown_filename.3.png"></p>
-<p>使用console測試:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truffle console</span><br></pre></td></tr></table></figure>
-
-<p>Test</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let contract</span><br><span class="line">MyTokenEnhance.deployed().then(instance =&gt; contract = instance)</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/911b/unknown_filename.1.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf(accounts[1])</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/911b/unknown_filename.4.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">contract.transfer(accounts[1], 50)</span><br><span class="line">contract.balanceOf(accounts[0])</span><br><span class="line">contract.balanceOf.call(accounts[1])</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="/2021/911b/unknown_filename.5.png"></p>
-<p><img data-src="/2021/911b/unknown_filename.6.png"></p>
-<p>..</p>
-<h2 id="使用remix"><a href="#使用remix" class="headerlink" title="使用remix"></a>使用remix</h2><p><img data-src="/2021/911b/2021-12-15-17-38-33.png"></p>
-<p>connect local net</p>
-<p><img data-src="/2021/911b/2021-12-15-17-38-25.png"></p>
-<p>Click compile and deploy</p>
-<p><img data-src="/2021/911b/2021-12-15-17-39-41.png"></p>
-<p><img data-src="/2021/911b/2021-12-15-17-40-45.png"></p>
-<hr>
-<p>Now, we call these function</p>
-<p><img data-src="/2021/911b/2021-12-15-17-41-39.png"></p>
-<p>Result:</p>
-<p><img data-src="/2021/911b/2021-12-15-17-42-15.png"></p>
-<hr>
-<p>Test transfer:</p>
-<p>See address</p>
-<p><img data-src="/2021/911b/2021-12-15-17-43-36.png"></p>
-<p>call transfer:</p>
-<p><img data-src="/2021/911b/2021-12-15-17-43-57.png"></p>
-<p>Call balanceof:</p>
-<p><img data-src="/2021/911b/2021-12-15-17-44-52.png"></p>
-<p>result:</p>
-<p><img data-src="/2021/911b/2021-12-15-17-45-07.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1919,20 +1831,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
