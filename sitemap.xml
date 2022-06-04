@@ -245,14 +245,21 @@
 
   
   <url>
-    <loc>https://www.fufunote.com/tags/blockchain/</loc>
+    <loc>https://www.fufunote.com/tags/flutter/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.fufunote.com/tags/solana/</loc>
+    <loc>https://www.fufunote.com/tags/vscode/</loc>
+    <lastmod>2022-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.fufunote.com/tags/remix/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -266,7 +273,14 @@
   </url>
   
   <url>
-    <loc>https://www.fufunote.com/tags/flutter/</loc>
+    <loc>https://www.fufunote.com/tags/blockchain/</loc>
+    <lastmod>2022-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.fufunote.com/tags/solana/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -294,14 +308,14 @@
   </url>
   
   <url>
-    <loc>https://www.fufunote.com/tags/vscode/</loc>
+    <loc>https://www.fufunote.com/tags/statement/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.fufunote.com/tags/remix/</loc>
+    <loc>https://www.fufunote.com/tags/render/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -315,7 +329,7 @@
   </url>
   
   <url>
-    <loc>https://www.fufunote.com/tags/statement/</loc>
+    <loc>https://www.fufunote.com/tags/widget/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -350,27 +364,6 @@
   </url>
   
   <url>
-    <loc>https://www.fufunote.com/tags/web3/</loc>
-    <lastmod>2022-06-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.fufunote.com/tags/widget/</loc>
-    <lastmod>2022-06-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.fufunote.com/tags/render/</loc>
-    <lastmod>2022-06-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.fufunote.com/tags/react/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -378,7 +371,7 @@
   </url>
   
   <url>
-    <loc>https://www.fufunote.com/tags/restful/</loc>
+    <loc>https://www.fufunote.com/tags/web3/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -406,6 +399,13 @@
   </url>
   
   <url>
+    <loc>https://www.fufunote.com/tags/restful/</loc>
+    <lastmod>2022-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.fufunote.com/tags/typeorm/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -415,7 +415,7 @@
 
   
   <url>
-    <loc>https://www.fufunote.com/categories/solana/</loc>
+    <loc>https://www.fufunote.com/categories/flutter/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -429,7 +429,7 @@
   </url>
   
   <url>
-    <loc>https://www.fufunote.com/categories/flutter/</loc>
+    <loc>https://www.fufunote.com/categories/solana/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
